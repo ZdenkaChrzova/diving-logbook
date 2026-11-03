@@ -6,12 +6,18 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.3">
+  <link rel="stylesheet" href="styles.css?v=1.0.4">
+<style>
+.version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
+.dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.detail-datetime{font-size:1.35rem;font-weight:850;letter-spacing:.01em;margin-bottom:3px}.detail-number{font-size:.9rem;color:#c8eef0;font-weight:700;margin-bottom:8px}
+@media(max-width:380px){.compact-row{gap:8px}.compact-row input{padding:10px 7px;font-size:.92rem}}
+</style>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK</div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.4</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
@@ -64,11 +70,16 @@
         <input id="editId" type="hidden">
         <input id="qrRaw" type="hidden">
         <div class="card form-section"><h3>Základní údaje</h3>
-          <div class="form-grid">
-            <label>Datum<input id="date" type="date" required></label>
-            <label>Čas<input id="startTime" type="time"></label>
-            <label>Délka (min)<input id="duration" type="number" min="1" step="1" required></label>
-            <label>Max. hloubka (m)<input id="depth" type="number" min="0" step="0.1" required></label>
+          <label class="dive-number-field">Číslo ponoru<input id="diveNumber" type="number" min="1" step="1" inputmode="numeric" required></label>
+          <div class="compact-pairs">
+            <div class="compact-row">
+              <label>Datum<input id="date" type="date" required></label>
+              <label>Čas<input id="startTime" type="time"></label>
+            </div>
+            <div class="compact-row">
+              <label>Délka (min)<input id="duration" type="number" min="1" step="1" required></label>
+              <label>Max. hloubka (m)<input id="depth" type="number" min="0" step="0.1" required></label>
+            </div>
           </div>
         </div>
         <div class="card form-section"><h3>Lokalita</h3>
@@ -139,17 +150,22 @@
 
     <section id="settingsView" class="view">
       <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Nastavení</h2></div>
+      <div class="card form-section"><h3>Číslování ponorů</h3>
+        <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
+        <button id="saveInitialDiveNumber" class="secondary wide" type="button">Uložit výchozí číslo</button>
+        <p class="hint">Nový ponor dostane automaticky nejvyšší uložené číslo + 1. U staršího ponoru můžeš číslo ve formuláři ručně změnit. Seznam zůstane seřazen podle data, nejnovější nahoře.</p>
+      </div>
       <div class="card form-section"><h3>Data</h3>
         <button id="exportData" class="secondary wide" type="button">Exportovat JSON</button>
         <label class="upload">Importovat JSON<input id="importData" type="file" accept="application/json,.json"></label>
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.3</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.4</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.3"></script>
+  <script src="app.js?v=1.0.4"></script>
 </body>
 </html>
