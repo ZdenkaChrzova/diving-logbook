@@ -6,18 +6,30 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.4">
+  <link rel="stylesheet" href="styles.css?v=1.0.5">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .detail-datetime{font-size:1.35rem;font-weight:850;letter-spacing:.01em;margin-bottom:3px}.detail-number{font-size:.9rem;color:#c8eef0;font-weight:700;margin-bottom:8px}
 @media(max-width:380px){.compact-row{gap:8px}.compact-row input{padding:10px 7px;font-size:.92rem}}
 </style>
+
+<style>
+/* v1.0.5: compact basic fields without horizontal overflow */
+.compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
+.compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
+.compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
+.compact-row input{display:block;box-sizing:border-box;width:100%;max-width:100%;min-width:0;margin-left:0;margin-right:0;padding-left:9px;padding-right:9px;text-align:left}
+.compact-row input[type="date"],.compact-row input[type="time"]{-webkit-appearance:none;appearance:none;min-height:44px}
+.detail-number{font-size:1.55rem;line-height:1.15;font-weight:900;color:#fff;margin:0 0 5px}
+.detail-datetime{font-size:1.22rem;line-height:1.25;font-weight:800;color:#d9f5f6;margin:0 0 10px}
+@media(max-width:380px){.compact-row{gap:7px}.compact-row input{font-size:.87rem;padding-left:6px;padding-right:6px}.compact-row label{font-size:.76rem}}
+</style>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.4</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.5</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
@@ -161,11 +173,11 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.4</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.5</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.4"></script>
+  <script src="app.js?v=1.0.5"></script>
 </body>
 </html>
