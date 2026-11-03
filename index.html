@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#073b4c">
+  <title>Diving LogBook</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">DIVING LOGBOOK</div>
+      <h1>Moje ponory</h1>
+    </div>
+    <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
+  </header>
+
+  <main>
+    <section id="dashboard" class="view active">
+      <div class="hero card">
+        <div><span id="statCount" class="big">0</span><span class="unit"> ponorů</span></div>
+        <div class="stats-grid">
+          <div><strong id="statTime">0 h</strong><span>pod vodou</span></div>
+          <div><strong id="statDepth">–</strong><span>největší hloubka</span></div>
+        </div>
+      </div>
+      <button id="btnNew" class="primary wide" type="button">＋ Přidat ponor z QR</button>
+      <div class="section-head"><h2>Uložené ponory</h2><input id="search" type="search" placeholder="Hledat lokalitu…"></div>
+      <div id="diveList" class="list"></div>
+      <div id="emptyState" class="empty card"><div class="empty-icon">🤿</div><h3>Deník je zatím prázdný</h3><p>Načti první SSI QR kód nebo vlož jeho text ručně.</p></div>
+    </section>
+
+    <section id="importView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Import z QR</h2></div>
+      <div class="card tabs">
+        <button class="tab active" data-tab="camera" type="button">Fotoaparát</button>
+        <button class="tab" data-tab="file" type="button">Obrázek</button>
+        <button class="tab" data-tab="text" type="button">Text QR</button>
+      </div>
+      <div id="panel-camera" class="tab-panel active card">
+        <video id="video" playsinline muted></video>
+        <canvas id="scanCanvas" hidden></canvas>
+        <p id="cameraStatus" class="hint">Fotoaparát se spustí až po klepnutí.</p>
+        <button id="startCamera" class="primary wide" type="button">Spustit fotoaparát</button>
+        <button id="stopCamera" class="secondary wide hidden" type="button">Zastavit</button>
+      </div>
+      <div id="panel-file" class="tab-panel card">
+        <label class="upload">Vybrat obrázek QR<input id="qrFile" type="file" accept="image/*" capture="environment"></label>
+        <canvas id="fileCanvas" hidden></canvas>
+        <p id="fileStatus" class="hint">QR zůstává pouze v zařízení.</p>
+      </div>
+      <div id="panel-text" class="tab-panel card">
+        <label>Obsah QR<textarea id="qrText" rows="8" placeholder="dive;noid;divetime:…"></textarea></label>
+        <button id="parseText" class="primary wide" type="button">Načíst údaje</button>
+      </div>
+      <div id="importError" class="message error hidden" role="alert"></div>
+    </section>
+
+    <section id="editView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2 id="editTitle">Kontrola ponoru</h2></div>
+      <form id="diveForm">
+        <input id="editId" type="hidden">
+        <input id="qrRaw" type="hidden">
+        <div class="card form-section"><h3>Základní údaje</h3>
+          <div class="form-grid">
+            <label>Datum<input id="date" type="date" required></label>
+            <label>Čas<input id="startTime" type="time"></label>
+            <label>Délka (min)<input id="duration" type="number" min="1" step="1" required></label>
+            <label>Max. hloubka (m)<input id="depth" type="number" min="0" step="0.1" required></label>
+          </div>
+        </div>
+        <div class="card form-section"><h3>Lokalita</h3>
+          <div class="form-grid">
+            <label>SSI Site ID<input id="siteId" type="number" inputmode="numeric"></label>
+            <label>Název<input id="siteName" type="text" placeholder="Doplnit při prvním použití"></label>
+            <label>Země<input id="siteCountry" type="text"></label>
+            <label>Oblast<input id="siteRegion" type="text"></label>
+          </div>
+          <p id="siteHint" class="hint"></p>
+        </div>
+        <div class="card form-section"><h3>Podmínky</h3>
+          <div class="form-grid">
+            <label>Počasí<select id="weather"></select></label>
+            <label>Vodní plocha<select id="waterBody"></select></label>
+            <label>Voda<select id="waterType"></select></label>
+            <label>Vstup<select id="entry"></select></label>
+            <label>Proud<select id="current"></select></label>
+            <label>Teplota vody (°C)<input id="waterTemp" type="number" step="0.1"></label>
+            <label>Max. teplota vody (°C)<input id="waterTempMax" type="number" step="0.1"></label>
+            <label>Teplota vzduchu (°C)<input id="airTemp" type="number" step="0.1"></label>
+            <label>Viditelnost (m)<input id="visibility" type="number" min="0" step="0.1"></label>
+          </div>
+          <label class="check"><input id="deco" type="checkbox"> Dekompresní ponor</label>
+        </div>
+        <div class="card form-section"><h3>Výstroj a lidé</h3>
+          <div class="form-grid">
+            <label>Závaží (kg)<input id="weight" type="number" min="0" step="0.5"></label>
+            <label>Buddy / buddies<input id="buddies" type="text" placeholder="Oddělit čárkou"></label>
+            <label>Oblek<input id="suit" type="text" placeholder="např. mokrý 5 mm"></label>
+            <label>Objem lahve (l)<input id="tankVolume" type="number" min="0" step="0.1"></label>
+            <label>Materiál lahve<select id="tankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label>
+            <label>Plyn<input id="gas" type="text" placeholder="Vzduch / Nitrox 32"></label>
+            <label>Počáteční tlak (bar)<input id="startPressure" type="number" min="0"></label>
+            <label>Koncový tlak (bar)<input id="endPressure" type="number" min="0"></label>
+          </div>
+        </div>
+        <div class="card form-section"><h3>Poznámky</h3>
+          <label>Poznámka<textarea id="notes" rows="4"></textarea></label>
+          <label>Živočichové<textarea id="marineLife" rows="2"></textarea></label>
+          <label>Hodnocení<select id="rating"><option value="">Bez hodnocení</option><option value="1">1 ★</option><option value="2">2 ★</option><option value="3">3 ★</option><option value="4">4 ★</option><option value="5">5 ★</option></select></label>
+        </div>
+        <div class="card form-section"><h3>Přílohy</h3>
+          <label class="upload">Přidat JPG profil nebo fotografie<input id="attachments" type="file" accept="image/*,.pdf" multiple></label>
+          <div id="attachmentList" class="attachment-list"></div>
+        </div>
+        <div id="formError" class="message error hidden" role="alert"></div>
+        <button class="primary wide sticky-save" type="submit">Uložit ponor</button>
+      </form>
+    </section>
+
+    <section id="detailView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Detail ponoru</h2><button id="editDive" class="text-btn" type="button">Upravit</button></div>
+      <div id="detailContent"></div>
+      <button id="deleteDive" class="danger wide" type="button">Smazat ponor</button>
+    </section>
+
+    <section id="settingsView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Nastavení</h2></div>
+      <div class="card form-section"><h3>Data</h3>
+        <button id="exportData" class="secondary wide" type="button">Exportovat JSON</button>
+        <label class="upload">Importovat JSON<input id="importData" type="file" accept="application/json,.json"></label>
+        <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
+      </div>
+      <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.0</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
