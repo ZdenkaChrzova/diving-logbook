@@ -47,9 +47,9 @@
         <button id="stopCamera" class="secondary wide hidden" type="button">Zastavit</button>
       </div>
       <div id="panel-file" class="tab-panel card">
-        <label class="upload">Vybrat obrázek QR<input id="qrFile" type="file" accept="image/*" capture="environment"></label>
+        <label class="upload">Vybrat obrázek QR<input id="qrFile" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif"></label>
         <canvas id="fileCanvas" hidden></canvas>
-        <p id="fileStatus" class="hint">QR zůstává pouze v zařízení.</p>
+        <p id="fileStatus" class="hint">Vyber screenshot nebo fotografii QR. Obrázek zůstává pouze v zařízení.</p>
       </div>
       <div id="panel-text" class="tab-panel card">
         <label>Obsah QR<textarea id="qrText" rows="8" placeholder="dive;noid;divetime:…"></textarea></label>
@@ -134,7 +134,7 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.0</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.1</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
