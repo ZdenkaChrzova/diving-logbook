@@ -98,10 +98,21 @@
           <div class="form-grid">
             <label>Závaží (kg)<input id="weight" type="number" min="0" step="0.5"></label>
             <label>Buddy / buddies<input id="buddies" type="text" placeholder="Oddělit čárkou"></label>
-            <label>Oblek<input id="suit" type="text" placeholder="např. mokrý 5 mm"></label>
+            <label>Oblek<select id="suit">
+              <option value="">Nevyplněno</option>
+              <option value="dry suit">Dry suit</option>
+              <option value="neoprén short">Neoprén short</option>
+              <option value="neoprén 3 mm">Neoprén 3 mm</option>
+              <option value="neoprén 5 mm">Neoprén 5 mm</option>
+              <option value="neoprén 7 mm">Neoprén 7 mm</option>
+            </select></label>
             <label>Objem lahve (l)<input id="tankVolume" type="number" min="0" step="0.1"></label>
             <label>Materiál lahve<select id="tankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label>
-            <label>Plyn<input id="gas" type="text" placeholder="Vzduch / Nitrox 32"></label>
+            <label>Plyn<select id="gas">
+              <option value="">Nevyplněno</option>
+              <option value="vzduch">Vzduch</option>
+              <option value="nitrox">Nitrox</option>
+            </select></label>
             <label>Počáteční tlak (bar)<input id="startPressure" type="number" min="0"></label>
             <label>Koncový tlak (bar)<input id="endPressure" type="number" min="0"></label>
           </div>
@@ -134,7 +145,7 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.1</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.2</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
