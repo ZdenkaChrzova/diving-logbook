@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.10">
+  <link rel="stylesheet" href="styles.css?v=1.0.11">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -15,7 +15,7 @@
 </style>
 
 <style>
-/* v1.0.10: compact basic fields without horizontal overflow */
+/* v1.0.11: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -28,7 +28,7 @@
 <style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
 
 <style>
-/* v1.0.10: iOS date/time alignment and dashboard totals */
+/* v1.0.11: iOS date/time alignment and dashboard totals */
 .compact-row label,.compact-row input{ text-align:left!important }
 .compact-row input[type="date"],.compact-row input[type="time"]{direction:ltr!important;text-align:left!important}
 .compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
@@ -40,7 +40,7 @@
 </style>
 
 <style>
-/* v1.0.10: both dive counters use the same one-line visual treatment */
+/* v1.0.11: both dive counters use the same one-line visual treatment */
 .logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
 .logged-label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:5px}
 .logged-value,.database-total{display:flex;align-items:baseline;gap:8px;min-width:0}
@@ -52,7 +52,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.10</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.11</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
@@ -73,7 +73,7 @@
       </div>
       <div class="add-dive-actions">
         <button id="btnNew" class="primary" type="button">＋ Z QR kódu</button>
-        <button id="btnManual" class="secondary" type="button">＋ Přidat manuálně</button>
+        <button id="btnManual" class="primary" type="button">＋ Přidat manuálně</button>
       </div>
       <div class="section-head"><h2>Uložené ponory</h2><input id="search" type="search" placeholder="Hledat lokalitu…"></div>
       <div id="diveList" class="list"></div>
@@ -215,11 +215,11 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.10</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.11</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.10"></script>
+  <script src="app.js?v=1.0.11"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 "use strict";
 const KEY="divingLogBook.v1";
-const LOOKUPS={weather:{1:"Slunečno",2:"Zataženo",3:"Déšť",4:"Sníh"},waterBody:{13:"Moře / oceán",15:"Lom"},waterType:{4:"Sladká voda",5:"Slaná voda"},entry:{21:"Pobřeží / pláž",22:"Ponor z lodi"},current:{6:"Žádný proud",7:"Slabý proud",8:"Silný proud",9:"Extrémní proud"}};
+const LOOKUPS={weather:{1:"Slunečno",2:"Zataženo",3:"Déšť",4:"Sníh"},waterBody:{13:"Moře / oceán",15:"Lom",16:"Jezero"},waterType:{4:"Sladká voda",5:"Slaná voda"},entry:{21:"Pobřeží / pláž",22:"Ponor z lodi"},current:{6:"Žádný proud",7:"Slabý proud",8:"Silný proud",9:"Extrémní proud"}};
 let db=load(),activeDiveId=null,pendingAttachments=[],stream=null,scanTimer=null,selectedBuddyIds=[],buddyReturnToDive=false;
 const $=id=>document.getElementById(id);
 function emptyDB(){return {schemaVersion:1,settings:{initialDiveNumber:null,defaults:{},activeProfileId:null},buddies:{},profiles:{},dives:[],sites:{75512:{ssiId:75512,name:"Lom Bořená Hora SSI",country:"Česko",region:"",latitude:null,longitude:null}}};}
@@ -59,7 +59,7 @@ function bind(){Object.entries({weather:LOOKUPS.weather,waterBody:LOOKUPS.waterB
     refreshing=true;
     location.reload();
   });
-  navigator.serviceWorker.register('./sw.js?v=1.0.10',{updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=1.0.11',{updateViaCache:'none'})
     .then(reg=>reg.update())
     .catch(()=>{});
 }
