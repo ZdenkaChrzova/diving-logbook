@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.12">
+  <link rel="stylesheet" href="styles.css?v=1.1.0">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -15,7 +15,7 @@
 </style>
 
 <style>
-/* v1.0.12: compact basic fields without horizontal overflow */
+/* v1.1.0: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -28,7 +28,7 @@
 <style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
 
 <style>
-/* v1.0.12: iOS date/time alignment and dashboard totals */
+/* v1.1.0: iOS date/time alignment and dashboard totals */
 .compact-row label,.compact-row input{ text-align:left!important }
 .compact-row input[type="date"],.compact-row input[type="time"]{direction:ltr!important;text-align:left!important}
 .compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
@@ -40,7 +40,7 @@
 </style>
 
 <style>
-/* v1.0.12: both dive counters use the same one-line visual treatment */
+/* v1.1.0: both dive counters use the same one-line visual treatment */
 .logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
 .logged-label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:5px}
 .logged-value,.database-total{display:flex;align-items:baseline;gap:8px;min-width:0}
@@ -50,7 +50,7 @@
 </style>
 
 <style>
-/* v1.0.12: keep both add-dive labels on one line on mobile */
+/* v1.1.0: keep both add-dive labels on one line on mobile */
 .add-dive-actions button{white-space:nowrap;font-size:clamp(.78rem,3.55vw,1rem);padding-left:8px;padding-right:8px;letter-spacing:-.01em}
 @media(max-width:380px){.add-dive-actions{grid-template-columns:1fr 1fr}.add-dive-actions button{font-size:.74rem;padding-left:5px;padding-right:5px}}
 </style>
@@ -58,10 +58,10 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.12</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.1.0</span></div>
       <h1>Moje ponory</h1>
     </div>
-    <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
+    <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
   </header>
 
   <main>
@@ -197,6 +197,22 @@
     </section>
 
 
+
+    <section id="profileView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Můj profil</h2><button id="profileSettings" class="text-btn" type="button">Nastavení</button></div>
+      <div class="profile-hero card"><div class="profile-photo-wrap"><button id="profilePhotoButton" class="profile-photo" type="button"><span id="profilePhotoContent">ZC</span></button><span class="profile-camera">📷</span><input id="profilePhotoInput" type="file" accept="image/*" hidden></div><div><div class="eyebrow">POTÁPĚČSKÝ PROFIL</div><h2 id="profileDisplayName">Zdeňka</h2><p id="profileDiveSummary" class="hint"></p></div></div>
+      <div class="profile-tabs"><button class="profile-tab active" data-profile-tab="overview" type="button">Profil</button><button class="profile-tab" data-profile-tab="licenses" type="button">Licence</button></div>
+      <div id="profileOverview" class="profile-panel active">
+        <div class="card"><div class="section-head compact"><h3>Potápěčský přehled</h3><button id="editPersonalData" class="text-btn teal" type="button">Upravit</button></div><div class="profile-stats"><div class="profile-stat wide"><strong id="profileLogged">–</strong><span>celkem zalogovaných ponorů</span></div><div class="profile-stat"><strong id="profileDepth">–</strong><span>největší hloubka</span></div><div class="profile-stat"><strong id="profileTime">–</strong><span>čas v databázi</span></div></div></div>
+        <form id="personalForm" class="card form-section hidden"><h3>Osobní údaje</h3><label>Jméno<input id="profileName" type="text"></label><div class="button-row"><button id="cancelPersonal" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form>
+        <div class="card"><h3>Správa profilu</h3><button id="changePhoto" class="profile-action" type="button"><span>📷</span><span><strong>Profilová fotografie</strong><small>Vybrat nebo změnit fotografii</small></span><b>›</b></button><button id="removePhoto" class="profile-action" type="button"><span>✕</span><span><strong>Odstranit fotografii</strong><small>Zobrazí se iniciály</small></span><b>›</b></button><button id="goLicenses" class="profile-action" type="button"><span>★</span><span><strong>Potápěčské licence</strong><small>Certifikace a specializace</small></span><b>›</b></button></div>
+      </div>
+      <div id="profileLicenses" class="profile-panel">
+        <div class="license-summary"><div><strong id="licenseCount">0</strong><span>uložených licencí</span></div><div><strong id="organizationCount">0</strong><span>organizací</span></div></div>
+        <button id="addLicense" class="primary wide" type="button">＋ Přidat licenci</button><div id="licenseList" class="license-list"></div>
+        <form id="licenseForm" class="card form-section hidden"><h3 id="licenseFormTitle">Nová licence</h3><input id="licenseId" type="hidden"><label>Název licence *<input id="licenseName" required></label><div class="form-grid"><label>Organizace<select id="licenseOrganization"><option>SSI</option><option>PADI</option><option>IANTD</option><option>CMAS</option><option>NAUI</option><option>Jiná</option></select></label><label>Číslo licence<input id="licenseNumber"></label><label>Datum získání<input id="licenseIssued" type="date"></label><label>Platnost do<input id="licenseValidUntil" type="date"></label><label>Kategorie<select id="licenseCategory"><option value="main">Hlavní kvalifikace</option><option value="specialty">Specializace</option><option value="professional">Profesní kvalifikace</option><option value="other">Další oprávnění</option></select></label></div><label>Poznámka<textarea id="licenseNotes" rows="2"></textarea></label><div class="license-images"><label class="upload">Přední strana<input id="licenseFront" type="file" accept="image/*"></label><label class="upload">Zadní strana<input id="licenseBack" type="file" accept="image/*"></label></div><div id="licenseImagePreview" class="license-preview"></div><div class="button-row"><button id="cancelLicense" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit licenci</button></div></form>
+      </div>
+    </section>
     <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
     <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
     <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
@@ -221,11 +237,11 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.12</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.1.0</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.12"></script>
+  <script src="app.js?v=1.1.0"></script>
 </body>
 </html>
