@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.8">
+  <link rel="stylesheet" href="styles.css?v=1.0.9">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -15,7 +15,7 @@
 </style>
 
 <style>
-/* v1.0.8: compact basic fields without horizontal overflow */
+/* v1.0.9: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -26,11 +26,23 @@
 @media(max-width:380px){.compact-row{gap:7px}.compact-row input{font-size:.87rem;padding-left:6px;padding-right:6px}.compact-row label{font-size:.76rem}}
 </style>
 <style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
+
+<style>
+/* v1.0.9: iOS date/time alignment and dashboard totals */
+.compact-row label,.compact-row input{ text-align:left!important }
+.compact-row input[type="date"],.compact-row input[type="time"]{direction:ltr!important;text-align:left!important}
+.compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
+.compact-row input::-webkit-datetime-edit,.compact-row input::-webkit-datetime-edit-fields-wrapper{text-align:left!important;justify-content:flex-start!important;padding:0!important}
+.logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
+.logged-total span,.logged-total strong{display:block}.logged-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.logged-total strong{font-size:1.65rem;margin-top:3px}.database-total{display:flex;align-items:baseline;gap:8px}.database-total .big{font-size:2rem}.database-total .unit{font-size:.9rem}
+.add-dive-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.add-dive-actions button{min-height:50px;border-radius:14px;font-weight:800}
+@media(max-width:380px){.add-dive-actions{grid-template-columns:1fr}.logged-total strong{font-size:1.4rem}}
+</style>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.8</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.9</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
@@ -39,13 +51,17 @@
   <main>
     <section id="dashboard" class="view active">
       <div class="hero card">
-        <div><span id="statCount" class="big">0</span><span class="unit"> ponorů</span></div>
+        <div class="logged-total"><span class="logged-label">Celkem zalogováno</span><strong><span id="statLoggedNumber">–</span> ponorů</strong></div>
+        <div class="database-total"><span id="statCount" class="big">0</span><span class="unit"> ponorů uložených v databázi</span></div>
         <div class="stats-grid">
           <div><strong id="statTime">0 h</strong><span>pod vodou</span></div>
           <div><strong id="statDepth">–</strong><span>největší hloubka</span></div>
         </div>
       </div>
-      <button id="btnNew" class="primary wide" type="button">＋ Přidat ponor z QR</button>
+      <div class="add-dive-actions">
+        <button id="btnNew" class="primary" type="button">＋ Z QR kódu</button>
+        <button id="btnManual" class="secondary" type="button">＋ Přidat ručně</button>
+      </div>
       <div class="section-head"><h2>Uložené ponory</h2><input id="search" type="search" placeholder="Hledat lokalitu…"></div>
       <div id="diveList" class="list"></div>
       <div id="emptyState" class="empty card"><div class="empty-icon">🤿</div><h3>Deník je zatím prázdný</h3><p>Načti první SSI QR kód nebo vlož jeho text ručně.</p></div>
@@ -121,7 +137,7 @@
         <div class="card form-section"><h3>Výstroj a lidé</h3>
           <div class="form-grid">
             <label>Závaží (kg)<input id="weight" type="number" min="0" step="0.5"></label>
-            <div class="buddy-picker"><span class="field-label">Buddy / buddies</span><div id="buddySelection" class="selection-box"><span class="hint">Zatím nikdo vybraný</span></div><button id="chooseBuddies" class="secondary small-btn" type="button">Vybrat z databáze</button></div>
+            <div class="buddy-picker"><span class="field-label">Buddies</span><div id="buddySelection" class="selection-box"><span class="hint">Zatím nikdo vybraný</span></div><button id="chooseBuddies" class="secondary small-btn" type="button">Vybrat z databáze</button></div>
             <label>Oblek<select id="suit">
               <option value="">Nevyplněno</option>
               <option value="dry suit">Dry suit</option>
@@ -163,15 +179,15 @@
 
 
     <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
-    <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze buddyů</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
-    <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddyho</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddyho</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
+    <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
+    <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
     <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
     <section id="profilesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Profily výstroje</h2></div><button id="addProfile" class="primary wide" type="button">＋ Přidat profil</button><div id="profilesList" class="list"></div><form id="profileForm" class="card form-section hidden"><h3 id="profileFormTitle">Přidat profil</h3><input id="profileId" type="hidden"><label>Název profilu *<input id="profileName" required placeholder="např. Moře"></label><div class="form-grid"><label>Oblek<select id="profileSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="profileTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="profileTankVolume" type="number" step="0.1"></label><label>Plyn<select id="profileGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="profileWeight" type="number" step="0.5"></label><label>Počáteční tlak (bar)<input id="profileStartPressure" type="number"></label><label>Koncový tlak (bar)<input id="profileEndPressure" type="number"></label></div><div class="button-row"><button id="cancelProfile" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit profil</button></div></form></section>
     <section id="settingsView" class="view">
       <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Nastavení</h2></div>
       <div class="settings-menu">
         <button id="openSites" class="settings-card" type="button"><span class="settings-icon">📍</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a SSI ID</small></span><b>›</b></button>
-        <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Databáze buddyů</strong><small id="buddiesSummary">Správa potápěčských partnerů</small></span><b>›</b></button>
+        <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
         <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
       </div>
@@ -186,11 +202,11 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.8</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.9</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.8"></script>
+  <script src="app.js?v=1.0.9"></script>
 </body>
 </html>
