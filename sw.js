@@ -1,7 +1,7 @@
-const CACHE = "diving-logbook-v1.0.7";
+const CACHE = "diving-logbook-v1.0.8";
 const SHELL = [
-  "./styles.css?v=1.0.7",
-  "./app.js?v=1.0.7",
+  "./styles.css?v=1.0.8",
+  "./app.js?v=1.0.8",
   "./manifest.webmanifest",
   "./icon.svg"
 ];
