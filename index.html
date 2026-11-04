@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#073b4c">
   <title>Diving LogBook</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.0.5">
+  <link rel="stylesheet" href="styles.css?v=1.0.6">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -15,7 +15,7 @@
 </style>
 
 <style>
-/* v1.0.5: compact basic fields without horizontal overflow */
+/* v1.0.6: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -25,11 +25,12 @@
 .detail-datetime{font-size:1.22rem;line-height:1.25;font-weight:800;color:#d9f5f6;margin:0 0 10px}
 @media(max-width:380px){.compact-row{gap:7px}.compact-row input{font-size:.87rem;padding-left:6px;padding-right:6px}.compact-row label{font-size:.76rem}}
 </style>
+<style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.5</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.0.6</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnSettings" class="icon-btn" type="button" aria-label="Nastavení">⚙️</button>
@@ -98,7 +99,7 @@
           <div class="form-grid">
             <label>SSI Site ID<input id="siteId" type="number" inputmode="numeric"></label>
             <label>Název<input id="siteName" type="text" placeholder="Doplnit při prvním použití"></label>
-            <label>Země<input id="siteCountry" type="text"></label>
+            <label>Země <span class="required-mark">*</span><input id="siteCountry" type="text" list="countryOptions" placeholder="např. Česko" required></label><datalist id="countryOptions"><option value="Česko"><option value="Egypt"><option value="Malta"><option value="Chorvatsko"><option value="Řecko"><option value="Itálie"><option value="Španělsko"><option value="Mexiko"><option value="Rakousko"><option value="Německo"><option value="Polsko"><option value="Slovensko"></datalist>
             <label>Oblast<input id="siteRegion" type="text"></label>
           </div>
           <p id="siteHint" class="hint"></p>
@@ -173,11 +174,11 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.5</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.0.6</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.0.5"></script>
+  <script src="app.js?v=1.0.6"></script>
 </body>
 </html>
