@@ -10,3 +10,6 @@
 .profile-certification{font-size:.9rem;font-weight:800;color:var(--primary);margin:1px 0 8px}
 .profile-dive-summary{display:grid;gap:2px;color:var(--muted);font-size:.86rem;line-height:1.35}
 .profile-dive-summary span{display:block}
+
+/* v1.2.0 insurance and share actions */
+.profile-tabs-three{grid-template-columns:repeat(3,minmax(0,1fr))}.profile-tabs-three .profile-tab{font-size:.82rem;padding-left:5px;padding-right:5px;white-space:nowrap}.license-card{grid-template-columns:46px minmax(0,1fr)}.document-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}.document-actions button{min-height:38px;border-radius:10px;border:1px solid var(--line);background:#e6f2f3;color:var(--primary2);font-weight:800}.insurance-status{display:inline-block;margin-top:5px;padding:4px 8px;border-radius:999px;font-size:.68rem;font-weight:850}.status-active{background:#dff5e7;color:#176b3a}.status-soon{background:#fff3cd;color:#7a5200}.status-expired{background:#ffe5e2;color:#9d2018}.status-future{background:#e0efff;color:#175f9e}@media(max-width:360px){.profile-tabs-three .profile-tab{font-size:.74rem}.document-actions{grid-template-columns:1fr}}
