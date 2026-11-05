@@ -13,3 +13,42 @@
 
 /* v1.2.0 insurance and share actions */
 .profile-tabs-three{grid-template-columns:repeat(3,minmax(0,1fr))}.profile-tabs-three .profile-tab{font-size:.82rem;padding-left:5px;padding-right:5px;white-space:nowrap}.license-card{grid-template-columns:46px minmax(0,1fr)}.document-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}.document-actions button{min-height:38px;border-radius:10px;border:1px solid var(--line);background:#e6f2f3;color:var(--primary2);font-weight:800}.insurance-status{display:inline-block;margin-top:5px;padding:4px 8px;border-radius:999px;font-size:.68rem;font-weight:850}.status-active{background:#dff5e7;color:#176b3a}.status-soon{background:#fff3cd;color:#7a5200}.status-expired{background:#ffe5e2;color:#9d2018}.status-future{background:#e0efff;color:#175f9e}@media(max-width:360px){.profile-tabs-three .profile-tab{font-size:.74rem}.document-actions{grid-template-columns:1fr}}
+
+/* v1.2.1: iOS date inputs in License and Insurance forms */
+#licenseForm input[type="date"],#insuranceForm input[type="date"]{
+  display:block;
+  box-sizing:border-box;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  min-height:46px;
+  height:46px;
+  padding:11px;
+  margin-top:5px;
+  text-align:left!important;
+  direction:ltr!important;
+  -webkit-appearance:none;
+  appearance:none;
+}
+#licenseForm input[type="date"]::-webkit-date-and-time-value,
+#insuranceForm input[type="date"]::-webkit-date-and-time-value{
+  display:block;
+  width:100%;
+  min-height:22px;
+  margin:0!important;
+  padding:0!important;
+  text-align:left!important;
+}
+#licenseForm input[type="date"]::-webkit-datetime-edit,
+#insuranceForm input[type="date"]::-webkit-datetime-edit,
+#licenseForm input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+#insuranceForm input[type="date"]::-webkit-datetime-edit-fields-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start!important;
+  width:100%;
+  margin:0!important;
+  padding:0!important;
+  text-align:left!important;
+}
+#licenseForm .form-grid>label,#insuranceForm .form-grid>label{min-width:0;width:100%}

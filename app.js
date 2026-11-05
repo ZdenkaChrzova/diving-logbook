@@ -79,7 +79,7 @@ function bind(){Object.entries({weather:LOOKUPS.weather,waterBody:LOOKUPS.waterB
     refreshing=true;
     location.reload();
   });
-  navigator.serviceWorker.register('./sw.js?v=1.2.0',{updateViaCache:'none'})
+  navigator.serviceWorker.register('./sw.js?v=1.2.1',{updateViaCache:'none'})
     .then(reg=>reg.update())
     .catch(()=>{});
 }
