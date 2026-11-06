@@ -52,3 +52,6 @@
   text-align:left!important;
 }
 #licenseForm .form-grid>label,#insuranceForm .form-grid>label{min-width:0;width:100%}
+
+/* v1.3.1: copyright */
+.app-about .app-copyright,.release-copyright{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line);color:var(--muted);font-size:.82rem;text-align:center;line-height:1.5}.release-copyright{margin:18px 0 4px}.release-copyright span{font-size:.76rem}
