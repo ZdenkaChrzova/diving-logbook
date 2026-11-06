@@ -1,9 +1,9 @@
 const CACHE = "diving-logbook-v1.2.2";
+
 const SHELL = [
   "./styles.css?v=1.2.2",
   "./app.js?v=1.2.2",
-  "./manifest.webmanifest",
-  "./icon.svg"
+  "./manifest.webmanifest"
 ];
 
 self.addEventListener("install", event => {

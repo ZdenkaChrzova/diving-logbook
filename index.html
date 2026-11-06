@@ -19,7 +19,7 @@
 </style>
 
 <style>
-/* v1.2.1: compact basic fields without horizontal overflow */
+/* v1.2.2: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -32,7 +32,7 @@
 <style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
 
 <style>
-/* v1.2.1: iOS date/time alignment and dashboard totals */
+/* v1.2.2: iOS date/time alignment and dashboard totals */
 .compact-row label,.compact-row input{ text-align:left!important }
 .compact-row input[type="date"],.compact-row input[type="time"]{direction:ltr!important;text-align:left!important}
 .compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
@@ -44,7 +44,7 @@
 </style>
 
 <style>
-/* v1.2.1: both dive counters use the same one-line visual treatment */
+/* v1.2.2: both dive counters use the same one-line visual treatment */
 .logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
 .logged-label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:5px}
 .logged-value,.database-total{display:flex;align-items:baseline;gap:8px;min-width:0}
@@ -54,7 +54,7 @@
 </style>
 
 <style>
-/* v1.2.1: keep both add-dive labels on one line on mobile */
+/* v1.2.2: keep both add-dive labels on one line on mobile */
 .add-dive-actions button{white-space:nowrap;font-size:clamp(.78rem,3.55vw,1rem);padding-left:8px;padding-right:8px;letter-spacing:-.01em}
 @media(max-width:380px){.add-dive-actions{grid-template-columns:1fr 1fr}.add-dive-actions button{font-size:.74rem;padding-left:5px;padding-right:5px}}
 </style>
@@ -62,7 +62,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.2.1</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.2.2</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -249,7 +249,7 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.2.1</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.2.2</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
