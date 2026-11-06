@@ -1,0 +1,32 @@
+{
+  "version": "1.3.0",
+  "date": "2026-11-06",
+  "title": "Oznámení aktualizací",
+  "changes": [
+    "Aplikace automaticky zjistí, že je na GitHubu dostupná nová verze.",
+    "Uživatel uvidí přehled změn a může aktualizaci spustit jedním tlačítkem.",
+    "Do Nastavení byla přidána obrazovka Co je nového s historií verzí.",
+    "Aktualizace service workeru se dokončí až po potvrzení uživatelem."
+  ],
+  "history": [
+    {
+      "version": "1.3.0",
+      "date": "2026-11-06",
+      "changes": [
+        "Automatická kontrola nové verze.",
+        "Oznámení s přehledem změn.",
+        "Tlačítko Aktualizovat nyní.",
+        "Historie verzí v Nastavení."
+      ]
+    },
+    {
+      "version": "1.2.3",
+      "date": "2026-11-05",
+      "changes": [
+        "Úpravy mobilního rozložení základních údajů.",
+        "Databáze lokalit a buddies.",
+        "Náhled licencí a pojištění."
+      ]
+    }
+  ]
+}

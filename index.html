@@ -19,7 +19,7 @@
 </style>
 
 <style>
-/* v1.2.3: compact basic fields without horizontal overflow */
+/* v1.3.0: compact basic fields without horizontal overflow */
 .compact-pairs,.compact-row{width:100%;max-width:100%;min-width:0}
 .compact-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:start}
 .compact-row label{min-width:0;width:100%;text-align:left;overflow:hidden}
@@ -32,7 +32,7 @@
 <style>.required-mark{color:#b42318;font-weight:900}.site-country-line{margin:.15rem 0 .55rem;font-size:1rem;font-weight:750;color:#d9f5f6}</style>
 
 <style>
-/* v1.2.3: iOS date/time alignment and dashboard totals */
+/* v1.3.0: iOS date/time alignment and dashboard totals */
 .compact-row label,.compact-row input{ text-align:left!important }
 .compact-row input[type="date"],.compact-row input[type="time"]{direction:ltr!important;text-align:left!important}
 .compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
@@ -44,7 +44,7 @@
 </style>
 
 <style>
-/* v1.2.3: both dive counters use the same one-line visual treatment */
+/* v1.3.0: both dive counters use the same one-line visual treatment */
 .logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
 .logged-label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin-bottom:5px}
 .logged-value,.database-total{display:flex;align-items:baseline;gap:8px;min-width:0}
@@ -54,15 +54,27 @@
 </style>
 
 <style>
-/* v1.2.3: keep both add-dive labels on one line on mobile */
+/* v1.3.0: keep both add-dive labels on one line on mobile */
 .add-dive-actions button{white-space:nowrap;font-size:clamp(.78rem,3.55vw,1rem);padding-left:8px;padding-right:8px;letter-spacing:-.01em}
 @media(max-width:380px){.add-dive-actions{grid-template-columns:1fr 1fr}.add-dive-actions button{font-size:.74rem;padding-left:5px;padding-right:5px}}
+</style>
+
+<style>
+/* v1.3.0: oznámení aktualizací a historie verzí */
+.update-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:14px 16px;border:1px solid rgba(81,211,184,.35);background:linear-gradient(135deg,rgba(6,82,69,.96),rgba(4,44,36,.98));color:#fff}
+.update-banner strong,.update-banner span{display:block}.update-banner span{margin-top:3px;color:#d9f5f6;font-size:.88rem}
+.update-banner button{flex:0 0 auto;white-space:nowrap}.update-modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,.62)}
+.update-modal.hidden{display:none}.update-dialog{width:min(100%,520px);max-height:86vh;overflow:auto;background:var(--card,#fff);color:var(--text,#10231f);border-radius:22px;padding:20px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.update-dialog h2{margin:0 0 6px}.update-dialog .release-meta{color:var(--muted,#60736e);margin:0 0 14px}.update-dialog ul{padding-left:22px;line-height:1.55}.update-dialog .button-row{margin-top:18px}
+.release-card{margin-bottom:12px}.release-card h3{margin-bottom:4px}.release-card .release-meta{color:var(--muted);font-size:.86rem;margin-bottom:8px}.release-card ul{margin:0;padding-left:20px}.current-version-badge{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:999px;background:rgba(24,154,129,.15);color:#08715e;font-size:.72rem;font-weight:800}
+@media(max-width:420px){.update-banner{align-items:flex-start;flex-direction:column}.update-banner button{width:100%}.update-dialog{padding:18px;border-radius:18px}}
+@media(prefers-color-scheme:dark){.update-dialog{background:#0d342d;color:#f2fffc}.current-version-badge{color:#7ee8d1}}
 </style>
 </head>
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.2.3</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.3.0</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -70,6 +82,10 @@
 
   <main>
     <section id="dashboard" class="view active">
+      <div id="updateBanner" class="update-banner card hidden" role="status">
+        <div><strong id="updateBannerTitle">Je dostupná nová verze</strong><span id="updateBannerText"></span></div>
+        <button id="openUpdateInfo" class="primary" type="button">Zobrazit</button>
+      </div>
       <div class="hero card">
         <div class="logged-total">
           <span class="logged-label">Celkem zalogováno</span>
@@ -230,6 +246,11 @@
     <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
     <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
     <section id="profilesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Profily výstroje</h2></div><button id="addProfile" class="primary wide" type="button">＋ Přidat profil</button><div id="profilesList" class="list"></div><form id="profileForm" class="card form-section hidden"><h3 id="profileFormTitle">Přidat profil</h3><input id="profileId" type="hidden"><label>Název profilu *<input id="gearProfileName" required placeholder="např. Moře"></label><div class="form-grid"><label>Oblek<select id="profileSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="profileTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="profileTankVolume" type="number" step="0.1"></label><label>Plyn<select id="profileGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="profileWeight" type="number" step="0.5"></label><label>Počáteční tlak (bar)<input id="profileStartPressure" type="number"></label><label>Koncový tlak (bar)<input id="profileEndPressure" type="number"></label></div><div class="button-row"><button id="cancelProfile" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit profil</button></div></form></section>
+
+    <section id="releaseNotesView" class="view">
+      <div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Co je nového</h2></div>
+      <div id="releaseNotesList"></div>
+    </section>
     <section id="settingsView" class="view">
       <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Nastavení</h2></div>
       <div class="settings-menu">
@@ -237,6 +258,7 @@
         <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
         <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.3.0</small></span><b>›</b></button>
       </div>
       <div class="card form-section"><h3>Číslování ponorů</h3>
         <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
@@ -249,10 +271,23 @@
         <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.2.3</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
+      <div class="card form-section"><h3>O aplikaci</h3><p>Diving LogBook 1.3.0</p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p></div>
     </section>
   </main>
 
+
+  <div id="updateModal" class="update-modal hidden" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
+    <div class="update-dialog">
+      <h2 id="updateTitle">Nová verze aplikace</h2>
+      <p id="updateMeta" class="release-meta"></p>
+      <ul id="updateChanges"></ul>
+      <div id="updateError" class="message error hidden" role="alert"></div>
+      <div class="button-row">
+        <button id="updateLater" class="secondary" type="button">Připomenout později</button>
+        <button id="installUpdate" class="primary" type="button">Aktualizovat nyní</button>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
   <script src="app.js?v=1.2.3"></script>
 </body>
