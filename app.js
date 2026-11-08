@@ -31,31 +31,7 @@ function displayLookup(type,id){return id==null?"Nevyplněno":(LOOKUPS[type]?.[i
 function siteOf(id){return id==null?null:db.sites[String(id)]}
 function fmtDate(s){if(!s)return "";const [y,m,d]=s.split("-");return `${d}.${m}.${y}`}
 function nextDiveNumber(){const nums=db.dives.map(d=>Number(d.diveNumber)).filter(n=>Number.isInteger(n)&&n>0);if(nums.length)return Math.max(...nums)+1;const start=Number(db.settings?.initialDiveNumber);return Number.isInteger(start)&&start>0?start:null}
-function renderDashboard(){
-  const q=$('search').value.trim().toLowerCase();
-  const dives=[...db.dives].sort((a,b)=>`${b.date}${b.startTime||""}`.localeCompare(`${a.date}${a.startTime||""}`));
-  const filtered=dives.filter(d=>{const site=siteOf(d.siteId);return !q||`${site?.name||""} ${site?.country||""} ${d.date}`.toLowerCase().includes(q)});
-  const visibleItems=filtered.slice(0,visibleDives);
-  $('statCount').textContent=db.dives.length;
-  const loggedNums=db.dives.map(d=>Number(d.diveNumber)).filter(n=>Number.isFinite(n)&&n>0);
-  $('statLoggedNumber').textContent=loggedNums.length?Math.max(...loggedNums):'–';
-  const mins=db.dives.reduce((s,d)=>s+(d.durationMinutes||0),0);
-  $('statTime').textContent=`${Math.floor(mins/60)} h ${mins%60} min`;
-  const depths=db.dives.map(d=>d.maxDepthM).filter(Number.isFinite);
-  $('statDepth').textContent=depths.length?`${Math.max(...depths).toFixed(1).replace('.',',')} m`:"–";
-  $('diveList').innerHTML=visibleItems.map(d=>{const s=siteOf(d.siteId);return `<button class="dive-card" data-id="${d.id}" type="button"><div><h3>${d.diveNumber?`#${d.diveNumber} · `:""}${esc(s?.name||`Lokalita ${d.siteId||"neuvedena"}`)}</h3><p>${fmtDate(d.date)}${d.startTime?` · ${d.startTime}`:""}${s?.country?` · ${esc(s.country)}`:""}</p></div><div class="dive-metrics"><span>${Number.isFinite(d.maxDepthM)?d.maxDepthM.toFixed(1).replace('.',','):'–'} m</span><span>${d.durationMinutes} min</span></div></button>`}).join("");
-  $('emptyState').classList.toggle('hidden',db.dives.length>0);
-  document.querySelectorAll('.dive-card').forEach(b=>b.addEventListener('click',()=>openDetail(b.dataset.id)));
-  if(diveListObserver){diveListObserver.disconnect();diveListObserver=null}
-  if(filtered.length>visibleItems.length){
-    $('diveList').insertAdjacentHTML('beforeend','<div id="loadMoreTrigger" class="load-more-trigger" aria-hidden="true"><span>Načítám další ponory…</span></div>');
-    const trigger=$('loadMoreTrigger');
-    diveListObserver=new IntersectionObserver(entries=>{
-      if(entries[0]?.isIntersecting){visibleDives+=DIVE_PAGE_SIZE;diveListObserver.disconnect();diveListObserver=null;renderDashboard()}
-    },{rootMargin:'300px 0px'});
-    diveListObserver.observe(trigger);
-  }
-}
+function renderDashboard(){const q=$('search').value.trim().toLowerCase();const dives=[...db.dives].sort((a,b)=>`${b.date}${b.startTime||""}`.localeCompare(`${a.date}${a.startTime||""}`));const filtered=dives.filter(d=>{const site=siteOf(d.siteId);return !q||`${site?.name||""} ${site?.country||""} ${d.date}`.toLowerCase().includes(q)});const visibleItems=filtered.slice(0,visibleDives);$('statCount').textContent=db.dives.length;const loggedNums=db.dives.map(d=>Number(d.diveNumber)).filter(n=>Number.isFinite(n)&&n>0);$('statLoggedNumber').textContent=loggedNums.length?Math.max(...loggedNums):'–';const mins=db.dives.reduce((s,d)=>s+(d.durationMinutes||0),0);$('statTime').textContent=`${Math.floor(mins/60)} h ${mins%60} min`;const depths=db.dives.map(d=>d.maxDepthM).filter(Number.isFinite);$('statDepth').textContent=depths.length?`${Math.max(...depths).toFixed(1).replace('.',',')} m`:"–";$('diveList').innerHTML=visibleItems.map(d=>{const s=siteOf(d.siteId);return `<button class="dive-card" data-id="${d.id}" type="button"><div><h3>${d.diveNumber?`#${d.diveNumber} · `:""}${esc(s?.name||`Lokalita ${d.siteId||"neuvedena"}`)}</h3><p>${fmtDate(d.date)}${d.startTime?` · ${d.startTime}`:""}${s?.country?` · ${esc(s.country)}`:""}</p></div><div class="dive-metrics"><span>${Number.isFinite(d.maxDepthM)?d.maxDepthM.toFixed(1).replace('.',','):'–'} m</span><span>${d.durationMinutes} min</span></div></button>`}).join("");$('emptyState').classList.toggle('hidden',db.dives.length>0);document.querySelectorAll('.dive-card').forEach(b=>b.addEventListener('click',()=>openDetail(b.dataset.id)));if(diveListObserver){diveListObserver.disconnect();diveListObserver=null}if(filtered.length>visibleItems.length){$('diveList').insertAdjacentHTML('beforeend','<div id="loadMoreTrigger" class="load-more-trigger" aria-hidden="true"><span>Načítám další ponory…</span></div>');const trigger=$('loadMoreTrigger');diveListObserver=new IntersectionObserver(entries=>{if(entries[0]?.isIntersecting){visibleDives+=DIVE_PAGE_SIZE;diveListObserver.disconnect();diveListObserver=null;renderDashboard()}},{rootMargin:'300px 0px'});diveListObserver.observe(trigger)}}
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function parseQR(raw){if(!raw||!raw.trim().startsWith("dive;"))throw new Error("Tento QR kód nevypadá jako podporovaný SSI ponor.");const out={raw:raw.trim()};raw.trim().split(';').forEach(part=>{const i=part.indexOf(':');if(i>0)out[part.slice(0,i)]=part.slice(i+1)});if(!out.datetime||!out.divetime||!out.depth_m)throw new Error("QR neobsahuje datum, délku nebo hloubku ponoru.");const dt=out.datetime;return {date:`${dt.slice(0,4)}-${dt.slice(4,6)}-${dt.slice(6,8)}`,startTime:`${dt.slice(8,10)}:${dt.slice(10,12)}`,durationMinutes:Number(out.divetime),maxDepthM:Number(out.depth_m),siteId:num(out.site),conditions:{weatherId:num(out.var_weather_id),waterBodyId:num(out.var_water_body_id),waterTypeId:num(out.var_watertype_id),entryId:num(out.var_entry_id),currentId:num(out.var_current_id),surfaceId:num(out.var_surface_id),waterTempC:num(out.watertemp_c),waterTempMaxC:num(out.watertemp_max_c),airTempC:num(out.airtemp_c),visibilityM:num(out.vis_m)},safety:{decompressionDive:out.deco==="1"},diver:{ssiId:num(out.user_master_id),firstName:out.user_firstname||"",lastName:out.user_lastname||""},raw:out.raw}}
 function num(v){return v==null||v===""?null:Number(v)}
@@ -118,11 +94,6 @@ function bind(){Object.entries({weather:LOOKUPS.weather,waterBody:LOOKUPS.waterB
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(refreshing)return;refreshing=true;localStorage.setItem(UPDATE_SEEN_KEY,remoteRelease?.version||APP_VERSION);location.reload()});
   navigator.serviceWorker.register('./sw.js?v=1.3.2',{updateViaCache:'none'}).then(reg=>{swRegistration=reg;reg.update();reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'&&navigator.serviceWorker.controller&&remoteRelease)showUpdateBanner(remoteRelease)})})}).catch(()=>{});
 }
-const scrollTopBtn=$('scrollTopBtn');
-const updateScrollTopButton=()=>scrollTopBtn.classList.toggle('show',window.scrollY>400);
-window.addEventListener('scroll',updateScrollTopButton,{passive:true});
-scrollTopBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
-updateScrollTopButton();
-fetchVersionInfo();
+const scrollTopBtn=$('scrollTopBtn');const updateScrollTopButton=()=>scrollTopBtn.classList.toggle('show',window.scrollY>400);window.addEventListener('scroll',updateScrollTopButton,{passive:true});scrollTopBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});updateScrollTopButton();fetchVersionInfo();
 renderDashboard()}
 bind();

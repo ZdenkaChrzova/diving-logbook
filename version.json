@@ -1,12 +1,22 @@
 {
-  "version": "1.3.1",
-  "date": "2026-11-06",
-  "title": "Doplnění copyrightu",
+  "version": "1.3.2",
+  "date": "2026-11-08",
+  "title": "Rychlejší seznam ponorů a návrat nahoru",
   "changes": [
-    "Do sekce O aplikaci byl přidán copyright © 2026 Zdeňka Chrzová.",
-    "Copyright a číslo aplikace jsou nově zobrazené také na konci obrazovky Co je nového."
+    "Přidáno plovoucí tlačítko pro rychlý návrat nahoru.",
+    "Seznam ponorů se pro rychlejší načítání zobrazuje postupně po 50 položkách.",
+    "Při vyhledávání se postupné načítání automaticky obnoví od prvních 50 výsledků."
   ],
   "history": [
+    {
+      "version": "1.3.2",
+      "date": "2026-11-08",
+      "changes": [
+        "Přidáno plovoucí tlačítko pro rychlý návrat nahoru.",
+        "Seznam ponorů se pro rychlejší načítání zobrazuje postupně po 50 položkách.",
+        "Při vyhledávání se postupné načítání automaticky obnoví od prvních 50 výsledků."
+      ]
+    },
     {
       "version": "1.3.1",
       "date": "2026-11-06",
