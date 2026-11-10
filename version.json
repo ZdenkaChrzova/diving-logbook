@@ -1,24 +1,13 @@
 {
-  "version": "1.4.1",
-  "date": "2026-11-10",
-  "title": "Import a export Excelu",
-
-"changes": [
-  "Přidán import CSV souborů exportovaných z Diving LogBooku.",
-  "Duplicitní čísla ponorů jsou při importu automaticky přeskočena.",
-  "Nové lokality a buddies jsou při importu zakládány automaticky.",
-  "Opraveno zobrazování oznámení o nové verzi aplikace."
-],
+  "version": "1.3.2",
+  "date": "2026-11-08",
+  "title": "Rychlejší seznam ponorů a návrat nahoru",
+  "changes": [
+    "Přidáno plovoucí tlačítko pro rychlý návrat nahoru.",
+    "Seznam ponorů se pro rychlejší načítání zobrazuje postupně po 50 položkách.",
+    "Při vyhledávání se postupné načítání automaticky obnoví od prvních 50 výsledků."
+  ],
   "history": [
-    {
-      "version": "1.4.0",
-      "date": "2026-11-10",
-      "changes": [
-        "Přidán export ponorů do CSV kompatibilního s Microsoft Excel, Apple Numbers a Google Sheets.",
-        "Export obsahuje lokalitu, hloubku, délku ponoru, teploty, buddies, výstroj, poznámky a další údaje.",
-        "V sekci Data jsou nově oddělené volby Exportovat JSON a Exportovat Excel (CSV)."
-      ]
-    },
     {
       "version": "1.3.2",
       "date": "2026-11-08",
