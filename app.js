@@ -4,7 +4,7 @@ const LOOKUPS={weather:{1:"Slunečno",2:"Zataženo",3:"Déšť",4:"Sníh"},water
 let db=load(),activeDiveId=null,pendingAttachments=[],stream=null,scanTimer=null,selectedBuddyIds=[],buddyReturnToDive=false,pendingLicenseImages={front:null,back:null},pendingInsuranceImages={front:null,back:null};
 const $=id=>document.getElementById(id);
 
-const APP_VERSION="1.4.0";
+const APP_VERSION="1.4.1";
 const VERSION_URL=`./version.json?t=${Date.now()}`;
 const UPDATE_SEEN_KEY="divingLogBook.updateSeen";
 let remoteRelease=null,swRegistration=null;
@@ -15,8 +15,19 @@ function compareVersions(a,b){const aa=versionParts(a),bb=versionParts(b),n=Math
 function releaseChanges(r){return Array.isArray(r?.changes)?r.changes.filter(Boolean):[]}
 function fillUpdateDialog(r,isAvailable){remoteRelease=r;$('updateTitle').textContent=isAvailable?`Nová verze ${r.version}`:`Co je nového ve verzi ${r.version}`;$('updateMeta').textContent=[r.date?`Vydáno ${fmtDate(r.date)}`:'',isAvailable?`Nainstalovaná verze ${APP_VERSION}`:''].filter(Boolean).join(' · ');$('updateChanges').innerHTML=releaseChanges(r).map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Drobné opravy a zlepšení.</li>';$('installUpdate').textContent=isAvailable?'Aktualizovat nyní':'Rozumím';$('installUpdate').dataset.mode=isAvailable?'install':'close';$('updateModal').classList.remove('hidden')}
 function showUpdateBanner(r){$('updateBanner').classList.remove('hidden');$('updateBannerTitle').textContent=`Je dostupná verze ${r.version}`;$('updateBannerText').textContent=releaseChanges(r)[0]||'Novinky a opravy jsou připravené k instalaci.'}
-function hideUpdateModal(markSeen=false){$('updateModal').classList.add('hidden');if(markSeen&&remoteRelease?.version)localStorage.setItem(UPDATE_SEEN_KEY,remoteRelease.version)}
-async function fetchVersionInfo(){try{const response=await fetch(VERSION_URL,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const info=await response.json();if(!info?.version)throw new Error('Chybí číslo verze.');remoteRelease=info;const available=compareVersions(info.version,APP_VERSION)>0;if(available){showUpdateBanner(info);fillUpdateDialog(info,true)}else if(info.version===APP_VERSION&&localStorage.getItem(UPDATE_SEEN_KEY)!==APP_VERSION){fillUpdateDialog(info,false)}return info}catch(e){console.info('Kontrola aktualizace nebyla dostupná:',e.message);return null}}
+function hideUpdateModal(markSeen=false){
+$('updateModal').classList.add('hidden');
+if(markSeen&&remoteRelease?.version){
+localStorage.setItem(UPDATE_SEEN_KEY,remoteRelease.version);
+$('updateBanner')?.classList.add('hidden');
+}}
+async function fetchVersionInfo(){try{const response=await fetch(VERSION_URL,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const info=await response.json();if(!info?.version)throw new Error('Chybí číslo verze.');remoteRelease=info;const available=compareVersions(info.version,APP_VERSION)>0;if(available){showUpdateBanner(info);fillUpdateDialog(info,true)}
+else if(info.version===APP_VERSION&&localStorage.getItem(UPDATE_SEEN_KEY)!==APP_VERSION){
+fillUpdateDialog(info,false)
+}else{
+$('updateBanner')?.classList.add('hidden')
+}
+return info}catch(e){console.info('Kontrola aktualizace nebyla dostupná:',e.message);return null}}
 async function installAvailableUpdate(){if($('installUpdate').dataset.mode==='close'){hideUpdateModal(true);return}$('installUpdate').disabled=true;$('installUpdate').textContent='Aktualizuji…';$('updateError').classList.add('hidden');try{if(swRegistration){await swRegistration.update();if(swRegistration.waiting){swRegistration.waiting.postMessage({type:'SKIP_WAITING'});return}}const url=new URL(location.href);url.searchParams.set('updated',Date.now());location.replace(url.toString())}catch(e){$('updateError').textContent='Aktualizaci se nepodařilo dokončit. Zkontroluj připojení a zkus to znovu.';$('updateError').classList.remove('hidden');$('installUpdate').disabled=false;$('installUpdate').textContent='Zkusit znovu'}}
 async function renderReleaseNotes(){const info=remoteRelease||await fetchVersionInfo();const releases=Array.isArray(info?.history)&&info.history.length?info.history:(info?[info]:[]);$('releaseNotesList').innerHTML=(releases.map(r=>`<article class="card release-card"><h3>Verze ${esc(r.version)}${r.version===APP_VERSION?'<span class="current-version-badge">Nainstalováno</span>':''}</h3><div class="release-meta">${r.date?fmtDate(r.date):''}</div><ul>${releaseChanges(r).map(x=>`<li>${esc(x)}</li>`).join('')||'<li>Drobné opravy a zlepšení.</li>'}</ul></article>`).join('')||'<div class="empty card">Historii verzí se nepodařilo načíst.</div>')+'<div class="release-copyright">© 2026 Zdeňka Chrzová<br><span>Diving LogBook · verze '+APP_VERSION+'</span></div>'}
 
@@ -114,6 +125,179 @@ function exportCSV() {
       d.rating ?? ""
     ];
   });
+  async function importCSV(file){
+
+  const text = await file.text();
+
+  const lines = text
+    .replace(/\r/g,'')
+    .split('\n')
+    .filter(Boolean);
+
+  if(lines.length < 2){
+    throw new Error('CSV neobsahuje žádná data.');
+  }
+
+  const existingNumbers = new Set(
+    db.dives
+      .map(d => Number(d.diveNumber))
+      .filter(Number.isFinite)
+  );
+
+  let imported = 0;
+  let skipped = 0;
+  let newSites = 0;
+  let newBuddies = 0;
+
+  for(let i=1;i<lines.length;i++){
+
+    const cols = lines[i]
+      .split(/;(?=(?:[^"]*"[^"]*")*[^"]*$)/)
+      .map(v=>v.replace(/^"|"$/g,'').replace(/""/g,'"'));
+
+    const diveNumber = Number(cols[0]);
+
+    if(existingNumbers.has(diveNumber)){
+      skipped++;
+      continue;
+    }
+
+    existingNumbers.add(diveNumber);
+
+    const siteName = (cols[3]||'').trim();
+    const siteCountry = (cols[4]||'').trim();
+
+    let siteId = null;
+
+    if(siteName){
+
+      let site = Object.values(db.sites||{}).find(
+        s =>
+          (s.name||'').toLowerCase()===siteName.toLowerCase()
+          &&
+          (s.country||'').toLowerCase()===siteCountry.toLowerCase()
+      );
+
+      if(!site){
+
+        siteId = Date.now()+i;
+
+        db.sites[String(siteId)] = {
+          ssiId: siteId,
+          name: siteName,
+          country: siteCountry,
+          region: '',
+          latitude: null,
+          longitude: null
+        };
+
+        newSites++;
+
+      }else{
+        siteId = site.ssiId;
+      }
+    }
+
+    const buddyIds = [];
+
+    const buddyNamesCsv = (cols[9]||'')
+      .split(',')
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+    for(const buddyName of buddyNamesCsv){
+
+      let buddy = Object.values(db.buddies||{}).find(
+        b => b.name.toLowerCase()===buddyName.toLowerCase()
+      );
+
+      if(!buddy){
+
+        const id = uid('buddy');
+
+        buddy = {
+          id,
+          name: buddyName,
+          notes:'',
+          createdAt: isoNow(),
+          updatedAt: isoNow()
+        };
+
+        db.buddies[id]=buddy;
+
+        newBuddies++;
+      }
+
+      buddyIds.push(buddy.id);
+    }
+
+    db.dives.push({
+
+      id: uid('dive'),
+
+      diveNumber,
+
+      date: cols[1] || '',
+
+      startTime: cols[2] || null,
+
+      durationMinutes: Number(cols[6]) || null,
+
+      maxDepthM: Number(cols[5]) || null,
+
+      siteId,
+
+      conditions:{
+        waterTempC:Number(cols[7])||null,
+        airTempC:Number(cols[8])||null
+      },
+
+      equipment:{
+        suit: cols[10] || '',
+        gas: cols[11] || '',
+        weightKg:Number(cols[12]) || null
+      },
+
+      buddyIds,
+
+      buddies: buddyNamesCsv,
+
+      notes: cols[13] || '',
+
+      marineLife: cols[14] || '',
+
+      rating:Number(cols[15]) || null,
+
+      attachments:[],
+
+      import:{
+        source:'csv',
+        importedAt:isoNow()
+      },
+
+      createdAt:isoNow(),
+
+      updatedAt:isoNow(),
+
+      schemaVersion:1
+    });
+
+    imported++;
+  }
+
+  save();
+  renderSettings();
+  renderDashboard();
+
+  alert(
+`Import dokončen
+
+Importováno: ${imported} ponorů
+Přeskočeno: ${skipped} duplicit
+Nové lokality: ${newSites}
+Noví buddies: ${newBuddies}`
+  );
+}
 
   const header = [
     "Dive Number",
@@ -157,10 +341,34 @@ function exportCSV() {
 
   URL.revokeObjectURL(a.href);
 }
-function bind(){Object.entries({weather:LOOKUPS.weather,waterBody:LOOKUPS.waterBody,waterType:LOOKUPS.waterType,entry:LOOKUPS.entry,current:LOOKUPS.current}).forEach(([id,m])=>fillSelect(id,m));$('btnNew').onclick=()=>{hideError('importError');showView('importView')};$('btnManual').onclick=()=>{prepForm(null);$('date').value=new Date().toISOString().slice(0,10);$('editTitle').textContent='Nový ponor manuálně';showView('editView')};$('btnProfile').onclick=()=>{renderProfile();activateProfileTab('overview');showView('profileView')};document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>showView('dashboard'));$('search').oninput=()=>{visibleDives=DIVE_PAGE_SIZE;renderDashboard()};document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===t));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===`panel-${t.dataset.tab}`));if(t.dataset.tab!=='camera')stopCamera()});$('startCamera').onclick=startCamera;$('stopCamera').onclick=stopCamera;$('parseText').onclick=()=>setImportData($('qrText').value);$('qrFile').onchange=async e=>{const file=e.target.files&&e.target.files[0];try{await scanFile(file)}catch(err){showError('importError',err.message)}finally{e.target.value=''}};$('siteId').oninput=()=>{const s=siteOf(valNum('siteId'));if(s){$('siteName').value=s.name||'';$('siteCountry').value=s.country||'';$('siteRegion').value=s.region||''}updateSiteHint()};$('attachments').onchange=e=>filesToAttachments(e.target.files);$('diveForm').onsubmit=e=>{e.preventDefault();if(valNum('diveNumber')<1||!$('date').value||valNum('duration')<=0||valNum('depth')<0){showError('formError','Zkontroluj číslo ponoru, datum, délku a hloubku.');return}try{const d=buildDive(),i=db.dives.findIndex(x=>x.id===d.id);if(i>=0)db.dives[i]=d;else db.dives.push(d);save();openDetail(d.id)}catch(err){if(err.name==='QuotaExceededError')showError('formError','Úložiště prohlížeče je plné. Exportuj zálohu a odstraň některé velké přílohy.');else showError('formError',err.message)}};$('editDive').onclick=()=>{const d=db.dives.find(x=>x.id===activeDiveId);prepForm(d);showView('editView')};$('deleteDive').onclick=()=>{if(confirm('Opravdu smazat tento ponor?')){db.dives=db.dives.filter(x=>x.id!==activeDiveId);save();showView('dashboard')}};$('saveInitialDiveNumber').onclick=()=>{const n=valNum('initialDiveNumber');if(n==null||n<1){alert('Zadej platné výchozí číslo ponoru.');return}db.settings=db.settings||{};db.settings.initialDiveNumber=n;save();alert('Výchozí číslo bylo uloženo. Další nový ponor dostane číslo podle nejvyššího uloženého čísla.');};$('openSites').onclick=()=>{showView('sitesView');renderSitesDb()};$('openBuddies').onclick=()=>{showView('buddiesView');renderBuddiesDb()};$('openDefaults').onclick=()=>{showView('defaultsView');renderDefaults()};$('openProfiles').onclick=()=>{db.profiles=db.profiles||{};showView('profilesView');renderProfiles()};document.querySelectorAll('[data-settings-back]').forEach(b=>b.onclick=()=>showView('settingsView'));$('siteDbSearch').oninput=renderSitesDb;$('addSite').onclick=()=>openSiteForm();$('cancelSiteDb').onclick=()=>$('siteDbForm').classList.add('hidden');$('siteDbForm').onsubmit=e=>{e.preventDefault();const id=valNum('siteDbId'),old=$('siteDbOldId').value,name=$('siteDbName').value.trim(),country=$('siteDbCountry').value.trim();if(!id||!name||!country){alert('Doplň SSI ID, název a zemi.');return}if(!old&&db.sites[String(id)]){alert('Toto SSI ID už existuje.');return}if(old&&String(old)!==String(id)){db.dives.forEach(d=>{if(String(d.siteId)===String(old))d.siteId=id});delete db.sites[String(old)]}db.sites[String(id)]={ssiId:id,name,country,region:$('siteDbRegion').value.trim(),notes:$('siteDbNotes').value.trim()};save();$('siteDbForm').classList.add('hidden');renderSitesDb()};$('buddyDbSearch').oninput=renderBuddiesDb;$('addBuddy').onclick=()=>openBuddyForm();$('cancelBuddyDb').onclick=()=>{ $('buddyDbForm').classList.add('hidden'); if(buddyReturnToDive){buddyReturnToDive=false,pendingLicenseImages={front:null,back:null};renderBuddyPicker();showView('buddyPickerView')} };$('buddyDbForm').onsubmit=e=>{e.preventDefault();const old=$('buddyDbId').value,id=old||uid('buddy'),name=$('buddyDbName').value.trim();if(!name)return;db.buddies[id]={id,name,notes:$('buddyDbNotes').value.trim(),createdAt:db.buddies[id]?.createdAt||isoNow(),updatedAt:isoNow()};save();$('buddyDbForm').classList.add('hidden');if(buddyReturnToDive){if(!selectedBuddyIds.includes(id))selectedBuddyIds.push(id);buddyReturnToDive=false,pendingLicenseImages={front:null,back:null};renderBuddyPicker();showView('buddyPickerView')}else{renderBuddiesDb()}};$('chooseBuddies').onclick=()=>{renderBuddyPicker();showView('buddyPickerView')};$('buddyPickerBack').onclick=()=>showView('editView');$('confirmBuddies').onclick=()=>{selectedBuddyIds=[...document.querySelectorAll('#buddyPickerList input:checked')].map(x=>x.value);renderBuddySelection();showView('editView')};$('newBuddyFromPicker').onclick=()=>{buddyReturnToDive=true;showView('buddiesView');openBuddyForm()};$('defaultsForm').onsubmit=e=>{e.preventDefault();db.settings.defaults={suit:$('defaultSuit').value,tankMaterial:$('defaultTankMaterial').value,tankVolumeL:valNum('defaultTankVolume'),gas:$('defaultGas').value,weightKg:valNum('defaultWeight'),startPressureBar:valNum('defaultStartPressure'),endPressureBar:valNum('defaultEndPressure')};save();alert('Výchozí hodnoty byly uloženy.')};$('addProfile').onclick=()=>openProfileForm();$('cancelProfile').onclick=()=>$('profileForm').classList.add('hidden');$('profileForm').onsubmit=e=>{e.preventDefault();const id=$('profileId').value||uid('profile'),name=$('gearProfileName').value.trim();if(!name){alert('Zadej název profilu výstroje.');$('gearProfileName').focus();return}db.profiles=id in db.profiles?db.profiles:db.profiles||{};db.profiles[id]={id,name,equipment:{suit:$('profileSuit').value,tankMaterial:$('profileTankMaterial').value,tankVolumeL:valNum('profileTankVolume'),gas:$('profileGas').value,weightKg:valNum('profileWeight'),startPressureBar:valNum('profileStartPressure'),endPressureBar:valNum('profileEndPressure')}};save();$('profileForm').classList.add('hidden');renderProfiles()};$('profileSettings').onclick=()=>showView('settingsView');document.querySelectorAll('.profile-tab').forEach(b=>b.onclick=()=>activateProfileTab(b.dataset.profileTab));$('goLicenses').onclick=()=>activateProfileTab('licenses');$('goInsurance').onclick=()=>activateProfileTab('insurance');$('profilePhotoButton').onclick=()=>$('profilePhotoInput').click();$('changePhoto').onclick=()=>$('profilePhotoInput').click();$('profilePhotoInput').onchange=e=>{setProfilePhoto(e.target.files?.[0]);e.target.value=''};$('removePhoto').onclick=()=>{if(db.profile.photo&&confirm('Odstranit profilovou fotografii?')){db.profile.photo=null;save();renderProfile()}};$('editPersonalData').onclick=()=>$('personalForm').classList.remove('hidden');$('cancelPersonal').onclick=()=>$('personalForm').classList.add('hidden');$('personalForm').onsubmit=e=>{e.preventDefault();db.profile.name=$('profileName').value.trim()||'Zdeňka';db.profile.certification=$('profileCertificationInput').value.trim()||'IANTD #190979';save();$('personalForm').classList.add('hidden');renderProfile()};$('addInsurance').onclick=()=>openInsuranceForm();$('cancelInsurance').onclick=()=>$('insuranceForm').classList.add('hidden');$('insuranceFront').onchange=async e=>{pendingInsuranceImages.front=await compressImage(e.target.files?.[0],900,.8);renderInsurancePreview();e.target.value=''};$('insuranceBack').onchange=async e=>{pendingInsuranceImages.back=await compressImage(e.target.files?.[0],900,.8);renderInsurancePreview();e.target.value=''};$('insuranceForm').onsubmit=e=>{e.preventDefault();const id=$('insuranceId').value||uid('insurance'),provider=$('insuranceProvider').value.trim();if(!provider)return;db.insurance[id]={id,provider,product:$('insuranceProduct').value.trim(),policyNumber:$('insurancePolicyNumber').value.trim(),validFrom:$('insuranceValidFrom').value||null,validUntil:$('insuranceValidUntil').value||null,territory:$('insuranceTerritory').value.trim(),assistancePhone:$('insurancePhone').value.trim(),assistanceEmail:$('insuranceEmail').value.trim(),notes:$('insuranceNotes').value.trim(),frontImage:pendingInsuranceImages.front,backImage:pendingInsuranceImages.back,createdAt:db.insurance[id]?.createdAt||isoNow(),updatedAt:isoNow()};try{save();$('insuranceForm').classList.add('hidden');renderInsurance()}catch(err){alert('Pojištění se nepodařilo uložit. Úložiště může být plné.')}};$('addLicense').onclick=()=>openLicenseForm();$('cancelLicense').onclick=()=>$('licenseForm').classList.add('hidden');$('licenseFront').onchange=async e=>{pendingLicenseImages.front=await compressImage(e.target.files?.[0],900,.8);renderLicensePreview();e.target.value=''};$('licenseBack').onchange=async e=>{pendingLicenseImages.back=await compressImage(e.target.files?.[0],900,.8);renderLicensePreview();e.target.value=''};$('licenseForm').onsubmit=e=>{e.preventDefault();const id=$('licenseId').value||uid('license'),name=$('licenseName').value.trim();if(!name)return;db.licenses[id]={id,name,organization:$('licenseOrganization').value,number:$('licenseNumber').value.trim(),issuedDate:$('licenseIssued').value||null,validUntil:$('licenseValidUntil').value||null,category:$('licenseCategory').value,notes:$('licenseNotes').value.trim(),frontImage:pendingLicenseImages.front,backImage:pendingLicenseImages.back,createdAt:db.licenses[id]?.createdAt||isoNow(),updatedAt:isoNow()};try{save();$('licenseForm').classList.add('hidden');renderLicenses()}catch(err){alert('Licenci se nepodařilo uložit. Úložiště může být plné; zkus menší fotografie.')}};renderAvatar();$('exportData').onclick=exportJSON;$('exportCSV').onclick=exportCSV;$('importData').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x.dives)||typeof x.sites!=='object')throw new Error('Neplatný formát zálohy.');db=x;db.settings=db.settings||{initialDiveNumber:null};db.settings.defaults=db.settings.defaults||{};db.settings.activeProfileId=db.settings.activeProfileId||null;db.buddies=db.buddies||{};db.profiles=db.profiles||{};db.sites=db.sites||{};db.profile=db.profile||{name:"Zdeňka",certification:"IANTD #190979",photo:null};if(!db.profile.certification)db.profile.certification="IANTD #190979";db.licenses=db.licenses||{};db.insurance=db.insurance||{};$('search').value='';save();renderSettings();showView('dashboard');renderDashboard();alert(`Import dokončen: ${db.dives.length} ponorů, ${Object.keys(db.sites).length} lokalit, ${Object.keys(db.buddies).length} buddies, ${Object.keys(db.profiles).length} profilů.`)}catch(err){alert(err.message)}};$('openReleaseNotes').onclick=async()=>{showView('releaseNotesView');await renderReleaseNotes()};$('openUpdateInfo').onclick=()=>remoteRelease&&fillUpdateDialog(remoteRelease,compareVersions(remoteRelease.version,APP_VERSION)>0);$('updateLater').onclick=()=>hideUpdateModal(false);$('installUpdate').onclick=installAvailableUpdate;$('updateModal').onclick=e=>{if(e.target===$('updateModal'))hideUpdateModal(false)};if('serviceWorker' in navigator){
+function bind(){Object.entries({weather:LOOKUPS.weather,waterBody:LOOKUPS.waterBody,waterType:LOOKUPS.waterType,entry:LOOKUPS.entry,current:LOOKUPS.current}).forEach(([id,m])=>fillSelect(id,m));$('btnNew').onclick=()=>{hideError('importError');showView('importView')};$('btnManual').onclick=()=>{prepForm(null);$('date').value=new Date().toISOString().slice(0,10);$('editTitle').textContent='Nový ponor manuálně';showView('editView')};$('btnProfile').onclick=()=>{renderProfile();activateProfileTab('overview');showView('profileView')};document.querySelectorAll('[data-back]').forEach(b=>b.onclick=()=>showView('dashboard'));$('search').oninput=()=>{visibleDives=DIVE_PAGE_SIZE;renderDashboard()};document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===t));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===`panel-${t.dataset.tab}`));if(t.dataset.tab!=='camera')stopCamera()});$('startCamera').onclick=startCamera;$('stopCamera').onclick=stopCamera;$('parseText').onclick=()=>setImportData($('qrText').value);$('qrFile').onchange=async e=>{const file=e.target.files&&e.target.files[0];try{await scanFile(file)}catch(err){showError('importError',err.message)}finally{e.target.value=''}};$('siteId').oninput=()=>{const s=siteOf(valNum('siteId'));if(s){$('siteName').value=s.name||'';$('siteCountry').value=s.country||'';$('siteRegion').value=s.region||''}updateSiteHint()};$('attachments').onchange=e=>filesToAttachments(e.target.files);$('diveForm').onsubmit=e=>{e.preventDefault();if(valNum('diveNumber')<1||!$('date').value||valNum('duration')<=0||valNum('depth')<0){showError('formError','Zkontroluj číslo ponoru, datum, délku a hloubku.');return}try{const d=buildDive(),i=db.dives.findIndex(x=>x.id===d.id);if(i>=0)db.dives[i]=d;else db.dives.push(d);save();openDetail(d.id)}catch(err){if(err.name==='QuotaExceededError')showError('formError','Úložiště prohlížeče je plné. Exportuj zálohu a odstraň některé velké přílohy.');else showError('formError',err.message)}};$('editDive').onclick=()=>{const d=db.dives.find(x=>x.id===activeDiveId);prepForm(d);showView('editView')};$('deleteDive').onclick=()=>{if(confirm('Opravdu smazat tento ponor?')){db.dives=db.dives.filter(x=>x.id!==activeDiveId);save();showView('dashboard')}};$('saveInitialDiveNumber').onclick=()=>{const n=valNum('initialDiveNumber');if(n==null||n<1){alert('Zadej platné výchozí číslo ponoru.');return}db.settings=db.settings||{};db.settings.initialDiveNumber=n;save();alert('Výchozí číslo bylo uloženo. Další nový ponor dostane číslo podle nejvyššího uloženého čísla.');};$('openSites').onclick=()=>{showView('sitesView');renderSitesDb()};$('openBuddies').onclick=()=>{showView('buddiesView');renderBuddiesDb()};$('openDefaults').onclick=()=>{showView('defaultsView');renderDefaults()};$('openProfiles').onclick=()=>{db.profiles=db.profiles||{};showView('profilesView');renderProfiles()};document.querySelectorAll('[data-settings-back]').forEach(b=>b.onclick=()=>showView('settingsView'));$('siteDbSearch').oninput=renderSitesDb;$('addSite').onclick=()=>openSiteForm();$('cancelSiteDb').onclick=()=>$('siteDbForm').classList.add('hidden');$('siteDbForm').onsubmit=e=>{e.preventDefault();const id=valNum('siteDbId'),old=$('siteDbOldId').value,name=$('siteDbName').value.trim(),country=$('siteDbCountry').value.trim();if(!id||!name||!country){alert('Doplň SSI ID, název a zemi.');return}if(!old&&db.sites[String(id)]){alert('Toto SSI ID už existuje.');return}if(old&&String(old)!==String(id)){db.dives.forEach(d=>{if(String(d.siteId)===String(old))d.siteId=id});delete db.sites[String(old)]}db.sites[String(id)]={ssiId:id,name,country,region:$('siteDbRegion').value.trim(),notes:$('siteDbNotes').value.trim()};save();$('siteDbForm').classList.add('hidden');renderSitesDb()};$('buddyDbSearch').oninput=renderBuddiesDb;$('addBuddy').onclick=()=>openBuddyForm();$('cancelBuddyDb').onclick=()=>{ $('buddyDbForm').classList.add('hidden'); if(buddyReturnToDive){buddyReturnToDive=false,pendingLicenseImages={front:null,back:null};renderBuddyPicker();showView('buddyPickerView')} };$('buddyDbForm').onsubmit=e=>{e.preventDefault();const old=$('buddyDbId').value,id=old||uid('buddy'),name=$('buddyDbName').value.trim();if(!name)return;db.buddies[id]={id,name,notes:$('buddyDbNotes').value.trim(),createdAt:db.buddies[id]?.createdAt||isoNow(),updatedAt:isoNow()};save();$('buddyDbForm').classList.add('hidden');if(buddyReturnToDive){if(!selectedBuddyIds.includes(id))selectedBuddyIds.push(id);buddyReturnToDive=false,pendingLicenseImages={front:null,back:null};renderBuddyPicker();showView('buddyPickerView')}else{renderBuddiesDb()}};$('chooseBuddies').onclick=()=>{renderBuddyPicker();showView('buddyPickerView')};$('buddyPickerBack').onclick=()=>showView('editView');$('confirmBuddies').onclick=()=>{selectedBuddyIds=[...document.querySelectorAll('#buddyPickerList input:checked')].map(x=>x.value);renderBuddySelection();showView('editView')};$('newBuddyFromPicker').onclick=()=>{buddyReturnToDive=true;showView('buddiesView');openBuddyForm()};$('defaultsForm').onsubmit=e=>{e.preventDefault();db.settings.defaults={suit:$('defaultSuit').value,tankMaterial:$('defaultTankMaterial').value,tankVolumeL:valNum('defaultTankVolume'),gas:$('defaultGas').value,weightKg:valNum('defaultWeight'),startPressureBar:valNum('defaultStartPressure'),endPressureBar:valNum('defaultEndPressure')};save();alert('Výchozí hodnoty byly uloženy.')};$('addProfile').onclick=()=>openProfileForm();$('cancelProfile').onclick=()=>$('profileForm').classList.add('hidden');$('profileForm').onsubmit=e=>{e.preventDefault();const id=$('profileId').value||uid('profile'),name=$('gearProfileName').value.trim();if(!name){alert('Zadej název profilu výstroje.');$('gearProfileName').focus();return}db.profiles=id in db.profiles?db.profiles:db.profiles||{};db.profiles[id]={id,name,equipment:{suit:$('profileSuit').value,tankMaterial:$('profileTankMaterial').value,tankVolumeL:valNum('profileTankVolume'),gas:$('profileGas').value,weightKg:valNum('profileWeight'),startPressureBar:valNum('profileStartPressure'),endPressureBar:valNum('profileEndPressure')}};save();$('profileForm').classList.add('hidden');renderProfiles()};$('profileSettings').onclick=()=>showView('settingsView');document.querySelectorAll('.profile-tab').forEach(b=>b.onclick=()=>activateProfileTab(b.dataset.profileTab));$('goLicenses').onclick=()=>activateProfileTab('licenses');$('goInsurance').onclick=()=>activateProfileTab('insurance');$('profilePhotoButton').onclick=()=>$('profilePhotoInput').click();$('changePhoto').onclick=()=>$('profilePhotoInput').click();$('profilePhotoInput').onchange=e=>{setProfilePhoto(e.target.files?.[0]);e.target.value=''};$('removePhoto').onclick=()=>{if(db.profile.photo&&confirm('Odstranit profilovou fotografii?')){db.profile.photo=null;save();renderProfile()}};$('editPersonalData').onclick=()=>$('personalForm').classList.remove('hidden');$('cancelPersonal').onclick=()=>$('personalForm').classList.add('hidden');$('personalForm').onsubmit=e=>{e.preventDefault();db.profile.name=$('profileName').value.trim()||'Zdeňka';db.profile.certification=$('profileCertificationInput').value.trim()||'IANTD #190979';save();$('personalForm').classList.add('hidden');renderProfile()};$('addInsurance').onclick=()=>openInsuranceForm();$('cancelInsurance').onclick=()=>$('insuranceForm').classList.add('hidden');$('insuranceFront').onchange=async e=>{pendingInsuranceImages.front=await compressImage(e.target.files?.[0],900,.8);renderInsurancePreview();e.target.value=''};$('insuranceBack').onchange=async e=>{pendingInsuranceImages.back=await compressImage(e.target.files?.[0],900,.8);renderInsurancePreview();e.target.value=''};$('insuranceForm').onsubmit=e=>{e.preventDefault();const id=$('insuranceId').value||uid('insurance'),provider=$('insuranceProvider').value.trim();if(!provider)return;db.insurance[id]={id,provider,product:$('insuranceProduct').value.trim(),policyNumber:$('insurancePolicyNumber').value.trim(),validFrom:$('insuranceValidFrom').value||null,validUntil:$('insuranceValidUntil').value||null,territory:$('insuranceTerritory').value.trim(),assistancePhone:$('insurancePhone').value.trim(),assistanceEmail:$('insuranceEmail').value.trim(),notes:$('insuranceNotes').value.trim(),frontImage:pendingInsuranceImages.front,backImage:pendingInsuranceImages.back,createdAt:db.insurance[id]?.createdAt||isoNow(),updatedAt:isoNow()};try{save();$('insuranceForm').classList.add('hidden');renderInsurance()}catch(err){alert('Pojištění se nepodařilo uložit. Úložiště může být plné.')}};$('addLicense').onclick=()=>openLicenseForm();$('cancelLicense').onclick=()=>$('licenseForm').classList.add('hidden');$('licenseFront').onchange=async e=>{pendingLicenseImages.front=await compressImage(e.target.files?.[0],900,.8);renderLicensePreview();e.target.value=''};$('licenseBack').onchange=async e=>{pendingLicenseImages.back=await compressImage(e.target.files?.[0],900,.8);renderLicensePreview();e.target.value=''};$('licenseForm').onsubmit=e=>{e.preventDefault();const id=$('licenseId').value||uid('license'),name=$('licenseName').value.trim();if(!name)return;db.licenses[id]={id,name,organization:$('licenseOrganization').value,number:$('licenseNumber').value.trim(),issuedDate:$('licenseIssued').value||null,validUntil:$('licenseValidUntil').value||null,category:$('licenseCategory').value,notes:$('licenseNotes').value.trim(),frontImage:pendingLicenseImages.front,backImage:pendingLicenseImages.back,createdAt:db.licenses[id]?.createdAt||isoNow(),updatedAt:isoNow()};try{save();$('licenseForm').classList.add('hidden');renderLicenses()}catch(err){alert('Licenci se nepodařilo uložit. Úložiště může být plné; zkus menší fotografie.')}};renderAvatar();
+$$('exportData').onclick=exportJSON;
+$('exportCSV').onclick=exportCSV;
+
+$('importCSV').onchange = async e => {
+
+  try{
+
+    const file = e.target.files?.[0];
+
+    if(file){
+      await importCSV(file);
+    }
+
+  }catch(err){
+
+    alert(err.message);
+
+  }finally{
+
+    e.target.value='';
+
+  }
+};
+$('importData').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x.dives)||typeof x.sites!=='object')throw new Error('Neplatný formát zálohy.');db=x;db.settings=db.settings||{initialDiveNumber:null};db.settings.defaults=db.settings.defaults||{};db.settings.activeProfileId=db.settings.activeProfileId||null;db.buddies=db.buddies||{};db.profiles=db.profiles||{};db.sites=db.sites||{};db.profile=db.profile||{name:"Zdeňka",certification:"IANTD #190979",photo:null};if(!db.profile.certification)db.profile.certification="IANTD #190979";db.licenses=db.licenses||{};db.insurance=db.insurance||{};$('search').value='';save();renderSettings();showView('dashboard');renderDashboard();alert(`Import dokončen: ${db.dives.length} ponorů, ${Object.keys(db.sites).length} lokalit, ${Object.keys(db.buddies).length} buddies, ${Object.keys(db.profiles).length} profilů.`)}catch(err){alert(err.message)}};$('openReleaseNotes').onclick=async()=>{showView('releaseNotesView');await renderReleaseNotes()};$('openUpdateInfo').onclick=()=>remoteRelease&&fillUpdateDialog(remoteRelease,compareVersions(remoteRelease.version,APP_VERSION)>0);$('updateLater').onclick=()=>hideUpdateModal(false);$('installUpdate').onclick=installAvailableUpdate;$('updateModal').onclick=e=>{if(e.target===$('updateModal'))hideUpdateModal(false)};if('serviceWorker' in navigator){
   let refreshing=false;
   navigator.serviceWorker.addEventListener('controllerchange',()=>{if(refreshing)return;refreshing=true;localStorage.setItem(UPDATE_SEEN_KEY,remoteRelease?.version||APP_VERSION);location.reload()});
-  navigator.serviceWorker.register('./sw.js?v=1.3.2',{updateViaCache:'none'}).then(reg=>{swRegistration=reg;reg.update();reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'&&navigator.serviceWorker.controller&&remoteRelease)showUpdateBanner(remoteRelease)})})}).catch(()=>{});
+  navigator.serviceWorker.register('./sw.js?v=1.4.1',{updateViaCache:'none'}).then(reg=>{swRegistration=reg;reg.update();reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'&&navigator.serviceWorker.controller&&remoteRelease)showUpdateBanner(remoteRelease)})})}).catch(()=>{});
 }
 const scrollTopBtn=$('scrollTopBtn');const updateScrollTopButton=()=>scrollTopBtn.classList.toggle('show',window.scrollY>400);window.addEventListener('scroll',updateScrollTopButton,{passive:true});scrollTopBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});updateScrollTopButton();fetchVersionInfo();
 renderDashboard()}

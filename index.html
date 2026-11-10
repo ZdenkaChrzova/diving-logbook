@@ -268,24 +268,29 @@
       <div class="card form-section">
   <h3>Data</h3>
 
-  <button id="exportData" class="secondary wide" type="button">
-    Exportovat JSON
-  </button>
+<button id="exportData" class="secondary wide" type="button">
+  Exportovat JSON
+</button>
 
-  <button id="exportCSV" class="secondary wide" type="button">
-    Exportovat Excel (CSV)
-  </button>
+<button id="exportCSV" class="secondary wide" type="button">
+  Exportovat Excel (CSV)
+</button>
 
-  <label class="upload">
-    Importovat JSON
-    <input id="importData" type="file" accept="application/json,.json">
-  </label>
+<label class="upload">
+  Importovat CSV
+  <input id="importCSV" type="file" accept=".csv,text/csv">
+</label>
 
-  <p class="hint">
-    Data jsou uložena pouze v tomto prohlížeči.
-    Pravidelně exportuj zálohu.
-  </p>
-</div>
+<label class="upload">
+  Importovat JSON
+  <input id="importData" type="file" accept="application/json,.json">
+</label>
+
+<p class="hint">
+  Data jsou uložena pouze v tomto prohlížeči.
+  Pravidelně exportuj zálohu.
+</p>
+
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
       <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.4.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>

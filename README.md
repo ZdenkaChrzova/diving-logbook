@@ -1,6 +1,25 @@
 ![alt text](image.png)# Diving LogBook 1.4.0
 
-Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI. Data zůstávají uložená pouze v zařízení uživatele a nejsou automaticky synchronizována do cloudu.
+Diving LogBook je osobní elektronický potápěčský deník určený pro evidenci rekreačních i technických ponorů. Aplikace funguje plně lokálně v prohlížeči, podporuje import SSI QR kódů, správu lokalit, buddies, výstroje, licencí, pojištění a export nebo import dat pro dlouhodobou archivaci.
+
+## Verze
+
+**1.4.1 – 10. listopadu 2026**
+
+### Novinky verze 1.4.1
+
+- přidán import CSV exportů z Diving LogBooku,
+- duplicitní čísla ponorů jsou při importu automaticky přeskočena,
+- nové lokality jsou při importu zakládány automaticky,
+- noví buddies jsou při importu zakládáni automaticky,
+- opraveno zobrazování oznámení o nové verzi aplikace.
+
+### Novinky verze 1.4.0
+
+- export ponorů do CSV kompatibilního s Microsoft Excel,
+- export dat pro Apple Numbers a Google Sheets,
+- oddělené volby Export JSON a Export Excel (CSV),
+- rozšířená dokumentace projektu.
 
 ## Funkce verze 1.4.0
 

@@ -58,3 +58,37 @@
 
 /* v1.3.2 */
 .scroll-top-btn{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(24px + env(safe-area-inset-bottom));width:56px;height:56px;border:0;border-radius:50%;display:grid;place-items:center;background:var(--primary);color:#fff;font-size:30px;box-shadow:0 10px 28px rgba(0,0,0,.28);z-index:900;opacity:0;visibility:hidden;transform:translateY(14px);transition:.22s}.scroll-top-btn.show{opacity:1;visibility:visible;transform:translateY(0)}.load-more-trigger{grid-column:1/-1;min-height:44px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.82rem}
+/* v1.4.1 CSV import + update fixes */
+
+.release-card{
+  margin-bottom:12px;
+}
+
+.current-version-badge{
+  display:inline-block;
+  margin-left:8px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#dff5e7;
+  color:#176b3a;
+  font-size:.72rem;
+  font-weight:800;
+  vertical-align:middle;
+}
+
+#updateBanner{
+  transition:opacity .25s ease;
+}
+
+.upload input[type="file"]{
+  cursor:pointer;
+}
+
+@media(prefers-color-scheme:dark){
+
+  .current-version-badge{
+    background:#1d4730;
+    color:#9ef0b9;
+  }
+
+}
