@@ -1,8 +1,8 @@
 const CACHE = "diving-logbook-v1.4.0";
 const SHELL = [
   "./index.html",
-  "./styles.css?v=1.3.2",
-  "./app.js?v=1.3.2",
+  "./styles.css?v=1.4.0",
+  "./app.js?v=1.4.0",
   "./csv-import.js?v=1.4.0",
   "./manifest.webmanifest",
   "./version.json"
