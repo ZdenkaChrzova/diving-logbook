@@ -1,12 +1,9 @@
-# Diving LogBook 1.6.0
+# Diving LogBook 1.6.1
 
-## Seskupení ponorů podle roku
+## Oprava seskupení podle roku
 
-- ponory na úvodní obrazovce jsou rozdělené do rozbalovacích skupin podle roku,
-- nejnovější rok je při prvním otevření rozbalený,
-- u každého roku je počet ponorů, celkový čas a maximální hloubka,
-- lze mít otevřeno více roků současně,
-- stav otevřených roků se ukládá v prohlížeči,
-- při vyhledávání se skupiny s výsledky automaticky otevřou.
+- aktuální i nejnovější rok lze sbalit stejně jako ostatní roky,
+- nejnovější rok se automaticky otevře pouze při prvním použití verze se seskupením,
+- stav, kdy jsou všechny roky sbalené, se uloží a zachová po obnovení stránky i návratu z detailu.
 
-**Verze 1.6.0, 11. listopadu 2026**
+**Verze 1.6.1, 11. listopadu 2026**
