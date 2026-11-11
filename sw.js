@@ -4,18 +4,32 @@ const SHELL = [
   "./styles.css?v=1.4.0",
   "./app.js?v=1.4.0",
   "./csv-import.js?v=1.4.0",
+  "./settings-data-layout.js?v=1.4.0",
   "./manifest.webmanifest",
   "./version.json"
 ];
 
-function withCsvAddon(response) {
+const ADDONS = [
+  '<script src="./csv-import.js?v=1.4.0"></script>',
+  '<script src="./settings-data-layout.js?v=1.4.0"></script>'
+];
+
+function withAddons(response) {
   if (!response || !response.ok) return response;
+
   return response.text().then(html => {
-    if (html.includes("csv-import.js?v=1.4.0")) return new Response(html, response);
-    const tag = '<script src="./csv-import.js?v=1.4.0"></script>';
-    const updated = /<\/body\s*>/i.test(html)
-      ? html.replace(/<\/body\s*>/i, `${tag}</body>`)
-      : `${html}${tag}`;
+    let updated = html;
+    for (const tag of ADDONS) {
+      const src = tag.match(/src="([^"]+)"/)?.[1];
+      if (src && !updated.includes(src)) {
+        updated = /<\/body\s*>/i.test(updated)
+          ? updated.replace(/<\/body\s*>/i, `${tag}</body>`)
+          : `${updated}${tag}`;
+      }
+    }
+
+    if (updated === html) return new Response(html, response);
+
     const headers = new Headers(response.headers);
     headers.delete("content-length");
     headers.delete("content-encoding");
@@ -56,8 +70,8 @@ self.addEventListener("fetch", event => {
   if (event.request.mode === "navigate") {
     event.respondWith(
       fetch(event.request, { cache: "no-store" })
-        .then(withCsvAddon)
-        .catch(() => caches.match("./index.html").then(withCsvAddon))
+        .then(withAddons)
+        .catch(() => caches.match("./index.html").then(withAddons))
     );
     return;
   }
