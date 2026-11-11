@@ -1,13 +1,24 @@
 {
-  "version": "1.3.2",
-  "date": "2026-11-08",
-  "title": "Rychlejší seznam ponorů a návrat nahoru",
+  "version": "1.4.0",
+  "date": "2026-11-11",
+  "title": "CSV import a export ponorů",
   "changes": [
-    "Přidáno plovoucí tlačítko pro rychlý návrat nahoru.",
-    "Seznam ponorů se pro rychlejší načítání zobrazuje postupně po 50 položkách.",
-    "Při vyhledávání se postupné načítání automaticky obnoví od prvních 50 výsledků."
+    "Přidán CSV export ponorů pro tabulky a Excel.",
+    "Přidán CSV import s kontrolou povinných údajů, chyb a duplicit.",
+    "Import přidává nové ponory a zachovává stávající data.",
+    "Původní obrazovky, JSON zálohy i úložiště aplikace z verze 1.3.2 zůstávají zachovány."
   ],
   "history": [
+    {
+      "version": "1.4.0",
+      "date": "2026-11-11",
+      "changes": [
+        "Přidán CSV export ponorů pro tabulky a Excel.",
+        "Přidán CSV import s kontrolou povinných údajů, chyb a duplicit.",
+        "Import přidává nové ponory a zachovává stávající data.",
+        "Původní obrazovky, JSON zálohy i úložiště aplikace z verze 1.3.2 zůstávají zachovány."
+      ]
+    },
     {
       "version": "1.3.2",
       "date": "2026-11-08",
