@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.4.0">
+  <link rel="stylesheet" href="styles.css?v=1.3.2">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -38,8 +38,7 @@
 .compact-row input[type="date"]::-webkit-date-and-time-value,.compact-row input[type="time"]::-webkit-date-and-time-value{text-align:left!important;margin:0!important}
 .compact-row input::-webkit-datetime-edit,.compact-row input::-webkit-datetime-edit-fields-wrapper{text-align:left!important;justify-content:flex-start!important;padding:0!important}
 .logged-total{padding-bottom:14px;margin-bottom:12px;border-bottom:1px solid var(--line)}
-.logged-total span,.logged-total strong{display:block}.logged-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.logged-total strong{font-size:2.1rem;line-height:1.1;font-weight:850;color:#fff}
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.stats-grid div{padding:12px 10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02)}.stats-grid strong{display:block;font-size:1.35rem}.stats-grid span{display:block;font-size:.75rem;color:var(--muted)}
+.logged-total span,.logged-total strong{display:block}.logged-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.logged-total strong{font-size:1.65rem;margin-top:3px}.database-total{display:flex;align-items:baseline;gap:8px}.database-total .big{font-size:2rem}.database-total .unit{font-size:.9rem}
 .add-dive-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.add-dive-actions button{min-height:50px;border-radius:14px;font-weight:800}
 @media(max-width:380px){.add-dive-actions{grid-template-columns:1fr}.logged-total strong{font-size:1.4rem}}
 </style>
@@ -62,7 +61,12 @@
 
 <style>
 /* v1.3.0: oznámení aktualizací a historie verzí */
-.update-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:14px 16px;border:1px solid rgba(81,211,184,.35);background:linear-gradient(135deg,rgba(15,59,61,.92),rgba(8,36,43,.9));border-radius:18px}.update-banner.hidden{display:none}.update-banner strong,.update-banner span{display:block}.update-banner span{margin-top:3px;color:#d9f5f6;font-size:.88rem}.update-banner button{flex:0 0 auto;white-space:nowrap}.update-modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,.62)}.update-modal.hidden{display:none}.update-dialog{width:min(100%,520px);max-height:86vh;overflow:auto;background:var(--card,#fff);color:var(--text,#10231f);border-radius:22px;padding:20px;box-shadow:0 22px 60px rgba(0,0,0,.45)}.update-dialog h2{margin:0 0 6px}.update-dialog .release-meta{color:var(--muted,#60736e);margin:0 0 14px}.update-dialog ul{padding-left:22px;line-height:1.55}.update-dialog .button-row{margin-top:14px;display:flex;justify-content:flex-end;gap:10px}.release-card{margin-bottom:12px}.release-card h3{margin-bottom:4px}.release-card .release-meta{color:var(--muted);font-size:.86rem;margin-bottom:8px}.release-card ul{margin:0;padding-left:20px}.current-version-badge{display:inline-block;margin-top:10px;padding:4px 10px;border-radius:999px;background:rgba(11,42,37,.12);font-size:.76rem;font-weight:700;color:var(--muted)}
+.update-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;padding:14px 16px;border:1px solid rgba(81,211,184,.35);background:linear-gradient(135deg,rgba(6,82,69,.96),rgba(4,44,36,.98));color:#fff}
+.update-banner strong,.update-banner span{display:block}.update-banner span{margin-top:3px;color:#d9f5f6;font-size:.88rem}
+.update-banner button{flex:0 0 auto;white-space:nowrap}.update-modal{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,.62)}
+.update-modal.hidden{display:none}.update-dialog{width:min(100%,520px);max-height:86vh;overflow:auto;background:var(--card,#fff);color:var(--text,#10231f);border-radius:22px;padding:20px;box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.update-dialog h2{margin:0 0 6px}.update-dialog .release-meta{color:var(--muted,#60736e);margin:0 0 14px}.update-dialog ul{padding-left:22px;line-height:1.55}.update-dialog .button-row{margin-top:18px}
+.release-card{margin-bottom:12px}.release-card h3{margin-bottom:4px}.release-card .release-meta{color:var(--muted);font-size:.86rem;margin-bottom:8px}.release-card ul{margin:0;padding-left:20px}.current-version-badge{display:inline-block;margin-left:8px;padding:2px 7px;border-radius:999px;background:rgba(24,154,129,.15);color:#08715e;font-size:.72rem;font-weight:800}
 @media(max-width:420px){.update-banner{align-items:flex-start;flex-direction:column}.update-banner button{width:100%}.update-dialog{padding:18px;border-radius:18px}}
 @media(prefers-color-scheme:dark){.update-dialog{background:#0d342d;color:#f2fffc}.current-version-badge{color:#7ee8d1}}
 </style>
@@ -70,7 +74,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.4.0</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.3.2</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -150,7 +154,7 @@
           <div class="form-grid">
             <label>SSI Site ID<input id="siteId" type="number" inputmode="numeric"></label>
             <label>Název<input id="siteName" type="text" placeholder="Doplnit při prvním použití"></label>
-            <label>Země <span class="required-mark">*</span><input id="siteCountry" type="text" list="countryOptions" placeholder="např. Česko" required></label><datalist id="countryOptions"><option value="Česko"><option value="Slovensko"><option value="Rakousko"><option value="Německo"><option value="Itálie"><option value="Egypt"><option value="Španělsko"><option value="Malta"><option value="Turecko"></datalist>
+            <label>Země <span class="required-mark">*</span><input id="siteCountry" type="text" list="countryOptions" placeholder="např. Česko" required></label><datalist id="countryOptions"><option value="Česko"><option value="Egypt"><option value="Malta"><option value="Chorvatsko"><option value="Řecko"><option value="Itálie"><option value="Španělsko"><option value="Mexiko"><option value="Rakousko"><option value="Německo"><option value="Polsko"><option value="Slovensko"></datalist>
             <label>Oblast<input id="siteRegion" type="text"></label>
           </div>
           <p id="siteHint" class="hint"></p>
@@ -172,7 +176,7 @@
         <div class="card form-section"><h3>Výstroj a lidé</h3>
           <div class="form-grid">
             <label>Závaží (kg)<input id="weight" type="number" min="0" step="0.5"></label>
-            <div class="buddy-picker"><span class="field-label">Buddies</span><div id="buddySelection" class="selection-box"><span class="hint">Zatím nikdo vybraný</span></div><button id="chooseBuddies" class="secondary" type="button">Vybrat buddies</button></div>
+            <div class="buddy-picker"><span class="field-label">Buddies</span><div id="buddySelection" class="selection-box"><span class="hint">Zatím nikdo vybraný</span></div><button id="chooseBuddies" class="secondary small-btn" type="button">Vybrat z databáze</button></div>
             <label>Oblek<select id="suit">
               <option value="">Nevyplněno</option>
               <option value="dry suit">Dry suit</option>
@@ -212,53 +216,65 @@
       <button id="deleteDive" class="danger wide" type="button">Smazat ponor</button>
     </section>
 
+
+
     <section id="profileView" class="view">
       <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Můj profil</h2><button id="profileSettings" class="text-btn" type="button">Nastavení</button></div>
-      <div class="profile-hero card"><div class="profile-photo-wrap"><button id="profilePhotoButton" class="profile-photo" type="button"><span id="profilePhotoContent">ZC</span></button><span class="profile-name" id="profileNameDisplay">Zdeňka Chrzová</span></div><div class="profile-meta"><div id="profileCertification" class="profile-certification">IANTD #190979</div><div id="profileDiveSummary" class="profile-dive-summary"><span id="profileLoggedSummary"></span><span id="profileDatabaseSummary"></span></div></div></div>
+      <div class="profile-hero card"><div class="profile-photo-wrap"><button id="profilePhotoButton" class="profile-photo" type="button"><span id="profilePhotoContent">ZC</span></button><span class="profile-camera">📷</span><input id="profilePhotoInput" type="file" accept="image/*" hidden></div><div><div class="eyebrow">POTÁPĚČSKÝ PROFIL</div><h2 id="profileDisplayName">Zdeňka</h2>
+        <div id="profileCertification" class="profile-certification">IANTD #190979</div>
+        <div id="profileDiveSummary" class="profile-dive-summary"><span id="profileLoggedSummary"></span><span id="profileDatabaseSummary"></span></div></div></div>
       <div class="profile-tabs profile-tabs-three"><button class="profile-tab active" data-profile-tab="overview" type="button">Profil</button><button class="profile-tab" data-profile-tab="licenses" type="button">Licence</button><button class="profile-tab" data-profile-tab="insurance" type="button">Pojištění</button></div>
       <div id="profileOverview" class="profile-panel active">
-        <div class="card"><div class="section-head compact"><h3>Potápěčský přehled</h3><button id="editPersonalData" class="text-btn teal" type="button">Upravit</button></div><div id="profileOverviewContent" class="profile-overview-content"></div></div>
+        <div class="card"><div class="section-head compact"><h3>Potápěčský přehled</h3><button id="editPersonalData" class="text-btn teal" type="button">Upravit</button></div><div class="profile-stats"><div class="profile-stat wide"><strong id="profileLogged">–</strong><span>celkem zalogovaných ponorů</span></div><div class="profile-stat"><strong id="profileDepth">–</strong><span>největší hloubka</span></div><div class="profile-stat"><strong id="profileTime">–</strong><span>čas v databázi</span></div></div></div>
         <form id="personalForm" class="card form-section hidden"><h3>Osobní údaje</h3><label>Jméno<input id="profileName" type="text"></label>
-          <label>Potápěčská organizace a číslo<input id="profileCertificationInput" type="text" placeholder="např. IANTD #190979"></label><div class="button-row"><button id="cancelPersonalData" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form>
-        <div class="card"><h3>Správa profilu</h3><button id="changePhoto" class="profile-action" type="button"><span>📷</span><span><strong>Profilová fotografie</strong><small>Vybrat nebo nahrát nový obrázek</small></span></button></div>
+          <label>Potápěčská organizace a číslo<input id="profileCertificationInput" type="text" placeholder="např. IANTD #190979"></label><div class="button-row"><button id="cancelPersonal" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form>
+        <div class="card"><h3>Správa profilu</h3><button id="changePhoto" class="profile-action" type="button"><span>📷</span><span><strong>Profilová fotografie</strong><small>Vybrat nebo změnit fotografii</small></span><b>›</b></button><button id="removePhoto" class="profile-action" type="button"><span>✕</span><span><strong>Odstranit fotografii</strong><small>Zobrazí se iniciály</small></span><b>›</b></button><button id="goLicenses" class="profile-action" type="button"><span>★</span><span><strong>Potápěčské licence</strong><small>Certifikace a specializace</small></span><b>›</b></button><button id="goInsurance" class="profile-action" type="button"><span>🛡</span><span><strong>Pojištění</strong><small>Pojistky a asistenční kontakty</small></span><b>›</b></button></div>
       </div>
       <div id="profileLicenses" class="profile-panel">
         <div class="license-summary"><div><strong id="licenseCount">0</strong><span>uložených licencí</span></div><div><strong id="organizationCount">0</strong><span>organizací</span></div></div>
         <button id="addLicense" class="primary wide" type="button">＋ Přidat licenci</button><div id="licenseList" class="license-list"></div>
-        <form id="licenseForm" class="card form-section hidden"><h3 id="licenseFormTitle">Nová licence</h3><input id="licenseId" type="hidden"><label>Název licence *<input id="licenseName" required></label><label>Organizace<input id="licenseOrganization"></label><label>Číslo licence<input id="licenseNumber"></label><label>Typ licence<select id="licenseCategory"><option value="main">Hlavní</option><option value="specialty">Specialita</option><option value="professional">Profesionální</option><option value="other">Ostatní</option></select></label><label>Datum vydání<input id="licenseIssuedDate" type="date"></label><label>Platnost do<input id="licenseExpiryDate" type="date"></label><div id="licenseImagePreview" class="image-preview"></div><label class="upload">Přidat přední stranu<input id="licenseFront" type="file" accept="image/*"></label><label class="upload">Přidat zadní stranu<input id="licenseBack" type="file" accept="image/*"></label><div class="button-row"><button id="cancelLicenseForm" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form>
+        <form id="licenseForm" class="card form-section hidden"><h3 id="licenseFormTitle">Nová licence</h3><input id="licenseId" type="hidden"><label>Název licence *<input id="licenseName" required></label><div class="form-grid"><label>Organizace<select id="licenseOrganization"><option>SSI</option><option>PADI</option><option>IANTD</option><option>CMAS</option><option>NAUI</option><option>Jiná</option></select></label><label>Číslo licence<input id="licenseNumber"></label><label>Datum získání<input id="licenseIssued" type="date"></label><label>Platnost do<input id="licenseValidUntil" type="date"></label><label>Kategorie<select id="licenseCategory"><option value="main">Hlavní kvalifikace</option><option value="specialty">Specializace</option><option value="professional">Profesní kvalifikace</option><option value="other">Další oprávnění</option></select></label></div><label>Poznámka<textarea id="licenseNotes" rows="2"></textarea></label><div class="license-images"><label class="upload">Přední strana<input id="licenseFront" type="file" accept="image/*"></label><label class="upload">Zadní strana<input id="licenseBack" type="file" accept="image/*"></label></div><div id="licenseImagePreview" class="license-preview"></div><div class="button-row"><button id="cancelLicense" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit licenci</button></div></form>
       </div>
       <div id="profileInsurance" class="profile-panel">
         <div class="license-summary"><div><strong id="insuranceCount">0</strong><span>uložených pojistek</span></div><div><strong id="activeInsuranceCount">0</strong><span>aktivních pojistek</span></div></div>
         <button id="addInsurance" class="primary wide" type="button">＋ Přidat pojištění</button><div id="insuranceList" class="license-list"></div>
-        <form id="insuranceForm" class="card form-section hidden"><h3 id="insuranceFormTitle">Nové pojištění</h3><input id="insuranceId" type="hidden"><div class="form-grid"><label>Pojišťovna<input id="insuranceProvider"></label><label>Produkt<input id="insuranceProduct"></label><label>Číslo pojistky<input id="insurancePolicyNumber"></label><label>Platnost od<input id="insuranceValidFrom" type="date"></label><label>Platnost do<input id="insuranceValidUntil" type="date"></label><label>Typ<input id="insuranceType"></label></div><div id="insuranceImagePreview" class="image-preview"></div><label class="upload">Přidat přední stranu<input id="insuranceFront" type="file" accept="image/*"></label><label class="upload">Přidat zadní stranu<input id="insuranceBack" type="file" accept="image/*"></label><div class="button-row"><button id="cancelInsuranceForm" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form>
+        <form id="insuranceForm" class="card form-section hidden"><h3 id="insuranceFormTitle">Nové pojištění</h3><input id="insuranceId" type="hidden"><div class="form-grid"><label>Pojišťovna *<input id="insuranceProvider" required placeholder="např. DAN Europe"></label><label>Produkt<input id="insuranceProduct" placeholder="např. Sport Silver"></label><label>Číslo pojistky<input id="insurancePolicyNumber"></label><label>Platnost od<input id="insuranceValidFrom" type="date"></label><label>Platnost do<input id="insuranceValidUntil" type="date"></label><label>Územní platnost<input id="insuranceTerritory" placeholder="např. Celý svět"></label><label>Asistenční telefon<input id="insurancePhone" type="tel"></label><label>Asistenční e-mail<input id="insuranceEmail" type="email"></label></div><label>Poznámka<textarea id="insuranceNotes" rows="2"></textarea></label><div class="license-images"><label class="upload">Přední strana<input id="insuranceFront" type="file" accept="image/*"></label><label class="upload">Zadní strana<input id="insuranceBack" type="file" accept="image/*"></label></div><div id="insuranceImagePreview" class="license-preview"></div><div class="button-row"><button id="cancelInsurance" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit pojištění</button></div></form>
       </div>
     </section>
+    <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
+    <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
+    <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
+    <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
+    <section id="profilesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Profily výstroje</h2></div><button id="addProfile" class="primary wide" type="button">＋ Přidat profil</button><div id="profilesList" class="list"></div><form id="profileForm" class="card form-section hidden"><h3 id="profileFormTitle">Přidat profil</h3><input id="profileId" type="hidden"><label>Název profilu *<input id="gearProfileName" required placeholder="např. Moře"></label><div class="form-grid"><label>Oblek<select id="profileSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="profileTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="profileTankVolume" type="number" step="0.1"></label><label>Plyn<select id="profileGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="profileWeight" type="number" step="0.5"></label><label>Počáteční tlak (bar)<input id="profileStartPressure" type="number"></label><label>Koncový tlak (bar)<input id="profileEndPressure" type="number"></label></div><div class="button-row"><button id="cancelProfile" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit profil</button></div></form></section>
 
+    <section id="releaseNotesView" class="view">
+      <div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Co je nového</h2></div>
+      <div id="releaseNotesList"></div>
+    </section>
     <section id="settingsView" class="view">
       <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Nastavení</h2></div>
       <div class="settings-menu">
-        <button id="openSites" class="settings-card" type="button"><span class="settings-icon">📍</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a regionů</small></span></button>
-        <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span></button>
-        <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvybraný při novém ponoru</small></span></button>
-        <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Upravit výbavu a nové profily</small></span></button>
-        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.4.0</small></span></button>
+        <button id="openSites" class="settings-card" type="button"><span class="settings-icon">📍</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a SSI ID</small></span><b>›</b></button>
+        <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
+        <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
+        <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.3.2</small></span><b>›</b></button>
       </div>
       <div class="card form-section"><h3>Číslování ponorů</h3>
         <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
         <button id="saveInitialDiveNumber" class="secondary wide" type="button">Uložit výchozí číslo</button>
-        <p class="hint">Nový ponor dostane automaticky nejvyšší uložené číslo + 1. U staršího ponoru můžeš číslo ve formuláři ručně změnit.</p>
+        <p class="hint">Nový ponor dostane automaticky nejvyšší uložené číslo + 1. U staršího ponoru můžeš číslo ve formuláři ručně změnit. Seznam zůstane seřazen podle data, nejnovější nahoře.</p>
       </div>
       <div class="card form-section"><h3>Data</h3>
         <button id="exportData" class="secondary wide" type="button">Exportovat JSON</button>
-        <button id="exportCsv" class="secondary wide" type="button">Exportovat CSV</button>
         <label class="upload">Importovat JSON<input id="importData" type="file" accept="application/json,.json"></label>
-        <label class="upload">Importovat CSV<input id="importCsv" type="file" accept=".csv,text/csv"></label>
-        <p class="hint">CSV je vhodné pro Excel, import z CSV přidá nové ponory do databáze bez mazání stávajících dat.</p>
+        <p class="hint">Data jsou uložena pouze v tomto prohlížeči. Pravidelně exportuj zálohu.</p>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.4.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="hint">© 2026 Zdeňka Chrzová</p></div>
+      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.3.2</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>
   </main>
+
 
   <div id="updateModal" class="update-modal hidden" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
     <div class="update-dialog">
@@ -274,7 +290,6 @@
   </div>
   <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Přejít nahoru">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.4.0"></script>
-  <script src="csv-import.js?v=1.4.0"></script>
+  <script src="app.js?v=1.3.2"></script>
 </body>
 </html>
