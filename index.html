@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.6.1">
+  <link rel="stylesheet" href="styles.css?v=1.7.0">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -74,7 +74,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.6.1</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.7.0</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -228,7 +228,7 @@
       <div class="profile-hero card"><div class="profile-photo-wrap"><button id="profilePhotoButton" class="profile-photo" type="button"><span id="profilePhotoContent">ZC</span></button><span class="profile-camera">📷</span><input id="profilePhotoInput" type="file" accept="image/*" hidden></div><div><div class="eyebrow">POTÁPĚČSKÝ PROFIL</div><h2 id="profileDisplayName">Zdeňka</h2>
         <div id="profileCertification" class="profile-certification">IANTD #190979</div>
         <div id="profileDiveSummary" class="profile-dive-summary"><span id="profileLoggedSummary"></span><span id="profileDatabaseSummary"></span></div></div></div>
-      <div class="profile-tabs profile-tabs-three"><button class="profile-tab active" data-profile-tab="overview" type="button">Profil</button><button class="profile-tab" data-profile-tab="licenses" type="button">Licence</button><button class="profile-tab" data-profile-tab="insurance" type="button">Pojištění</button></div>
+      <div class="profile-tabs profile-tabs-four"><button class="profile-tab active" data-profile-tab="overview" type="button">Profil</button><button class="profile-tab" data-profile-tab="licenses" type="button">Licence</button><button class="profile-tab" data-profile-tab="insurance" type="button">Pojištění</button><button class="profile-tab" data-profile-tab="service" type="button">Servis <span id="serviceBadge" class="tab-badge hidden">0</span></button></div>
       <div id="profileOverview" class="profile-panel active">
         <div class="card"><div class="section-head compact"><h3>Potápěčský přehled</h3><button id="editPersonalData" class="text-btn teal" type="button">Upravit</button></div><div class="profile-stats"><div class="profile-stat wide"><strong id="profileLogged">–</strong><span>celkem zalogovaných ponorů</span></div><div class="profile-stat"><strong id="profileDepth">–</strong><span>největší hloubka</span></div><div class="profile-stat"><strong id="profileTime">–</strong><span>čas v databázi</span></div></div></div>
         <form id="personalForm" class="card form-section hidden"><h3>Osobní údaje</h3><label>Jméno<input id="profileName" type="text"></label>
@@ -244,6 +244,33 @@
         <div class="license-summary"><div><strong id="insuranceCount">0</strong><span>uložených pojistek</span></div><div><strong id="activeInsuranceCount">0</strong><span>aktivních pojistek</span></div></div>
         <button id="addInsurance" class="primary wide" type="button">＋ Přidat pojištění</button><div id="insuranceList" class="license-list"></div>
         <form id="insuranceForm" class="card form-section hidden"><h3 id="insuranceFormTitle">Nové pojištění</h3><input id="insuranceId" type="hidden"><div class="form-grid"><label>Pojišťovna *<input id="insuranceProvider" required placeholder="např. DAN Europe"></label><label>Produkt<input id="insuranceProduct" placeholder="např. Sport Silver"></label><label>Číslo pojistky<input id="insurancePolicyNumber"></label><label>Platnost od<input id="insuranceValidFrom" type="date"></label><label>Platnost do<input id="insuranceValidUntil" type="date"></label><label>Územní platnost<input id="insuranceTerritory" placeholder="např. Celý svět"></label><label>Asistenční telefon<input id="insurancePhone" type="tel"></label><label>Asistenční e-mail<input id="insuranceEmail" type="email"></label></div><label>Poznámka<textarea id="insuranceNotes" rows="2"></textarea></label><div class="license-images"><label class="upload">Přední strana<input id="insuranceFront" type="file" accept="image/*"></label><label class="upload">Zadní strana<input id="insuranceBack" type="file" accept="image/*"></label></div><div id="insuranceImagePreview" class="license-preview"></div><div class="button-row"><button id="cancelInsurance" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit pojištění</button></div></form>
+      </div>
+
+      <div id="profileService" class="profile-panel">
+        <div id="serviceAlert" class="service-alert hidden"></div>
+        <button id="addServiceItem" class="primary wide" type="button">＋ Přidat vybavení</button>
+        <div id="serviceList" class="license-list"></div>
+        <form id="serviceForm" class="card form-section hidden">
+          <h3 id="serviceFormTitle">Nové vybavení</h3><input id="serviceId" type="hidden">
+          <div class="form-grid">
+            <label>Typ vybavení *<select id="serviceType" required><option value="tank">Lahev</option><option value="stage">Stage</option><option value="regulator">Automatika</option></select></label>
+            <label>Vlastní název *<input id="serviceName" required placeholder="např. Apeks XTX50"></label>
+            <label>Výrobce<input id="serviceManufacturer" placeholder="např. Apeks"></label>
+            <label>Model<input id="serviceModel"></label>
+            <label>Sériové číslo<input id="serviceSerial"></label>
+            <label>Stav<select id="serviceStatus"><option value="active">Aktivní</option><option value="backup">Záložní</option><option value="service">V servisu</option><option value="retired">Vyřazené</option></select></label>
+            <label>Datum poslední revize<input id="serviceLastDate" type="date"></label>
+            <label>Interval další revize<select id="serviceInterval"><option value="6">6 měsíců</option><option value="12">1 rok</option><option value="24">2 roky</option><option value="36">3 roky</option><option value="60">5 let</option><option value="custom">Vlastní datum</option></select></label>
+            <label>Další revize<input id="serviceNextDate" type="date"></label>
+            <label>Servis / technik<input id="serviceProvider"></label>
+            <label>Cena<input id="serviceCost" type="number" min="0" step="0.01" inputmode="decimal"></label>
+            <label>Výsledek<select id="serviceResult"><option value="ok">Vyhovuje</option><option value="note">Vyhovuje s poznámkou</option><option value="repair">Čeká na opravu</option><option value="fail">Nevyhovuje</option></select></label>
+          </div>
+          <label>Poznámka<textarea id="serviceNotes" rows="3"></textarea></label>
+          <label class="upload">Dokument nebo fotografie revize<input id="serviceDocument" type="file" accept="image/*,application/pdf,.pdf"></label>
+          <div id="serviceDocumentInfo" class="hint"></div>
+          <div class="button-row"><button id="cancelServiceItem" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit vybavení</button></div>
+        </form>
       </div>
     </section>
     <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div><div class="merge-toolbar"><button id="startSiteMerge" class="primary wide" type="button" aria-pressed="false">Sloučit lokality</button><div id="siteMergeActions" class="merge-actions hidden"><span id="siteMergeCount">Vybráno: 0</span><button id="cancelSiteMerge" class="secondary" type="button">Zrušit</button><button id="continueSiteMerge" class="primary" type="button" disabled aria-disabled="true">Pokračovat</button></div></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
@@ -263,7 +290,7 @@
         <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
         <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
-        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.6.1</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.7.0</small></span><b>›</b></button>
       </div>
       <div class="card form-section"><h3>Číslování ponorů</h3>
         <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
@@ -285,7 +312,7 @@
         </div>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.6.1</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
+      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.7.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>
   </main>
 
@@ -306,8 +333,9 @@
   <div id="siteMergeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="siteMergeTitle"><div class="modal-card site-merge-modal-card"><h2 id="siteMergeTitle">Sloučit lokality</h2><p>Vyber hlavní lokalitu, která zůstane zachována. Ponory z ostatních vybraných lokalit se na ni přepojí.</p><div id="siteMergeSummary" class="merge-summary"></div><label>Hlavní lokalita<select id="siteMergeTarget"></select></label><div class="button-row"><button id="closeSiteMerge" class="secondary" type="button">Zpět</button><button id="confirmSiteMerge" class="danger" type="button">Sloučit lokality</button></div></div></div>
   <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Přejít nahoru">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.6.1"></script>
-  <script src="csv-import.js?v=1.6.1"></script>
-  <script src="settings-data-layout.js?v=1.6.1"></script>
+  <script src="app.js?v=1.7.0"></script>
+  <script src="csv-import.js?v=1.7.0"></script>
+  <script src="settings-data-layout.js?v=1.7.0"></script>
+  <script src="service.js?v=1.7.0"></script>
 </body>
 </html>

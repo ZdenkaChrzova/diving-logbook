@@ -1,13 +1,30 @@
 {
-  "version": "1.6.1",
+  "version": "1.7.0",
   "date": "2026-11-11",
-  "title": "Možnost sbalit aktuální rok",
+  "title": "Evidence servisu potápěčského vybavení",
   "changes": [
-    "Aktuální rok lze nyní sbalit stejně jako všechny ostatní roky.",
-    "Nejnovější rok se automaticky rozbalí pouze při úplně prvním použití seskupeného seznamu.",
-    "Pokud uživatel sbalí všechny roky, aplikace tento stav zachová i po obnovení nebo návratu z detailu."
+    "Přidána záložka Servis vedle Licencí a Pojištění.",
+    "Evidence lahví, stage a automatik včetně výrobce, modelu, sériového čísla a stavu.",
+    "Automatický výpočet další revize: automatika 1 rok, lahev a stage 5 let; termín lze ručně upravit.",
+    "Přiložení fotografie nebo PDF revizního dokumentu.",
+    "Barevné upozornění na revizi do 90 a 30 dnů nebo po termínu.",
+    "Stažení události revize ve formátu ICS s připomínkou 30 dnů předem.",
+    "Servisní data jsou součástí kompletní JSON zálohy."
   ],
   "history": [
+    {
+      "version": "1.7.0",
+      "date": "2026-11-11",
+      "changes": [
+        "Přidána záložka Servis vedle Licencí a Pojištění.",
+        "Evidence lahví, stage a automatik včetně výrobce, modelu, sériového čísla a stavu.",
+        "Automatický výpočet další revize: automatika 1 rok, lahev a stage 5 let; termín lze ručně upravit.",
+        "Přiložení fotografie nebo PDF revizního dokumentu.",
+        "Barevné upozornění na revizi do 90 a 30 dnů nebo po termínu.",
+        "Stažení události revize ve formátu ICS s připomínkou 30 dnů předem.",
+        "Servisní data jsou součástí kompletní JSON zálohy."
+      ]
+    },
     {
       "version": "1.6.1",
       "date": "2026-11-11",
