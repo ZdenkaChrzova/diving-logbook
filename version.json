@@ -1,13 +1,22 @@
 {
-  "version": "1.5.2",
+  "version": "1.5.3",
   "date": "2026-11-11",
-  "title": "Oprava sloučení a seznamu lokalit",
+  "title": "Oprava výběru lokalit pro sloučení",
   "changes": [
-    "Opraveno tlačítko Sloučit lokality, které nereagovalo kvůli chybějící inicializaci stavu.",
-    "Obnovené zobrazení seznamu lokalit pod ovládacími prvky.",
-    "Tlačítko Sloučit lokality je nyní vizuálně aktivní a po stisknutí zobrazí zaškrtávací políčka."
+    "Opraveno zapínání tlačítka Pokračovat po označení dvou lokalit.",
+    "Kliknutí na celý řádek lokality nyní spolehlivě přepíná zaškrtávací políčko.",
+    "Vybrané lokality jsou vizuálně zvýrazněné a počítadlo výběru se okamžitě aktualizuje."
   ],
   "history": [
+    {
+      "version": "1.5.3",
+      "date": "2026-11-11",
+      "changes": [
+        "Opraveno zapínání tlačítka Pokračovat po označení dvou lokalit.",
+        "Kliknutí na celý řádek lokality nyní spolehlivě přepíná zaškrtávací políčko.",
+        "Vybrané lokality jsou vizuálně zvýrazněné a počítadlo výběru se okamžitě aktualizuje."
+      ]
+    },
     {
       "version": "1.5.2",
       "date": "2026-11-11",

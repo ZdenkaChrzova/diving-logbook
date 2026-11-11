@@ -70,3 +70,6 @@
 
 /* Merge hotfix v1.5.2 */
 #sitesDbList{display:grid;gap:10px;margin-top:14px}#startSiteMerge{opacity:1;pointer-events:auto}#startSiteMerge[aria-pressed="true"]{background:var(--primary2)}.merge-site-card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%}
+
+/* Merge selection hotfix v1.5.3 */
+.merge-site-card:has(.site-merge-check:checked){border-color:var(--primary);box-shadow:0 0 0 2px rgba(8,127,140,.22)}#continueSiteMerge.merge-ready{opacity:1;cursor:pointer;pointer-events:auto}#continueSiteMerge:disabled{opacity:.45;cursor:not-allowed}.site-merge-check{pointer-events:auto}

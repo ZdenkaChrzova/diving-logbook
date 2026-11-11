@@ -1,12 +1,10 @@
-# Diving LogBook 1.5.2
+# Diving LogBook 1.5.3
 
-## Oprava
+## Oprava slučování lokalit
 
-- seznam lokalit se znovu zobrazuje,
-- tlačítko **Sloučit lokality** je aktivní,
-- po stisknutí se u lokalit zobrazí zaškrtávací políčka,
-- po označení alespoň dvou lokalit se aktivuje tlačítko **Pokračovat**.
+- po označení dvou lokalit se aktivuje **Pokračovat**,
+- kliknutí na celý řádek lokality přepne výběr,
+- vybrané řádky jsou zvýrazněné,
+- počítadlo **Vybráno** se aktualizuje okamžitě.
 
-Před sloučením doporučujeme vytvořit JSON zálohu.
-
-**Verze 1.5.2, 11. listopadu 2026**
+**Verze 1.5.3, 11. listopadu 2026**
