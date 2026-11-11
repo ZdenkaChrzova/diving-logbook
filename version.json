@@ -1,13 +1,24 @@
 {
-  "version": "1.4.5",
+  "version": "1.5.0",
   "date": "2026-11-11",
-  "title": "Čas v CSV importu a exportu",
+  "title": "Přiřazení importované lokality k číselníku",
   "changes": [
-    "Do CSV exportu byl přidán sloupec Čas.",
-    "CSV import načte hodnotu Čas do času začátku ponoru.",
-    "Import času přijímá formát HH:MM, například 11:16."
+    "V kartě ponoru lze vyhledat a vybrat existující lokalitu z číselníku.",
+    "Výběr uloží do ponoru existující Site ID a nevytvoří duplicitní lokalitu.",
+    "Původní název lokality z CSV zůstává uložený a zobrazuje se při kontrole ponoru.",
+    "CSV import už při neznámém názvu automaticky nezakládá novou lokalitu."
   ],
   "history": [
+    {
+      "version": "1.5.0",
+      "date": "2026-11-11",
+      "changes": [
+        "V kartě ponoru lze vyhledat a vybrat existující lokalitu z číselníku.",
+        "Výběr uloží do ponoru existující Site ID a nevytvoří duplicitní lokalitu.",
+        "Původní název lokality z CSV zůstává uložený a zobrazuje se při kontrole ponoru.",
+        "CSV import už při neznámém názvu automaticky nezakládá novou lokalitu."
+      ]
+    },
     {
       "version": "1.4.5",
       "date": "2026-11-11",

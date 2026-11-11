@@ -280,18 +280,10 @@
     return `${match[1].padStart(2, "0")}:${match[2]}`;
   }
 
-  function siteIdForImport(name, pendingSites) {
-    const normalizedName = normalize(name);
-    const existing = Object.entries(db.sites || {}).find(([, site]) => normalize(site?.name) === normalizedName);
-    if (existing) return Number(existing[0]);
-
-    const pending = pendingSites.find(site => normalize(site.name) === normalizedName);
-    if (pending) return pending.id;
-
-    const numericIds = Object.keys(db.sites || {}).map(Number).filter(Number.isFinite);
-    const pendingIds = pendingSites.map(site => site.id);
-    const lowest = Math.min(0, ...numericIds, ...pendingIds);
-    return lowest - 1;
+  function siteIdForImport(name) {
+    const normalized = normalize(name);
+    const existing = Object.values(db.sites || {}).find(site => normalize(site.name) === normalized);
+    return existing ? Number(existing.ssiId ?? existing.id) : null;
   }
 
   function resolveFieldIndexes(header) {
@@ -375,10 +367,7 @@
 
         const startTime = indexes.startTime === undefined ? null : parseTime(cell(rows[i], "startTime"), rowNumber);
 
-        const siteId = siteIdForImport(siteName, pendingSites);
-        if (!(String(siteId) in (db.sites || {})) && !pendingSites.some(site => site.id === siteId)) {
-          pendingSites.push({ id: siteId, name: siteName });
-        }
+        const siteId = siteIdForImport(siteName);
 
         parsedDives.push({
           id: uid("dive"),
@@ -388,6 +377,7 @@
           durationMinutes,
           maxDepthM,
           siteId,
+          siteNameOcr: siteName,
           conditions: {
             weatherId,
             waterBodyId,
@@ -419,6 +409,7 @@
           attachments: [],
           import: {
             source: "csv",
+            siteNameOcr: siteName,
             importedAt: new Date().toISOString()
           }
         });
@@ -457,17 +448,6 @@
     if (unique.length === 0) {
       alert("Žádné nové ponory nebyly přidány; všechny platné řádky už v deníku jsou.");
       return;
-    }
-
-    for (const site of pendingSites) {
-      db.sites[String(site.id)] = {
-        ssiId: site.id,
-        name: site.name,
-        country: "",
-        region: "",
-        latitude: null,
-        longitude: null
-      };
     }
 
     db.dives.push(...unique);

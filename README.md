@@ -1,14 +1,14 @@
-# Diving LogBook 1.4.5
+# Diving LogBook 1.5.0
 
-Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI.
+## Novinky
 
-## Novinky ve verzi 1.4.5
+- V kartě ponoru lze vyhledat a vybrat existující lokalitu z číselníku.
+- Výběrem se ponor přepojí na existující Site ID bez založení duplicity.
+- Původní importovaný název z CSV zůstává u ponoru pro kontrolu.
+- Neznámá lokalita z CSV se už automaticky nezaloží. Ponor je uložen bez Site ID a lze ho následně přiřadit.
 
-- CSV export obsahuje nový sloupec **Čas**.
-- CSV import načítá sloupec **Čas** jako čas začátku ponoru.
-- Podporovaný formát času je `HH:MM`, například `11:16`.
-- Zachovány položky Vodní plocha **Cenote** a **Jeskyně** i sjednocené písmo importních a exportních tlačítek.
+## Doporučený postup
 
-## Verze
+Otevři importovaný ponor, zvol **Upravit**, v části **Lokalita** začni psát název, vyber existující lokalitu a ponor ulož.
 
-**1.4.5, 11. listopadu 2026**
+**Verze 1.5.0, 11. listopadu 2026**

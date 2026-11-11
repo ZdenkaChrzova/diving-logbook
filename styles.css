@@ -61,3 +61,6 @@
 
 /* Data buttons: import and export use identical typography. */
 .data-actions{display:grid;gap:20px}.data-action-group{display:grid;gap:10px;min-width:0}.data-action-group h4{margin:0}.data-action-group>button,.data-action-group>.upload{box-sizing:border-box;width:100%;margin:0;font-size:1rem;line-height:1.2}.data-action-group>.hint{margin:2px 0 0}
+
+/* Existing-site picker (v1.5.0). */
+.site-picker-wide{grid-column:1/-1}.imported-site-name{grid-column:1/-1;padding:10px 12px;border-radius:12px;background:#fff6d8;color:#6b5200;border:1px solid #ead58b;font-size:.88rem}.imported-site-name.hidden{display:none}@media(prefers-color-scheme:dark){.imported-site-name{background:#493f1b;color:#ffeaa3;border-color:#71622b}}
