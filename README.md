@@ -1,9 +1,10 @@
-# Diving LogBook 1.5.4
+# Diving LogBook 1.5.5
 
-## Oprava slučování lokalit
+## Opravy CSV importu
 
-Výběr se nyní počítá přímo ze skutečně zaškrtnutých políček. Po označení druhé lokality se z tlačítka **Pokračovat** fyzicky odstraní stav `disabled`.
+- český sloupec **Čas** se správně importuje jako čas začátku ponoru,
+- podporován je formát `H:MM` i `HH:MM`, například `9:42` a `14:41`,
+- při importu se do ponorů uloží aktuálně zvolený profil výstroje,
+- při editaci staršího importovaného ponoru se prázdné hodnoty výstroje doplní ze zvoleného profilu.
 
-- Dialog pro výběr hlavní lokality je vycentrovaný a nevejde-li se, lze jej posouvat.
-
-**Verze 1.5.4, 11. listopadu 2026**
+**Verze 1.5.5, 11. listopadu 2026**

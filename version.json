@@ -1,14 +1,22 @@
 {
-  "version": "1.5.4",
+  "version": "1.5.5",
   "date": "2026-11-11",
-  "title": "Spolehlivá aktivace tlačítka Pokračovat",
+  "title": "Oprava času a profilu výstroje při CSV importu",
   "changes": [
-    "Výběr lokalit pro sloučení je nově řízen přímo podle skutečně zaškrtnutých políček.",
-    "Po druhém zaškrtnutí se atribut disabled z tlačítka Pokračovat fyzicky odstraní.",
-    "Řádek lokality už nepoužívá vnořené přepínání, které mohlo výběr okamžitě vrátit zpět.",
-    "Dialog pro výběr hlavní lokality je vycentrovaný v obrazovce a na menších displejích zůstává celý dostupný posouváním."
+    "CSV import nyní správně rozpozná český sloupec Čas a uloží hodnoty jako čas začátku ponoru.",
+    "Při CSV importu se do každého nového ponoru uloží aktuálně zvolený profil výstroje.",
+    "Při editaci dříve importovaného ponoru se prázdné položky výstroje doplní ze zvoleného profilu."
   ],
   "history": [
+    {
+      "version": "1.5.5",
+      "date": "2026-11-11",
+      "changes": [
+        "CSV import nyní správně rozpozná český sloupec Čas a uloží hodnoty jako čas začátku ponoru.",
+        "Při CSV importu se do každého nového ponoru uloží aktuálně zvolený profil výstroje.",
+        "Při editaci dříve importovaného ponoru se prázdné položky výstroje doplní ze zvoleného profilu."
+      ]
+    },
     {
       "version": "1.5.4",
       "date": "2026-11-11",

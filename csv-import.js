@@ -39,7 +39,7 @@
     visibility: ["viditelnost", "viditelnost (m)", "visibility_m", "visibility"],
     decompression: ["dekompresni ponor", "decompression dive", "decompression", "decompression_dive"],
 
-    startTime: ["cas zacatku", "start_time", "start time", "time"]
+    startTime: ["cas", "čas", "cas zacatku", "čas začátku", "start_time", "start time", "time"]
   };
 
   function normalize(value) {
@@ -297,6 +297,21 @@
     return indexes;
   }
 
+  function activeEquipmentPreset() {
+    const defaults = db.settings?.defaults || {};
+    const profile = db.profiles?.[db.settings?.activeProfileId]?.equipment || {};
+    const merged = { ...defaults, ...Object.fromEntries(Object.entries(profile).filter(([, value]) => value !== null && value !== "" && value !== undefined)) };
+    return {
+      weightKg: merged.weightKg ?? null,
+      suit: merged.suit || "",
+      tankVolumeL: merged.tankVolumeL ?? null,
+      tankMaterial: merged.tankMaterial || "",
+      gas: merged.gas || "",
+      startPressureBar: merged.startPressureBar ?? null,
+      endPressureBar: merged.endPressureBar ?? null
+    };
+  }
+
   async function importCsv(file) {
     const text = await file.text();
     const rows = parseCsv(text);
@@ -378,6 +393,7 @@
           maxDepthM,
           siteId,
           siteNameOcr: siteName,
+          equipment: activeEquipmentPreset(),
           conditions: {
             weatherId,
             waterBodyId,
