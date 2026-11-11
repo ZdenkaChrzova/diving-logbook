@@ -1,4 +1,4 @@
-# Diving LogBook 1.4.1
+# Diving LogBook 1.4.2
 
 Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI. Data zůstávají v prohlížeči uživatele.
 
@@ -12,11 +12,11 @@ Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI. Data z�
 - automatická kontrola nové verze,
 - instalace jako PWA a offline cache.
 
-## Opravy ve verzi 1.4.1
+## Opravy ve verzi 1.4.2
 
 - opraveno zobrazení tlačítek CSV importu a exportu,
 - `csv-import.js` a `settings-data-layout.js` se načítají přímo z `index.html`,
-- Service Worker používá novou cache `diving-logbook-v1.4.1` a aktivuje se ihned,
+- Service Worker používá novou cache `diving-logbook-v1.4.2` a aktivuje se ihned,
 - opraveno zobrazování čísla verze v aplikaci.
 
 ## Nasazení na GitHub Pages
@@ -45,4 +45,4 @@ Data jsou v `localStorage` konkrétního prohlížeče a zařízení. Pro úplno
 
 ## Verze
 
-**1.4.1, 11. listopadu 2026**
+**1.4.2, 11. listopadu 2026**

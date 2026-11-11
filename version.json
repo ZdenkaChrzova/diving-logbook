@@ -1,20 +1,20 @@
 {
-  "version": "1.4.1",
+  "version": "1.4.2",
   "date": "2026-11-11",
-  "title": "Oprava aktualizace a CSV tlačítek",
+  "title": "Spolehlivé zobrazení CSV tlačítek",
   "changes": [
-    "Opraveno načítání tlačítek pro CSV import a export.",
-    "Skripty CSV se načítají přímo z index.html ve správném pořadí.",
-    "Service Worker verze 1.4.1 se aktivuje ihned a odstraní starou cache 1.4.0."
+    "Tlačítka Exportovat CSV a Importovat CSV jsou nyní přímo v index.html a zobrazí se bez dynamického vytváření.",
+    "CSV skript se stará pouze o obsluhu tlačítek a obsahuje fallback pro starší HTML.",
+    "Aktualizována PWA cache na verzi 1.4.2."
   ],
   "history": [
     {
-      "version": "1.4.1",
+      "version": "1.4.2",
       "date": "2026-11-11",
       "changes": [
-        "Opraveno načítání tlačítek pro CSV import a export.",
-        "Skripty CSV se načítají přímo z index.html ve správném pořadí.",
-        "Service Worker verze 1.4.1 se aktivuje ihned a odstraní starou cache 1.4.0."
+        "Tlačítka Exportovat CSV a Importovat CSV jsou nyní přímo v index.html a zobrazí se bez dynamického vytváření.",
+        "CSV skript se stará pouze o obsluhu tlačítek a obsahuje fallback pro starší HTML.",
+        "Aktualizována PWA cache na verzi 1.4.2."
       ]
     },
     {

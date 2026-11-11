@@ -479,47 +479,55 @@
   }
 
   function createCsvControls() {
-    const settingsView = document.getElementById("settingsView");
     const exportJson = document.getElementById("exportData");
-    if (!settingsView || !exportJson || document.getElementById("exportCsv")) return;
+    if (!exportJson) return;
 
-    const exportButton = document.createElement("button");
-    exportButton.id = "exportCsv";
-    exportButton.type = "button";
-    exportButton.className = "secondary wide";
-    exportButton.textContent = "Exportovat CSV";
-    exportButton.addEventListener("click", downloadCsv);
+    let exportButton = document.getElementById("exportCsv");
+    let input = document.getElementById("importCsv");
 
-    const importLabel = document.createElement("label");
-    importLabel.className = "upload";
-    importLabel.append("Importovat CSV");
-    const input = document.createElement("input");
-    input.id = "importCsv";
-    input.type = "file";
-    input.accept = ".csv,text/csv,text/tab-separated-values,.tsv";
-    input.addEventListener("change", async event => {
-      const file = event.target.files?.[0];
-      if (!file) return;
+    // Fallback for an older index.html: create the controls if they are absent.
+    if (!exportButton || !input) {
+      exportButton = document.createElement("button");
+      exportButton.id = "exportCsv";
+      exportButton.type = "button";
+      exportButton.className = "secondary wide";
+      exportButton.textContent = "Exportovat CSV";
 
-      try {
-        await importCsv(file);
-      } catch (error) {
-        alert(error?.message || "Import CSV se nezdařil.");
-      } finally {
-        event.target.value = "";
-      }
-    });
+      const importLabel = document.createElement("label");
+      importLabel.className = "upload";
+      importLabel.append("Importovat CSV");
+      input = document.createElement("input");
+      input.id = "importCsv";
+      input.type = "file";
+      input.accept = ".csv,text/csv,text/tab-separated-values,.tsv";
+      importLabel.appendChild(input);
 
-    importLabel.appendChild(input);
+      const help = document.createElement("p");
+      help.className = "hint";
+      help.textContent = "CSV obsahuje údaje o ponorech pro Excel a další tabulkové aplikace.";
+      exportJson.insertAdjacentElement("afterend", exportButton);
+      exportButton.insertAdjacentElement("afterend", importLabel);
+      importLabel.insertAdjacentElement("afterend", help);
+    }
 
-    const help = document.createElement("p");
-    help.className = "hint";
-    help.textContent = "CSV obsahuje číslo, datum, lokalitu, hloubku, délku, podmínky, teploty, viditelnost a dekompresní ponor.";
-    importLabel.insertAdjacentElement("afterend", help);
-
-    exportJson.insertAdjacentElement("afterend", exportButton);
-    exportButton.insertAdjacentElement("afterend", importLabel);
-    importLabel.insertAdjacentElement("afterend", help);
+    if (exportButton.dataset.csvBound !== "1") {
+      exportButton.addEventListener("click", downloadCsv);
+      exportButton.dataset.csvBound = "1";
+    }
+    if (input.dataset.csvBound !== "1") {
+      input.addEventListener("change", async event => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        try {
+          await importCsv(file);
+        } catch (error) {
+          alert(error?.message || "Import CSV se nezdařil.");
+        } finally {
+          event.target.value = "";
+        }
+      });
+      input.dataset.csvBound = "1";
+    }
   }
 
   if (document.readyState === "loading") {
