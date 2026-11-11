@@ -1,13 +1,22 @@
 {
-  "version": "1.4.2",
+  "version": "1.4.3",
   "date": "2026-11-11",
-  "title": "Spolehlivé zobrazení CSV tlačítek",
+  "title": "Oprava zobrazení Co je nového",
   "changes": [
-    "Tlačítka Exportovat CSV a Importovat CSV jsou nyní přímo v index.html a zobrazí se bez dynamického vytváření.",
-    "CSV skript se stará pouze o obsluhu tlačítek a obsahuje fallback pro starší HTML.",
-    "Aktualizována PWA cache na verzi 1.4.2."
+    "Po aktualizaci se na úvodní obrazovce automaticky zobrazí přehled Co je nového.",
+    "Nová verze se již neoznačí jako přečtená před načtením aktualizované aplikace.",
+    "Přehled se označí jako přečtený až po stisknutí tlačítka Rozumím."
   ],
   "history": [
+    {
+      "version": "1.4.3",
+      "date": "2026-11-11",
+      "changes": [
+        "Po aktualizaci se na úvodní obrazovce automaticky zobrazí přehled Co je nového.",
+        "Nová verze se již neoznačí jako přečtená před načtením aktualizované aplikace.",
+        "Přehled se označí jako přečtený až po stisknutí tlačítka Rozumím."
+      ]
+    },
     {
       "version": "1.4.2",
       "date": "2026-11-11",
