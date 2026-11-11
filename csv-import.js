@@ -481,18 +481,14 @@
   function createCsvControls() {
     const exportJson = document.getElementById("exportData");
     if (!exportJson) return;
-
     let exportButton = document.getElementById("exportCsv");
     let input = document.getElementById("importCsv");
-
-    // Fallback for an older index.html: create the controls if they are absent.
     if (!exportButton || !input) {
       exportButton = document.createElement("button");
       exportButton.id = "exportCsv";
       exportButton.type = "button";
       exportButton.className = "secondary wide";
       exportButton.textContent = "Exportovat CSV";
-
       const importLabel = document.createElement("label");
       importLabel.className = "upload";
       importLabel.append("Importovat CSV");
@@ -501,7 +497,6 @@
       input.type = "file";
       input.accept = ".csv,text/csv,text/tab-separated-values,.tsv";
       importLabel.appendChild(input);
-
       const help = document.createElement("p");
       help.className = "hint";
       help.textContent = "CSV obsahuje údaje o ponorech pro Excel a další tabulkové aplikace.";
@@ -509,7 +504,6 @@
       exportButton.insertAdjacentElement("afterend", importLabel);
       importLabel.insertAdjacentElement("afterend", help);
     }
-
     if (exportButton.dataset.csvBound !== "1") {
       exportButton.addEventListener("click", downloadCsv);
       exportButton.dataset.csvBound = "1";
@@ -518,13 +512,9 @@
       input.addEventListener("change", async event => {
         const file = event.target.files?.[0];
         if (!file) return;
-        try {
-          await importCsv(file);
-        } catch (error) {
-          alert(error?.message || "Import CSV se nezdařil.");
-        } finally {
-          event.target.value = "";
-        }
+        try { await importCsv(file); }
+        catch (error) { alert(error?.message || "Import CSV se nezdařil."); }
+        finally { event.target.value = ""; }
       });
       input.dataset.csvBound = "1";
     }
