@@ -1,17 +1,17 @@
-const CACHE = "diving-logbook-v1.4.0";
+const CACHE = "diving-logbook-v1.4.1";
 const SHELL = [
   "./index.html",
-  "./styles.css?v=1.4.0",
-  "./app.js?v=1.4.0",
-  "./csv-import.js?v=1.4.0",
-  "./settings-data-layout.js?v=1.4.0",
+  "./styles.css?v=1.4.1",
+  "./app.js?v=1.4.1",
+  "./csv-import.js?v=1.4.1",
+  "./settings-data-layout.js?v=1.4.1",
   "./manifest.webmanifest",
   "./version.json"
 ];
 
 const ADDONS = [
-  '<script src="./csv-import.js?v=1.4.0"></script>',
-  '<script src="./settings-data-layout.js?v=1.4.0"></script>'
+  '<script src="./csv-import.js?v=1.4.1"></script>',
+  '<script src="./settings-data-layout.js?v=1.4.1"></script>'
 ];
 
 function withAddons(response) {
@@ -43,7 +43,7 @@ function withAddons(response) {
 }
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)));
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("message", event => {

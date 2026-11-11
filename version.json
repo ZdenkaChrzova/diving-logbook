@@ -1,14 +1,22 @@
 {
-  "version": "1.4.0",
+  "version": "1.4.1",
   "date": "2026-11-11",
-  "title": "CSV import a export ponorů",
+  "title": "Oprava aktualizace a CSV tlačítek",
   "changes": [
-    "Přidán CSV export ponorů pro tabulky a Excel.",
-    "Přidán CSV import s kontrolou povinných údajů, chyb a duplicit.",
-    "Import přidává nové ponory a zachovává stávající data.",
-    "Původní obrazovky, JSON zálohy i úložiště aplikace z verze 1.3.2 zůstávají zachovány."
+    "Opraveno načítání tlačítek pro CSV import a export.",
+    "Skripty CSV se načítají přímo z index.html ve správném pořadí.",
+    "Service Worker verze 1.4.1 se aktivuje ihned a odstraní starou cache 1.4.0."
   ],
   "history": [
+    {
+      "version": "1.4.1",
+      "date": "2026-11-11",
+      "changes": [
+        "Opraveno načítání tlačítek pro CSV import a export.",
+        "Skripty CSV se načítají přímo z index.html ve správném pořadí.",
+        "Service Worker verze 1.4.1 se aktivuje ihned a odstraní starou cache 1.4.0."
+      ]
+    },
     {
       "version": "1.4.0",
       "date": "2026-11-11",
