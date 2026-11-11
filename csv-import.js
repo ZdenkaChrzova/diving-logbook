@@ -5,7 +5,7 @@
     "Číslo ponoru",
     "Datum",
     "Lokalita",
-    "Max. hloubka (m)",
+    "Max hloubka (m)",
     "Délka (min)",
     "Počasí",
     "Vodní plocha",
@@ -13,7 +13,7 @@
     "Vstup",
     "Proud",
     "Teplota vody (°C)",
-    "Max. teplota vody (°C)",
+    "Max teplota vody (°C)",
     "Teplota vzduchu (°C)",
     "Viditelnost (m)",
     "Dekompresní ponor"
