@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.5.0">
+  <link rel="stylesheet" href="styles.css?v=1.5.1">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -74,7 +74,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.5.0</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.5.1</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -246,7 +246,7 @@
         <form id="insuranceForm" class="card form-section hidden"><h3 id="insuranceFormTitle">Nové pojištění</h3><input id="insuranceId" type="hidden"><div class="form-grid"><label>Pojišťovna *<input id="insuranceProvider" required placeholder="např. DAN Europe"></label><label>Produkt<input id="insuranceProduct" placeholder="např. Sport Silver"></label><label>Číslo pojistky<input id="insurancePolicyNumber"></label><label>Platnost od<input id="insuranceValidFrom" type="date"></label><label>Platnost do<input id="insuranceValidUntil" type="date"></label><label>Územní platnost<input id="insuranceTerritory" placeholder="např. Celý svět"></label><label>Asistenční telefon<input id="insurancePhone" type="tel"></label><label>Asistenční e-mail<input id="insuranceEmail" type="email"></label></div><label>Poznámka<textarea id="insuranceNotes" rows="2"></textarea></label><div class="license-images"><label class="upload">Přední strana<input id="insuranceFront" type="file" accept="image/*"></label><label class="upload">Zadní strana<input id="insuranceBack" type="file" accept="image/*"></label></div><div id="insuranceImagePreview" class="license-preview"></div><div class="button-row"><button id="cancelInsurance" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit pojištění</button></div></form>
       </div>
     </section>
-    <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
+    <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><div id="sitesDbStats" class="mini-stats"></div><div class="merge-toolbar"><button id="startSiteMerge" class="secondary wide" type="button">Sloučit lokality</button><div id="siteMergeActions" class="merge-actions hidden"><span id="siteMergeCount">Vybráno: 0</span><button id="cancelSiteMerge" class="secondary" type="button">Zrušit</button><button id="continueSiteMerge" class="primary" type="button" disabled>Pokračovat</button></div></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
     <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
     <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
     <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
@@ -263,7 +263,7 @@
         <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
         <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
-        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.5.0</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.5.1</small></span><b>›</b></button>
       </div>
       <div class="card form-section"><h3>Číslování ponorů</h3>
         <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
@@ -285,7 +285,7 @@
         </div>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.5.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
+      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.5.1</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>
   </main>
 
@@ -302,10 +302,12 @@
       </div>
     </div>
   </div>
+
+  <div id="siteMergeModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="siteMergeTitle"><div class="modal-card"><h2 id="siteMergeTitle">Sloučit lokality</h2><p>Vyber hlavní lokalitu, která zůstane zachována. Ponory z ostatních vybraných lokalit se na ni přepojí.</p><div id="siteMergeSummary" class="merge-summary"></div><label>Hlavní lokalita<select id="siteMergeTarget"></select></label><div class="button-row"><button id="closeSiteMerge" class="secondary" type="button">Zpět</button><button id="confirmSiteMerge" class="danger" type="button">Sloučit lokality</button></div></div></div>
   <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Přejít nahoru">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.5.0"></script>
-  <script src="csv-import.js?v=1.5.0"></script>
-  <script src="settings-data-layout.js?v=1.5.0"></script>
+  <script src="app.js?v=1.5.1"></script>
+  <script src="csv-import.js?v=1.5.1"></script>
+  <script src="settings-data-layout.js?v=1.5.1"></script>
 </body>
 </html>

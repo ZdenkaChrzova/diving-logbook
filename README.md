@@ -1,14 +1,13 @@
-# Diving LogBook 1.5.0
+# Diving LogBook 1.5.1
 
-## Novinky
+## Sloučení duplicitních lokalit
 
-- V kartě ponoru lze vyhledat a vybrat existující lokalitu z číselníku.
-- Výběrem se ponor přepojí na existující Site ID bez založení duplicity.
-- Původní importovaný název z CSV zůstává u ponoru pro kontrolu.
-- Neznámá lokalita z CSV se už automaticky nezaloží. Ponor je uložen bez Site ID a lze ho následně přiřadit.
+1. Otevři **Nastavení → Databáze lokalit**.
+2. Stiskni **Sloučit lokality**.
+3. Označ alespoň dvě položky a zvol **Pokračovat**.
+4. Vyber hlavní lokalitu, která zůstane zachována.
+5. Zkontroluj počet dotčených ponorů a potvrď sloučení.
 
-## Doporučený postup
+Ponory z ostatních vybraných lokalit se přepojí na hlavní Site ID. Duplicitní záznamy lokalit se odstraní. Před slučováním doporučujeme vytvořit JSON zálohu.
 
-Otevři importovaný ponor, zvol **Upravit**, v části **Lokalita** začni psát název, vyber existující lokalitu a ponor ulož.
-
-**Verze 1.5.0, 11. listopadu 2026**
+**Verze 1.5.1, 11. listopadu 2026**
