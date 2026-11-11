@@ -1,10 +1,12 @@
-# Diving LogBook 1.5.5
+# Diving LogBook 1.6.0
 
-## Opravy CSV importu
+## Seskupení ponorů podle roku
 
-- český sloupec **Čas** se správně importuje jako čas začátku ponoru,
-- podporován je formát `H:MM` i `HH:MM`, například `9:42` a `14:41`,
-- při importu se do ponorů uloží aktuálně zvolený profil výstroje,
-- při editaci staršího importovaného ponoru se prázdné hodnoty výstroje doplní ze zvoleného profilu.
+- ponory na úvodní obrazovce jsou rozdělené do rozbalovacích skupin podle roku,
+- nejnovější rok je při prvním otevření rozbalený,
+- u každého roku je počet ponorů, celkový čas a maximální hloubka,
+- lze mít otevřeno více roků současně,
+- stav otevřených roků se ukládá v prohlížeči,
+- při vyhledávání se skupiny s výsledky automaticky otevřou.
 
-**Verze 1.5.5, 11. listopadu 2026**
+**Verze 1.6.0, 11. listopadu 2026**

@@ -1,13 +1,26 @@
 {
-  "version": "1.5.5",
+  "version": "1.6.0",
   "date": "2026-11-11",
-  "title": "Oprava času a profilu výstroje při CSV importu",
+  "title": "Seskupení ponorů podle roku",
   "changes": [
-    "CSV import nyní správně rozpozná český sloupec Čas a uloží hodnoty jako čas začátku ponoru.",
-    "Při CSV importu se do každého nového ponoru uloží aktuálně zvolený profil výstroje.",
-    "Při editaci dříve importovaného ponoru se prázdné položky výstroje doplní ze zvoleného profilu."
+    "Ponory na úvodní obrazovce jsou seskupené podle roku.",
+    "Nejnovější rok se při prvním otevření automaticky rozbalí, starší roky zůstávají sbalené.",
+    "U každého roku se zobrazuje počet ponorů, celkový čas pod vodou a maximální hloubka.",
+    "Rozbalené roky se pamatují i po návratu z detailu ponoru.",
+    "Při vyhledávání se roky s nalezenými výsledky automaticky rozbalí."
   ],
   "history": [
+    {
+      "version": "1.6.0",
+      "date": "2026-11-11",
+      "changes": [
+        "Ponory na úvodní obrazovce jsou seskupené podle roku.",
+        "Nejnovější rok se při prvním otevření automaticky rozbalí, starší roky zůstávají sbalené.",
+        "U každého roku se zobrazuje počet ponorů, celkový čas pod vodou a maximální hloubka.",
+        "Rozbalené roky se pamatují i po návratu z detailu ponoru.",
+        "Při vyhledávání se roky s nalezenými výsledky automaticky rozbalí."
+      ]
+    },
     {
       "version": "1.5.5",
       "date": "2026-11-11",
