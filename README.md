@@ -1,10 +1,9 @@
-# Diving LogBook 1.5.3
+# Diving LogBook 1.5.4
 
 ## Oprava slučování lokalit
 
-- po označení dvou lokalit se aktivuje **Pokračovat**,
-- kliknutí na celý řádek lokality přepne výběr,
-- vybrané řádky jsou zvýrazněné,
-- počítadlo **Vybráno** se aktualizuje okamžitě.
+Výběr se nyní počítá přímo ze skutečně zaškrtnutých políček. Po označení druhé lokality se z tlačítka **Pokračovat** fyzicky odstraní stav `disabled`.
 
-**Verze 1.5.3, 11. listopadu 2026**
+- Dialog pro výběr hlavní lokality je vycentrovaný a nevejde-li se, lze jej posouvat.
+
+**Verze 1.5.4, 11. listopadu 2026**

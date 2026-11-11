@@ -1,13 +1,24 @@
 {
-  "version": "1.5.3",
+  "version": "1.5.4",
   "date": "2026-11-11",
-  "title": "Oprava výběru lokalit pro sloučení",
+  "title": "Spolehlivá aktivace tlačítka Pokračovat",
   "changes": [
-    "Opraveno zapínání tlačítka Pokračovat po označení dvou lokalit.",
-    "Kliknutí na celý řádek lokality nyní spolehlivě přepíná zaškrtávací políčko.",
-    "Vybrané lokality jsou vizuálně zvýrazněné a počítadlo výběru se okamžitě aktualizuje."
+    "Výběr lokalit pro sloučení je nově řízen přímo podle skutečně zaškrtnutých políček.",
+    "Po druhém zaškrtnutí se atribut disabled z tlačítka Pokračovat fyzicky odstraní.",
+    "Řádek lokality už nepoužívá vnořené přepínání, které mohlo výběr okamžitě vrátit zpět.",
+    "Dialog pro výběr hlavní lokality je vycentrovaný v obrazovce a na menších displejích zůstává celý dostupný posouváním."
   ],
   "history": [
+    {
+      "version": "1.5.4",
+      "date": "2026-11-11",
+      "changes": [
+        "Výběr lokalit pro sloučení je nově řízen přímo podle skutečně zaškrtnutých políček.",
+        "Po druhém zaškrtnutí se atribut disabled z tlačítka Pokračovat fyzicky odstraní.",
+        "Řádek lokality už nepoužívá vnořené přepínání, které mohlo výběr okamžitě vrátit zpět.",
+        "Dialog pro výběr hlavní lokality je vycentrovaný v obrazovce a na menších displejích zůstává celý dostupný posouváním."
+      ]
+    },
     {
       "version": "1.5.3",
       "date": "2026-11-11",
