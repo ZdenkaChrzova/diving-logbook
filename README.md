@@ -1,17 +1,14 @@
-# Diving LogBook 1.4.4
+# Diving LogBook 1.4.5
 
-Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI. Data zůstávají v prohlížeči uživatele.
+Mobilní PWA aplikace pro evidenci ponorů a import dat z QR kódů SSI.
 
-## Novinky ve verzi 1.4.4
+## Novinky ve verzi 1.4.5
 
-- Do nabídky **Vodní plocha** byly přidány položky **Cenote** a **Jeskyně**.
-- Text **Importovat JSON** a **Importovat CSV** má stejnou velikost jako text exportních tlačítek.
-- Zachováno automatické zobrazení přehledu **Co je nového** po aktualizaci.
-
-## Data
-
-Pro úplnou zálohu používej **Nastavení → Exportovat JSON**. CSV je určeno pro tabulkový přenos údajů o ponorech.
+- CSV export obsahuje nový sloupec **Čas**.
+- CSV import načítá sloupec **Čas** jako čas začátku ponoru.
+- Podporovaný formát času je `HH:MM`, například `11:16`.
+- Zachovány položky Vodní plocha **Cenote** a **Jeskyně** i sjednocené písmo importních a exportních tlačítek.
 
 ## Verze
 
-**1.4.4, 11. listopadu 2026**
+**1.4.5, 11. listopadu 2026**

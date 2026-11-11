@@ -1,18 +1,20 @@
 {
-  "version": "1.4.4",
+  "version": "1.4.5",
   "date": "2026-11-11",
-  "title": "Nové typy vodní plochy a sjednocení tlačítek",
+  "title": "Čas v CSV importu a exportu",
   "changes": [
-    "Do nabídky Vodní plocha byly přidány položky Cenote a Jeskyně.",
-    "Text tlačítek Importovat JSON a Importovat CSV má stejnou velikost jako text exportních tlačítek."
+    "Do CSV exportu byl přidán sloupec Čas.",
+    "CSV import načte hodnotu Čas do času začátku ponoru.",
+    "Import času přijímá formát HH:MM, například 11:16."
   ],
   "history": [
     {
-      "version": "1.4.4",
+      "version": "1.4.5",
       "date": "2026-11-11",
       "changes": [
-        "Do nabídky Vodní plocha byly přidány položky Cenote a Jeskyně.",
-        "Text tlačítek Importovat JSON a Importovat CSV má stejnou velikost jako text exportních tlačítek."
+        "Do CSV exportu byl přidán sloupec Čas.",
+        "CSV import načte hodnotu Čas do času začátku ponoru.",
+        "Import času přijímá formát HH:MM, například 11:16."
       ]
     },
     {

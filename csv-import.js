@@ -4,6 +4,7 @@
   const HEADERS = [
     "Číslo ponoru",
     "Datum",
+    "Čas",
     "Lokalita",
     "Max hloubka (m)",
     "Délka (min)",
@@ -189,6 +190,7 @@
       rows.push([
         dive.diveNumber ?? "",
         dive.date ?? "",
+        dive.startTime ?? "",
         locationName(dive),
         decimal(dive.maxDepthM),
         dive.durationMinutes ?? "",
@@ -484,36 +486,21 @@
     let exportButton = document.getElementById("exportCsv");
     let input = document.getElementById("importCsv");
     if (!exportButton || !input) {
-      exportButton = document.createElement("button");
-      exportButton.id = "exportCsv";
-      exportButton.type = "button";
-      exportButton.className = "secondary wide";
-      exportButton.textContent = "Exportovat CSV";
-      const importLabel = document.createElement("label");
-      importLabel.className = "upload";
-      importLabel.append("Importovat CSV");
-      input = document.createElement("input");
-      input.id = "importCsv";
-      input.type = "file";
-      input.accept = ".csv,text/csv,text/tab-separated-values,.tsv";
-      importLabel.appendChild(input);
-      const help = document.createElement("p");
-      help.className = "hint";
+      exportButton = document.createElement("button"); exportButton.id = "exportCsv"; exportButton.type = "button";
+      exportButton.className = "secondary wide"; exportButton.textContent = "Exportovat CSV";
+      const importLabel = document.createElement("label"); importLabel.className = "upload"; importLabel.append("Importovat CSV");
+      input = document.createElement("input"); input.id = "importCsv"; input.type = "file";
+      input.accept = ".csv,text/csv,text/tab-separated-values,.tsv"; importLabel.appendChild(input);
+      const help = document.createElement("p"); help.className = "hint";
       help.textContent = "CSV obsahuje údaje o ponorech pro Excel a další tabulkové aplikace.";
-      exportJson.insertAdjacentElement("afterend", exportButton);
-      exportButton.insertAdjacentElement("afterend", importLabel);
+      exportJson.insertAdjacentElement("afterend", exportButton); exportButton.insertAdjacentElement("afterend", importLabel);
       importLabel.insertAdjacentElement("afterend", help);
     }
-    if (exportButton.dataset.csvBound !== "1") {
-      exportButton.addEventListener("click", downloadCsv);
-      exportButton.dataset.csvBound = "1";
-    }
+    if (exportButton.dataset.csvBound !== "1") { exportButton.addEventListener("click", downloadCsv); exportButton.dataset.csvBound = "1"; }
     if (input.dataset.csvBound !== "1") {
       input.addEventListener("change", async event => {
-        const file = event.target.files?.[0];
-        if (!file) return;
-        try { await importCsv(file); }
-        catch (error) { alert(error?.message || "Import CSV se nezdařil."); }
+        const file = event.target.files?.[0]; if (!file) return;
+        try { await importCsv(file); } catch (error) { alert(error?.message || "Import CSV se nezdařil."); }
         finally { event.target.value = ""; }
       });
       input.dataset.csvBound = "1";
