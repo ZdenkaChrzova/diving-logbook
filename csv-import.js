@@ -8,7 +8,7 @@
     "Číslo ponoru",
     "Datum",
     "Lokalita",
-    "Max. hloubka (m)",
+    "Max hloubka (m)",
     "Délka (min)",
     "Teplota vzduchu (°C)",
     "Teplota vody (°C)",
