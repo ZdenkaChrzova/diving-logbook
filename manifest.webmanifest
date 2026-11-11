@@ -2,13 +2,10 @@
   "name": "Diving LogBook",
   "short_name": "DiveLog",
   "description": "Osobní potápěčský deník s importem SSI QR",
-
   "start_url": "./",
   "display": "standalone",
-
   "background_color": "#042C24",
   "theme_color": "#042C24",
-
   "icons": [
     {
       "src": "favicon-192.png",
