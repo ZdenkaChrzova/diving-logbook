@@ -1,14 +1,22 @@
 {
-  "version": "1.5.1",
+  "version": "1.5.2",
   "date": "2026-11-11",
-  "title": "Sloučení duplicitních lokalit",
+  "title": "Oprava sloučení a seznamu lokalit",
   "changes": [
-    "V databázi lokalit lze označit dvě nebo více duplicitních lokalit.",
-    "Před sloučením se vybírá hlavní lokalita a zobrazuje počet dotčených ponorů.",
-    "Ponory se přepojí na hlavní Site ID a ostatní vybrané lokality se odstraní.",
-    "Sloučení vyžaduje závěrečné potvrzení s upozorněním na JSON zálohu."
+    "Opraveno tlačítko Sloučit lokality, které nereagovalo kvůli chybějící inicializaci stavu.",
+    "Obnovené zobrazení seznamu lokalit pod ovládacími prvky.",
+    "Tlačítko Sloučit lokality je nyní vizuálně aktivní a po stisknutí zobrazí zaškrtávací políčka."
   ],
   "history": [
+    {
+      "version": "1.5.2",
+      "date": "2026-11-11",
+      "changes": [
+        "Opraveno tlačítko Sloučit lokality, které nereagovalo kvůli chybějící inicializaci stavu.",
+        "Obnovené zobrazení seznamu lokalit pod ovládacími prvky.",
+        "Tlačítko Sloučit lokality je nyní vizuálně aktivní a po stisknutí zobrazí zaškrtávací políčka."
+      ]
+    },
     {
       "version": "1.5.1",
       "date": "2026-11-11",

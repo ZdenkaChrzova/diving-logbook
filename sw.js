@@ -1,17 +1,17 @@
-const CACHE = "diving-logbook-v1.5.1";
+const CACHE = "diving-logbook-v1.5.2";
 const SHELL = [
   "./index.html",
-  "./styles.css?v=1.5.1",
-  "./app.js?v=1.5.1",
-  "./csv-import.js?v=1.5.1",
-  "./settings-data-layout.js?v=1.5.1",
+  "./styles.css?v=1.5.2",
+  "./app.js?v=1.5.2",
+  "./csv-import.js?v=1.5.2",
+  "./settings-data-layout.js?v=1.5.2",
   "./manifest.webmanifest",
   "./version.json"
 ];
 
 const ADDONS = [
-  '<script src="./csv-import.js?v=1.5.1"></script>',
-  '<script src="./settings-data-layout.js?v=1.5.1"></script>'
+  '<script src="./csv-import.js?v=1.5.2"></script>',
+  '<script src="./settings-data-layout.js?v=1.5.2"></script>'
 ];
 
 function withAddons(response) {

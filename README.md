@@ -1,13 +1,12 @@
-# Diving LogBook 1.5.1
+# Diving LogBook 1.5.2
 
-## Sloučení duplicitních lokalit
+## Oprava
 
-1. Otevři **Nastavení → Databáze lokalit**.
-2. Stiskni **Sloučit lokality**.
-3. Označ alespoň dvě položky a zvol **Pokračovat**.
-4. Vyber hlavní lokalitu, která zůstane zachována.
-5. Zkontroluj počet dotčených ponorů a potvrď sloučení.
+- seznam lokalit se znovu zobrazuje,
+- tlačítko **Sloučit lokality** je aktivní,
+- po stisknutí se u lokalit zobrazí zaškrtávací políčka,
+- po označení alespoň dvou lokalit se aktivuje tlačítko **Pokračovat**.
 
-Ponory z ostatních vybraných lokalit se přepojí na hlavní Site ID. Duplicitní záznamy lokalit se odstraní. Před slučováním doporučujeme vytvořit JSON zálohu.
+Před sloučením doporučujeme vytvořit JSON zálohu.
 
-**Verze 1.5.1, 11. listopadu 2026**
+**Verze 1.5.2, 11. listopadu 2026**
