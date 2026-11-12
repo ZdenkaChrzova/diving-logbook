@@ -1,13 +1,26 @@
 {
-  "version": "1.7.4",
+  "version": "1.8.0",
   "date": "2026-11-12",
-  "title": "Oprava polí data v Servisu",
+  "title": "Uživatelská správa číselníků",
   "changes": [
-    "Opraveno zobrazení polí Datum poslední revize a Další revize v mobilní verzi.",
-    "Oba rámečky respektují šířku obrazovky a nepřesahují kartu Servis.",
-    "Hodnota data je v obou polích zarovnaná vlevo."
+    "Přidána Správa číselníků v Nastavení.",
+    "Uživatel může spravovat typy servisovaného vybavení, stavy vybavení, typy obleků, materiály lahví, plyny a výsledky revize.",
+    "Položky lze přidávat, přejmenovat, řadit, skrýt a znovu aktivovat.",
+    "Používané položky nelze odstranit; vlastní nepoužívané položky lze bezpečně smazat.",
+    "Stávající hodnoty byly převedeny na systémové položky se stabilním ID a číselníky jsou součástí JSON zálohy."
   ],
   "history": [
+    {
+      "version": "1.8.0",
+      "date": "2026-11-12",
+      "changes": [
+        "Přidána Správa číselníků v Nastavení.",
+        "Uživatel může spravovat typy servisovaného vybavení, stavy vybavení, typy obleků, materiály lahví, plyny a výsledky revize.",
+        "Položky lze přidávat, přejmenovat, řadit, skrýt a znovu aktivovat.",
+        "Používané položky nelze odstranit; vlastní nepoužívané položky lze bezpečně smazat.",
+        "Stávající hodnoty byly převedeny na systémové položky se stabilním ID a číselníky jsou součástí JSON zálohy."
+      ]
+    },
     {
       "version": "1.7.4",
       "date": "2026-11-12",

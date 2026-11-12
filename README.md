@@ -1,7 +1,9 @@
-# Diving LogBook 1.7.4
+# Diving LogBook 1.8.0
 
-## Oprava zobrazení dat v Servisu
+## Správa číselníků
 
-Pole **Datum poslední revize** a **Další revize** se na mobilu vejdou do šířky karty a hodnota je zarovnaná vlevo.
+V **Nastavení → Správa číselníků** lze spravovat typ servisovaného vybavení, stav vybavení, typ obleku, materiál lahve, druh plynu a výsledek revize.
 
-**Verze 1.7.4, 12. listopadu 2026**
+Položky lze přidat, přejmenovat, přesunout, skrýt a znovu aktivovat. Systémové a používané položky jsou chráněné před odstraněním. Vlastní nepoužívanou položku lze smazat. Číselníky jsou součástí JSON zálohy.
+
+**Verze 1.8.0, 12. listopadu 2026**
