@@ -1,9 +1,7 @@
-# Diving LogBook 1.7.3
+# Diving LogBook 1.7.4
 
-## Upozornění a termíny
+## Oprava zobrazení dat v Servisu
 
-Na úvodní obrazovce je pod statistikami nová karta s revizemi vybavení a expiracemi pojištění do 90 dnů. Základní zobrazení obsahuje tři nejurgentnější položky. Tlačítko **Zobrazit vše** rozbalí všechny termíny. Kliknutí otevře přímo příslušný servisní nebo pojistný záznam.
+Pole **Datum poslední revize** a **Další revize** se na mobilu vejdou do šířky karty a hodnota je zarovnaná vlevo.
 
-Pokud nejsou žádné blížící se ani prošlé termíny, karta zobrazí stav **Termíny jsou v pořádku**.
-
-**Verze 1.7.3, 12. listopadu 2026**
+**Verze 1.7.4, 12. listopadu 2026**
