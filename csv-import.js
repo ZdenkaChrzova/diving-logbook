@@ -405,15 +405,6 @@
             airTempC,
             visibilityM
           },
-          equipment: {
-            weightKg: null,
-            suit: "",
-            tankVolumeL: null,
-            tankMaterial: "",
-            gas: "",
-            startPressureBar: null,
-            endPressureBar: null
-          },
           safety: {
             decompressionDive
           },

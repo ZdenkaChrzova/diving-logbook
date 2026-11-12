@@ -1,7 +1,9 @@
-# Diving LogBook 1.7.2
+# Diving LogBook 1.7.3
 
-## Výběr lokality na mobilu
+## Upozornění a termíny
 
-Našeptávač lokalit je nahrazen vlastní čitelnou nabídkou, která se rozvine přímo pod vyhledávacím polem. Zobrazuje název, zemi, oblast a SSI ID. Nabídka se filtruje během psaní a podporuje dotyk i klávesnici.
+Na úvodní obrazovce je pod statistikami nová karta s revizemi vybavení a expiracemi pojištění do 90 dnů. Základní zobrazení obsahuje tři nejurgentnější položky. Tlačítko **Zobrazit vše** rozbalí všechny termíny. Kliknutí otevře přímo příslušný servisní nebo pojistný záznam.
 
-**Verze 1.7.2, 12. listopadu 2026**
+Pokud nejsou žádné blížící se ani prošlé termíny, karta zobrazí stav **Termíny jsou v pořádku**.
+
+**Verze 1.7.3, 12. listopadu 2026**

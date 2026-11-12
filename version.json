@@ -1,14 +1,26 @@
 {
-  "version": "1.7.2",
+  "version": "1.7.3",
   "date": "2026-11-12",
-  "title": "Čitelnější výběr lokality na mobilu",
+  "title": "Upozornění a termíny na úvodní obrazovce",
   "changes": [
-    "Nativní mobilní našeptávač lokalit byl nahrazen vlastní rozbalovací nabídkou pod vyhledávacím polem.",
-    "Nabídka má čitelné názvy, zemi, oblast a SSI ID a filtruje se při psaní.",
-    "Na mobilu zůstává nabídka přímo pod rámečkem a lze ji pohodlně posouvat a vybírat dotykem.",
-    "Na počítači zůstává podporováno ovládání klávesami se šipkami, Enter a Escape."
+    "Na úvodní obrazovku byla přidána karta Upozornění a termíny mezi statistiky a seznam ponorů.",
+    "Karta zobrazuje servisní revize a expirace pojištění do 90 dnů nebo po termínu.",
+    "V základním zobrazení jsou tři nejurgentnější položky; další lze rozbalit tlačítkem Zobrazit vše.",
+    "Kliknutí otevře přímo konkrétní servisní nebo pojistný záznam.",
+    "Pokud žádný termín není blízko, zobrazí se stav Termíny jsou v pořádku."
   ],
   "history": [
+    {
+      "version": "1.7.3",
+      "date": "2026-11-12",
+      "changes": [
+        "Na úvodní obrazovku byla přidána karta Upozornění a termíny mezi statistiky a seznam ponorů.",
+        "Karta zobrazuje servisní revize a expirace pojištění do 90 dnů nebo po termínu.",
+        "V základním zobrazení jsou tři nejurgentnější položky; další lze rozbalit tlačítkem Zobrazit vše.",
+        "Kliknutí otevře přímo konkrétní servisní nebo pojistný záznam.",
+        "Pokud žádný termín není blízko, zobrazí se stav Termíny jsou v pořádku."
+      ]
+    },
     {
       "version": "1.7.2",
       "date": "2026-11-12",
