@@ -1,13 +1,24 @@
 {
-  "version": "1.7.1",
+  "version": "1.7.2",
   "date": "2026-11-12",
-  "title": "Servis ve Správě profilu",
+  "title": "Čitelnější výběr lokality na mobilu",
   "changes": [
-    "Do části Správa profilu byla přidána položka Servis vybavení.",
-    "Položka otevře stejnou záložku Servis jako horní navigace.",
-    "Servis je nyní dostupný z horní záložky i z přehledu Správa profilu."
+    "Nativní mobilní našeptávač lokalit byl nahrazen vlastní rozbalovací nabídkou pod vyhledávacím polem.",
+    "Nabídka má čitelné názvy, zemi, oblast a SSI ID a filtruje se při psaní.",
+    "Na mobilu zůstává nabídka přímo pod rámečkem a lze ji pohodlně posouvat a vybírat dotykem.",
+    "Na počítači zůstává podporováno ovládání klávesami se šipkami, Enter a Escape."
   ],
   "history": [
+    {
+      "version": "1.7.2",
+      "date": "2026-11-12",
+      "changes": [
+        "Nativní mobilní našeptávač lokalit byl nahrazen vlastní rozbalovací nabídkou pod vyhledávacím polem.",
+        "Nabídka má čitelné názvy, zemi, oblast a SSI ID a filtruje se při psaní.",
+        "Na mobilu zůstává nabídka přímo pod rámečkem a lze ji pohodlně posouvat a vybírat dotykem.",
+        "Na počítači zůstává podporováno ovládání klávesami se šipkami, Enter a Escape."
+      ]
+    },
     {
       "version": "1.7.1",
       "date": "2026-11-12",

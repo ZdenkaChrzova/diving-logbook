@@ -1,7 +1,7 @@
-# Diving LogBook 1.7.1
+# Diving LogBook 1.7.2
 
-## Servis ve Správě profilu
+## Výběr lokality na mobilu
 
-Záložku **Servis** lze nově otevřít také přes položku **Servis vybavení** v části **Správa profilu**, vedle Potápěčských licencí a Pojištění.
+Našeptávač lokalit je nahrazen vlastní čitelnou nabídkou, která se rozvine přímo pod vyhledávacím polem. Zobrazuje název, zemi, oblast a SSI ID. Nabídka se filtruje během psaní a podporuje dotyk i klávesnici.
 
-**Verze 1.7.1, 12. listopadu 2026**
+**Verze 1.7.2, 12. listopadu 2026**
