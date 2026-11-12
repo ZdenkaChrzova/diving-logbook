@@ -1,46 +1,13 @@
 {
-  "version": "1.8.2",
+  "version": "1.7.4",
   "date": "2026-11-12",
-  "title": "Správa číselníků podmínek ponoru",
+  "title": "Oprava polí data v Servisu",
   "changes": [
-    "Správa číselníků nově obsahuje Počasí, Vodní plochu, Typ vody, Vstup a Proud.",
-    "Systémové hodnoty zachovávají původní číselná SSI ID, takže QR import zůstává kompatibilní.",
-    "Vlastní hodnoty dostávají interní záporné číselné ID a lze je používat při ručním zadání i CSV importu podle názvu.",
-    "Přejmenování nebo skrytí položky nemění hodnoty uložené ve starších ponorech.",
-    "U každé položky podmínek se zobrazuje SSI ID a počet ponorů, které hodnotu používají."
+    "Opraveno zobrazení polí Datum poslední revize a Další revize v mobilní verzi.",
+    "Oba rámečky respektují šířku obrazovky a nepřesahují kartu Servis.",
+    "Hodnota data je v obou polích zarovnaná vlevo."
   ],
   "history": [
-    {
-      "version": "1.8.2",
-      "date": "2026-11-12",
-      "changes": [
-        "Správa číselníků nově obsahuje Počasí, Vodní plochu, Typ vody, Vstup a Proud.",
-        "Systémové hodnoty zachovávají původní číselná SSI ID, takže QR import zůstává kompatibilní.",
-        "Vlastní hodnoty dostávají interní záporné číselné ID a lze je používat při ručním zadání i CSV importu podle názvu.",
-        "Přejmenování nebo skrytí položky nemění hodnoty uložené ve starších ponorech.",
-        "U každé položky podmínek se zobrazuje SSI ID a počet ponorů, které hodnotu používají."
-      ]
-    },
-    {
-      "version": "1.8.1",
-      "date": "2026-11-12",
-      "changes": [
-        "Po stisknutí Přidat nebo Upravit se editor položky číselníku otevře okamžitě v horní viditelné části obrazovky.",
-        "Editor se zobrazuje jako překryvné okno nezávislé na délce seznamu číselníku.",
-        "Při otevřeném editoru se podkladová stránka neposouvá."
-      ]
-    },
-    {
-      "version": "1.8.0",
-      "date": "2026-11-12",
-      "changes": [
-        "Přidána Správa číselníků v Nastavení.",
-        "Uživatel může spravovat typy servisovaného vybavení, stavy vybavení, typy obleků, materiály lahví, plyny a výsledky revize.",
-        "Položky lze přidávat, přejmenovat, řadit, skrýt a znovu aktivovat.",
-        "Používané položky nelze odstranit; vlastní nepoužívané položky lze bezpečně smazat.",
-        "Stávající hodnoty byly převedeny na systémové položky se stabilním ID a číselníky jsou součástí JSON zálohy."
-      ]
-    },
     {
       "version": "1.7.4",
       "date": "2026-11-12",
