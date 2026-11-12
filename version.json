@@ -1,15 +1,22 @@
 {
-  "version": "1.8.0",
+  "version": "1.8.1",
   "date": "2026-11-12",
-  "title": "Uživatelská správa číselníků",
+  "title": "Viditelnější editor číselníků",
   "changes": [
-    "Přidána Správa číselníků v Nastavení.",
-    "Uživatel může spravovat typy servisovaného vybavení, stavy vybavení, typy obleků, materiály lahví, plyny a výsledky revize.",
-    "Položky lze přidávat, přejmenovat, řadit, skrýt a znovu aktivovat.",
-    "Používané položky nelze odstranit; vlastní nepoužívané položky lze bezpečně smazat.",
-    "Stávající hodnoty byly převedeny na systémové položky se stabilním ID a číselníky jsou součástí JSON zálohy."
+    "Po stisknutí Přidat nebo Upravit se editor položky číselníku otevře okamžitě v horní viditelné části obrazovky.",
+    "Editor se zobrazuje jako překryvné okno nezávislé na délce seznamu číselníku.",
+    "Při otevřeném editoru se podkladová stránka neposouvá."
   ],
   "history": [
+    {
+      "version": "1.8.1",
+      "date": "2026-11-12",
+      "changes": [
+        "Po stisknutí Přidat nebo Upravit se editor položky číselníku otevře okamžitě v horní viditelné části obrazovky.",
+        "Editor se zobrazuje jako překryvné okno nezávislé na délce seznamu číselníku.",
+        "Při otevřeném editoru se podkladová stránka neposouvá."
+      ]
+    },
     {
       "version": "1.8.0",
       "date": "2026-11-12",

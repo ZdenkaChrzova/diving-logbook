@@ -1,9 +1,7 @@
-# Diving LogBook 1.8.0
+# Diving LogBook 1.8.1
 
-## Správa číselníků
+## Viditelnější editor číselníků
 
-V **Nastavení → Správa číselníků** lze spravovat typ servisovaného vybavení, stav vybavení, typ obleku, materiál lahve, druh plynu a výsledek revize.
+Po stisknutí **Přidat** nebo **Upravit** se zadávací okno zobrazí okamžitě v horní viditelné části obrazovky jako překryvný panel. Už není umístěné pod dlouhým seznamem položek.
 
-Položky lze přidat, přejmenovat, přesunout, skrýt a znovu aktivovat. Systémové a používané položky jsou chráněné před odstraněním. Vlastní nepoužívanou položku lze smazat. Číselníky jsou součástí JSON zálohy.
-
-**Verze 1.8.0, 12. listopadu 2026**
+**Verze 1.8.1, 12. listopadu 2026**
