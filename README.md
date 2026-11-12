@@ -1,7 +1,9 @@
-# Diving LogBook 1.8.1
+# Diving LogBook 1.8.2
 
-## Viditelnější editor číselníků
+## Číselníky podmínek ponoru
 
-Po stisknutí **Přidat** nebo **Upravit** se zadávací okno zobrazí okamžitě v horní viditelné části obrazovky jako překryvný panel. Už není umístěné pod dlouhým seznamem položek.
+Ve **Správě číselníků** lze nově upravovat také **Počasí, Vodní plochu, Typ vody, Vstup a Proud**. Systémové hodnoty zachovávají SSI ID kvůli QR importu. Vlastní hodnoty lze přidat, přejmenovat, řadit, skrýt a bezpečně odstranit, pokud je nepoužívá žádný ponor.
 
-**Verze 1.8.1, 12. listopadu 2026**
+Vlastní položky se zobrazují v ručním formuláři ponoru a CSV import je umí rozpoznat podle názvu.
+
+**Verze 1.8.2, 12. listopadu 2026**
