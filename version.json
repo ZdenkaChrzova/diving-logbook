@@ -1,13 +1,26 @@
 {
-  "version": "1.7.4",
+  "version": "1.8.4",
   "date": "2026-11-12",
-  "title": "Oprava polí data v Servisu",
+  "title": "Bezpečná správa číselníků bez změny dat",
   "changes": [
-    "Opraveno zobrazení polí Datum poslední revize a Další revize v mobilní verzi.",
-    "Oba rámečky respektují šířku obrazovky a nepřesahují kartu Servis.",
-    "Hodnota data je v obou polích zarovnaná vlevo."
+    "Správa číselníků je znovu postavená nad původními interními hodnotami verze 1.7.4.",
+    "Ponory, profily a výchozí výstroj se při migraci nepřepisují.",
+    "Každá hodnota nalezená v datech se automaticky doplní do číselníku, takže použité pole nezůstane prázdné.",
+    "Obnoveno přesné členění obleků a původní hodnoty plynů vzduch/nitrox a materiálů Ocel/Hliník.",
+    "Uživatel mění pouze zobrazovaný název, pořadí a viditelnost; interní hodnota zůstává stabilní."
   ],
   "history": [
+    {
+      "version": "1.8.4",
+      "date": "2026-11-12",
+      "changes": [
+        "Správa číselníků je znovu postavená nad původními interními hodnotami verze 1.7.4.",
+        "Ponory, profily a výchozí výstroj se při migraci nepřepisují.",
+        "Každá hodnota nalezená v datech se automaticky doplní do číselníku, takže použité pole nezůstane prázdné.",
+        "Obnoveno přesné členění obleků a původní hodnoty plynů vzduch/nitrox a materiálů Ocel/Hliník.",
+        "Uživatel mění pouze zobrazovaný název, pořadí a viditelnost; interní hodnota zůstává stabilní."
+      ]
+    },
     {
       "version": "1.7.4",
       "date": "2026-11-12",

@@ -1,7 +1,5 @@
-# Diving LogBook 1.7.4
+# Diving LogBook 1.8.4
 
-## Oprava zobrazení dat v Servisu
+Bezpečná správa číselníků založená na původních interních hodnotách verze 1.7.4. Migrace nemění ponory ani profily a automaticky registruje každou historickou hodnotu nalezenou v datech.
 
-Pole **Datum poslední revize** a **Další revize** se na mobilu vejdou do šířky karty a hodnota je zarovnaná vlevo.
-
-**Verze 1.7.4, 12. listopadu 2026**
+**Verze 1.8.4, 12. listopadu 2026**

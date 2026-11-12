@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=1.7.4">
+  <link rel="stylesheet" href="styles.css?v=1.8.4">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -74,7 +74,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.7.4</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.8.4</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -286,6 +286,20 @@
     <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
     <section id="profilesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Profily výstroje</h2></div><button id="addProfile" class="primary wide" type="button">＋ Přidat profil</button><div id="profilesList" class="list"></div><form id="profileForm" class="card form-section hidden"><h3 id="profileFormTitle">Přidat profil</h3><input id="profileId" type="hidden"><label>Název profilu *<input id="gearProfileName" required placeholder="např. Moře"></label><div class="form-grid"><label>Oblek<select id="profileSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="profileTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="profileTankVolume" type="number" step="0.1"></label><label>Plyn<select id="profileGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="profileWeight" type="number" step="0.5"></label><label>Počáteční tlak (bar)<input id="profileStartPressure" type="number"></label><label>Koncový tlak (bar)<input id="profileEndPressure" type="number"></label></div><div class="button-row"><button id="cancelProfile" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit profil</button></div></form></section>
 
+
+    <section id="catalogsView" class="view">
+      <div class="view-title"><button class="back" data-back type="button">‹</button><h2>Správa číselníků</h2></div>
+      <div id="catalogItemModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="catalogItemModalTitle"><form id="catalogItemForm" class="modal-card"><h2 id="catalogItemModalTitle">Položka číselníku</h2><input id="catalogItemId" type="hidden"><label>Název<input id="catalogItemName" required maxlength="80"></label><div class="button-row"><button id="cancelCatalogItem" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form></div>
+      <div class="card catalog-help"><p>Hodnoty se po uložení okamžitě objeví ve formulářích. Používané položky lze skrýt; odstranit lze pouze nepoužívanou vlastní položku.</p></div>
+      <div class="catalog-layout">
+        <nav id="catalogTabs" class="catalog-tabs" aria-label="Číselníky"></nav>
+        <div class="card">
+          <div class="catalog-heading"><div><h3 id="catalogTitle">Číselník</h3><p id="catalogDescription" class="hint"></p></div><button id="addCatalogItem" class="primary" type="button">＋ Přidat</button></div>
+          <div id="catalogItems" class="catalog-items"></div>
+        </div>
+      </div>
+    </section>
+    
     <section id="releaseNotesView" class="view">
       <div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Co je nového</h2></div>
       <div id="releaseNotesList"></div>
@@ -296,8 +310,8 @@
         <button id="openSites" class="settings-card" type="button"><span class="settings-icon">📍</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a SSI ID</small></span><b>›</b></button>
         <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
-        <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button>
-        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.7.4</small></span><b>›</b></button>
+        <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button><button id="openCatalogs" class="settings-card" type="button"><span class="settings-icon">☷</span><span><strong>Správa číselníků</strong><small>Vybavení, výstroj a servisní hodnoty</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.8.4</small></span><b>›</b></button>
       </div>
       <div class="card form-section"><h3>Číslování ponorů</h3>
         <label>Výchozí číslo prvního ponoru<input id="initialDiveNumber" type="number" min="1" step="1" inputmode="numeric" placeholder="např. 125"></label>
@@ -319,7 +333,7 @@
         </div>
       </div>
       <div class="card form-section"><h3>Známé lokality</h3><div id="siteList"></div></div>
-      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.7.4</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
+      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.8.4</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>
   </main>
 
@@ -340,9 +354,10 @@
   <div id="siteMergeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="siteMergeTitle"><div class="modal-card site-merge-modal-card"><h2 id="siteMergeTitle">Sloučit lokality</h2><p>Vyber hlavní lokalitu, která zůstane zachována. Ponory z ostatních vybraných lokalit se na ni přepojí.</p><div id="siteMergeSummary" class="merge-summary"></div><label>Hlavní lokalita<select id="siteMergeTarget"></select></label><div class="button-row"><button id="closeSiteMerge" class="secondary" type="button">Zpět</button><button id="confirmSiteMerge" class="danger" type="button">Sloučit lokality</button></div></div></div>
   <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Přejít nahoru">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
-  <script src="app.js?v=1.7.4"></script>
-  <script src="csv-import.js?v=1.7.4"></script>
-  <script src="settings-data-layout.js?v=1.7.4"></script>
-  <script src="service.js?v=1.7.4"></script>
+  <script src="app.js?v=1.8.4"></script>
+  <script src="csv-import.js?v=1.8.4"></script>
+  <script src="settings-data-layout.js?v=1.8.4"></script>
+  <script src="service.js?v=1.8.4"></script>
+  <script src="catalogs.js?v=1.8.4"></script>
 </body>
 </html>
