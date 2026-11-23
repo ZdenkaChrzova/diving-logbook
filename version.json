@@ -1,15 +1,26 @@
 {
-  "version": "1.9.0",
+  "version": "1.10.0",
   "date": "2026-11-23",
-  "title": "Mapa potápěčských lokalit",
+  "title": "Migrace databáze do IndexedDB",
   "changes": [
-    "Do Nastavení byla pod Databázi lokalit přidána samostatná Mapa lokalit.",
-    "Do detailu lokality lze vložit souřadnice z SSI ve formátu 50,00080° S, 14,76000° V; aplikace je automaticky převede a zkontroluje.",
-    "Mapa zobrazuje lokality se souřadnicemi, shlukuje blízké značky a nabízí detail, úpravu lokality a otevření navigace.",
-    "Přehled ukazuje počet lokalit na mapě a lokality bez souřadnic umožňuje postupně doplnit.",
-    "Souřadnice jsou součástí JSON zálohy a při editaci lokality se zachovávají."
+    "Hlavní databáze aplikace byla převedena z localStorage do IndexedDB, která podporuje větší zálohy včetně fotografií.",
+    "Při prvním spuštění se stávající data automaticky převedou; původní záznam se odstraní až po kontrolním načtení z IndexedDB.",
+    "JSON import nejprve bezpečně zapíše celou zálohu do IndexedDB a teprve potom ji nastaví jako aktivní databázi.",
+    "Zachována je kompletní mapa lokalit, souřadnice ze SSI i všechny funkce verze 1.9.0.",
+    "Aktualizována offline cache aplikace na verzi 1.10.0."
   ],
   "history": [
+    {
+      "version": "1.10.0",
+      "date": "2026-11-23",
+      "changes": [
+        "Hlavní databáze aplikace byla převedena z localStorage do IndexedDB, která podporuje větší zálohy včetně fotografií.",
+        "Při prvním spuštění se stávající data automaticky převedou; původní záznam se odstraní až po kontrolním načtení z IndexedDB.",
+        "JSON import nejprve bezpečně zapíše celou zálohu do IndexedDB a teprve potom ji nastaví jako aktivní databázi.",
+        "Zachována je kompletní mapa lokalit, souřadnice ze SSI i všechny funkce verze 1.9.0.",
+        "Aktualizována offline cache aplikace na verzi 1.10.0."
+      ]
+    },
     {
       "version": "1.9.0",
       "date": "2026-11-23",
