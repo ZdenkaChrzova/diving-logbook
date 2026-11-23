@@ -1,14 +1,22 @@
 {
-  "version": "1.10.1",
+  "version": "1.10.2",
   "date": "2026-11-23",
-  "title": "Viditelné vymazání vyhledávání",
+  "title": "Menší tlačítko vymazání hledání",
   "changes": [
-    "Všechna vyhledávací pole mají vlastní dobře viditelné tlačítko × pro vymazání textu.",
-    "Mobilní tlačítko má dotykovou plochu 40 × 40 px a není zakryté okrajem ani obsahem pole.",
-    "Vymazání ihned obnoví celý filtrovaný seznam a ponechá kurzor ve vyhledávacím poli.",
-    "Zachováno je úložiště IndexedDB a bezpečný import velkých záloh."
+    "Tlačítko × ve vyhledávacích polích je menší a více odsazené od pravého okraje.",
+    "Na mobilu má tlačítko průměr 32 px, takže zůstává dobře ovladatelné, ale nepřesahuje rámeček pole.",
+    "Upraveno je také vnitřní odsazení pole, aby se text s tlačítkem nepřekrýval."
   ],
   "history": [
+    {
+      "version": "1.10.2",
+      "date": "2026-11-23",
+      "changes": [
+        "Tlačítko × ve vyhledávacích polích je menší a více odsazené od pravého okraje.",
+        "Na mobilu má tlačítko průměr 32 px, takže zůstává dobře ovladatelné, ale nepřesahuje rámeček pole.",
+        "Upraveno je také vnitřní odsazení pole, aby se text s tlačítkem nepřekrýval."
+      ]
+    },
     {
       "version": "1.10.1",
       "date": "2026-11-23",

@@ -138,3 +138,7 @@ Pokud se po nasazení stále zobrazuje stará verze, zavři všechna okna aplika
 - Na mobilu dotyková plocha 40 × 40 px.
 - Tlačítko se ukáže pouze po zadání textu a okamžitě obnoví celý seznam.
 - Zachována migrace a ukládání do IndexedDB z verze 1.10.0.
+
+### Verze 1.10.2
+- Tlačítko **×** je menší a odsazené 9 px od pravého okraje.
+- Na mobilu má průměr 32 px a nepřesahuje rámeček vyhledávacího pole.
