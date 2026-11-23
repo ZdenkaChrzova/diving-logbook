@@ -1,24 +1,22 @@
 {
-  "version": "1.10.0",
+  "version": "1.10.1",
   "date": "2026-11-23",
-  "title": "Migrace databáze do IndexedDB",
+  "title": "Viditelné vymazání vyhledávání",
   "changes": [
-    "Hlavní databáze aplikace byla převedena z localStorage do IndexedDB, která podporuje větší zálohy včetně fotografií.",
-    "Při prvním spuštění se stávající data automaticky převedou; původní záznam se odstraní až po kontrolním načtení z IndexedDB.",
-    "JSON import nejprve bezpečně zapíše celou zálohu do IndexedDB a teprve potom ji nastaví jako aktivní databázi.",
-    "Zachována je kompletní mapa lokalit, souřadnice ze SSI i všechny funkce verze 1.9.0.",
-    "Aktualizována offline cache aplikace na verzi 1.10.0."
+    "Všechna vyhledávací pole mají vlastní dobře viditelné tlačítko × pro vymazání textu.",
+    "Mobilní tlačítko má dotykovou plochu 40 × 40 px a není zakryté okrajem ani obsahem pole.",
+    "Vymazání ihned obnoví celý filtrovaný seznam a ponechá kurzor ve vyhledávacím poli.",
+    "Zachováno je úložiště IndexedDB a bezpečný import velkých záloh."
   ],
   "history": [
     {
-      "version": "1.10.0",
+      "version": "1.10.1",
       "date": "2026-11-23",
       "changes": [
-        "Hlavní databáze aplikace byla převedena z localStorage do IndexedDB, která podporuje větší zálohy včetně fotografií.",
-        "Při prvním spuštění se stávající data automaticky převedou; původní záznam se odstraní až po kontrolním načtení z IndexedDB.",
-        "JSON import nejprve bezpečně zapíše celou zálohu do IndexedDB a teprve potom ji nastaví jako aktivní databázi.",
-        "Zachována je kompletní mapa lokalit, souřadnice ze SSI i všechny funkce verze 1.9.0.",
-        "Aktualizována offline cache aplikace na verzi 1.10.0."
+        "Všechna vyhledávací pole mají vlastní dobře viditelné tlačítko × pro vymazání textu.",
+        "Mobilní tlačítko má dotykovou plochu 40 × 40 px a není zakryté okrajem ani obsahem pole.",
+        "Vymazání ihned obnoví celý filtrovaný seznam a ponechá kurzor ve vyhledávacím poli.",
+        "Zachováno je úložiště IndexedDB a bezpečný import velkých záloh."
       ]
     },
     {
