@@ -1,15 +1,26 @@
 {
-  "version": "1.8.4",
-  "date": "2026-11-12",
-  "title": "Bezpečná správa číselníků bez změny dat",
+  "version": "1.9.0",
+  "date": "2026-11-23",
+  "title": "Mapa potápěčských lokalit",
   "changes": [
-    "Správa číselníků je znovu postavená nad původními interními hodnotami verze 1.7.4.",
-    "Ponory, profily a výchozí výstroj se při migraci nepřepisují.",
-    "Každá hodnota nalezená v datech se automaticky doplní do číselníku, takže použité pole nezůstane prázdné.",
-    "Obnoveno přesné členění obleků a původní hodnoty plynů vzduch/nitrox a materiálů Ocel/Hliník.",
-    "Uživatel mění pouze zobrazovaný název, pořadí a viditelnost; interní hodnota zůstává stabilní."
+    "Do Nastavení byla pod Databázi lokalit přidána samostatná Mapa lokalit.",
+    "Do detailu lokality lze vložit souřadnice z SSI ve formátu 50,00080° S, 14,76000° V; aplikace je automaticky převede a zkontroluje.",
+    "Mapa zobrazuje lokality se souřadnicemi, shlukuje blízké značky a nabízí detail, úpravu lokality a otevření navigace.",
+    "Přehled ukazuje počet lokalit na mapě a lokality bez souřadnic umožňuje postupně doplnit.",
+    "Souřadnice jsou součástí JSON zálohy a při editaci lokality se zachovávají."
   ],
   "history": [
+    {
+      "version": "1.9.0",
+      "date": "2026-11-23",
+      "changes": [
+        "Do Nastavení byla pod Databázi lokalit přidána samostatná Mapa lokalit.",
+        "Do detailu lokality lze vložit souřadnice z SSI ve formátu 50,00080° S, 14,76000° V; aplikace je automaticky převede a zkontroluje.",
+        "Mapa zobrazuje lokality se souřadnicemi, shlukuje blízké značky a nabízí detail, úpravu lokality a otevření navigace.",
+        "Přehled ukazuje počet lokalit na mapě a lokality bez souřadnic umožňuje postupně doplnit.",
+        "Souřadnice jsou součástí JSON zálohy a při editaci lokality se zachovávají."
+      ]
+    },
     {
       "version": "1.8.4",
       "date": "2026-11-12",
