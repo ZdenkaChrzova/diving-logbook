@@ -142,3 +142,7 @@ Pokud se po nasazení stále zobrazuje stará verze, zavři všechna okna aplika
 ### Verze 1.10.2
 - Tlačítko **×** je menší a odsazené 9 px od pravého okraje.
 - Na mobilu má průměr 32 px a nepřesahuje rámeček vyhledávacího pole.
+
+### Verze 1.10.3
+- Tlačítko **×** je na mobilu posunuté mírně níže, aby bylo opticky vystředěné ve vyhledávacím poli.
+- Velikost 32 px a odsazení 9 px od pravého okraje zůstávají zachované.

@@ -1,13 +1,20 @@
 {
-  "version": "1.10.2",
+  "version": "1.10.3",
   "date": "2026-11-23",
-  "title": "Menší tlačítko vymazání hledání",
+  "title": "Svislé zarovnání tlačítka vymazání",
   "changes": [
-    "Tlačítko × ve vyhledávacích polích je menší a více odsazené od pravého okraje.",
-    "Na mobilu má tlačítko průměr 32 px, takže zůstává dobře ovladatelné, ale nepřesahuje rámeček pole.",
-    "Upraveno je také vnitřní odsazení pole, aby se text s tlačítkem nepřekrýval."
+    "Tlačítko × ve vyhledávacích polích je posunuté mírně níže, aby bylo opticky vystředěné v mobilním Safari a instalované PWA.",
+    "Na mobilu je svislá pozice nastavena na 54 % výšky pole; velikost a pravé odsazení z verze 1.10.2 zůstávají zachované."
   ],
   "history": [
+    {
+      "version": "1.10.3",
+      "date": "2026-11-23",
+      "changes": [
+        "Tlačítko × ve vyhledávacích polích je posunuté mírně níže, aby bylo opticky vystředěné v mobilním Safari a instalované PWA.",
+        "Na mobilu je svislá pozice nastavena na 54 % výšky pole; velikost a pravé odsazení z verze 1.10.2 zůstávají zachované."
+      ]
+    },
     {
       "version": "1.10.2",
       "date": "2026-11-23",

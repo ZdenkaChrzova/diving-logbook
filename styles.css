@@ -115,3 +115,6 @@ body.modal-open{overflow:hidden}
 
 /* Mensi a vice odsazene tlacitko vymazani - v1.10.2 */
 .search-clear-wrap>input[type="search"]{padding-right:44px!important}.search-clear-btn{right:9px;width:30px;height:30px;min-width:30px;min-height:30px;font-size:23px;line-height:1}.search-clear-btn span{display:block;transform:translateY(-1px)}@media(max-width:600px){.search-clear-wrap>input[type="search"]{padding-right:46px!important}.search-clear-btn{right:9px;width:32px;height:32px;min-width:32px;min-height:32px;font-size:24px}}
+
+/* Vertikalni doladeni tlacitka vymazani - v1.10.3 */
+.search-clear-btn{top:53%}@media(max-width:600px){.search-clear-btn{top:54%}}
