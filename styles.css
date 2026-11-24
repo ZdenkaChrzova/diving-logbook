@@ -118,3 +118,7 @@ body.modal-open{overflow:hidden}
 
 /* Vertikalni doladeni tlacitka vymazani - v1.10.3 */
 .search-clear-btn{top:53%}@media(max-width:600px){.search-clear-btn{top:54%}}
+
+/* Mobile site picker scrolling hotfix v1.10.4b. */
+.site-picker-options{-webkit-overflow-scrolling:touch;touch-action:pan-y}
+.site-picker-option{touch-action:pan-y;-webkit-tap-highlight-color:transparent}

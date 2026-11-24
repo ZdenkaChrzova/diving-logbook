@@ -1,12 +1,22 @@
 {
-  "version": "1.10.3",
-  "date": "2026-11-23",
-  "title": "Svislé zarovnání tlačítka vymazání",
+  "version": "1.10.4b",
+  "date": "2026-11-24",
+  "title": "Mobilní výběr lokalit a oprava Servisu",
   "changes": [
-    "Tlačítko × ve vyhledávacích polích je posunuté mírně níže, aby bylo opticky vystředěné v mobilním Safari a instalované PWA.",
-    "Na mobilu je svislá pozice nastavena na 54 % výšky pole; velikost a pravé odsazení z verze 1.10.2 zůstávají zachované."
+    "Opraveno posouvání dlouhého seznamu existujících lokalit na mobilu. Pohyb prstu po seznamu už okamžitě nevybere dotčenou lokalitu.",
+    "Lokalita se vybere až samostatným klepnutím; seznam podporuje plynulé svislé posouvání v mobilním Safari a instalované PWA.",
+    "Zachována je oprava tlačítka Přidat vybavení a inicializace sekce Servis z verze 1.10.4a."
   ],
   "history": [
+    {
+      "version": "1.10.4b",
+      "date": "2026-11-24",
+      "changes": [
+        "Opraveno posouvání dlouhého seznamu existujících lokalit na mobilu. Pohyb prstu po seznamu už okamžitě nevybere dotčenou lokalitu.",
+        "Lokalita se vybere až samostatným klepnutím; seznam podporuje plynulé svislé posouvání v mobilním Safari a instalované PWA.",
+        "Zachována je oprava tlačítka Přidat vybavení a inicializace sekce Servis z verze 1.10.4a."
+      ]
+    },
     {
       "version": "1.10.3",
       "date": "2026-11-23",
