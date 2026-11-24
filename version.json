@@ -1,13 +1,24 @@
 {
-  "version": "1.10.4b",
+  "version": "1.10.4c",
   "date": "2026-11-24",
-  "title": "Mobilní výběr lokalit a oprava Servisu",
+  "title": "Seskupení lokalit podle země",
   "changes": [
-    "Opraveno posouvání dlouhého seznamu existujících lokalit na mobilu. Pohyb prstu po seznamu už okamžitě nevybere dotčenou lokalitu.",
-    "Lokalita se vybere až samostatným klepnutím; seznam podporuje plynulé svislé posouvání v mobilním Safari a instalované PWA.",
-    "Zachována je oprava tlačítka Přidat vybavení a inicializace sekce Servis z verze 1.10.4a."
+    "Databáze lokalit je nově seskupená podle zemí; u každé země je uveden počet lokalit.",
+    "Skupiny zemí lze rozbalovat a sbalovat a aplikace si jejich stav pamatuje i po opětovném otevření.",
+    "Při vyhledávání se odpovídající skupiny automaticky rozbalí; režim Sloučit lokality zůstává plně funkční.",
+    "Lokality bez vyplněné země se zobrazují ve skupině Země neuvedena."
   ],
   "history": [
+    {
+      "version": "1.10.4c",
+      "date": "2026-11-24",
+      "changes": [
+        "Databáze lokalit je nově seskupená podle zemí; u každé země je uveden počet lokalit.",
+        "Skupiny zemí lze rozbalovat a sbalovat a aplikace si jejich stav pamatuje i po opětovném otevření.",
+        "Při vyhledávání se odpovídající skupiny automaticky rozbalí; režim Sloučit lokality zůstává plně funkční.",
+        "Lokality bez vyplněné země se zobrazují ve skupině Země neuvedena."
+      ]
+    },
     {
       "version": "1.10.4b",
       "date": "2026-11-24",

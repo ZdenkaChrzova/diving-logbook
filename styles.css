@@ -122,3 +122,7 @@ body.modal-open{overflow:hidden}
 /* Mobile site picker scrolling hotfix v1.10.4b. */
 .site-picker-options{-webkit-overflow-scrolling:touch;touch-action:pan-y}
 .site-picker-option{touch-action:pan-y;-webkit-tap-highlight-color:transparent}
+
+
+/* Seskupeni databaze lokalit podle zeme - v1.10.4c */
+.site-country-group{display:grid;gap:8px}.site-country-header{display:flex;align-items:center;gap:10px;width:100%;min-height:50px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);text-align:left;box-shadow:var(--shadow)}.site-country-header:focus-visible{outline:3px solid var(--primary2);outline-offset:2px}.site-country-chevron{display:inline-grid;place-items:center;width:22px;height:22px;color:var(--primary2);font-size:28px;line-height:1;transition:transform .18s ease}.site-country-group.is-open .site-country-chevron{transform:rotate(90deg)}.site-country-header strong{flex:1;font-size:17px}.site-country-count{color:var(--muted);font-size:13px;font-weight:700;white-space:nowrap}.site-country-items{display:grid;gap:10px;padding-left:12px;border-left:3px solid color-mix(in srgb,var(--primary2) 45%,transparent)}.site-country-items.hidden{display:none}@media(max-width:600px){.site-country-header{min-height:54px;padding:13px 12px}.site-country-items{padding-left:7px}.site-country-header strong{font-size:16px}.site-country-count{font-size:12px}}
