@@ -1,14 +1,24 @@
 {
-  "version": "1.12.0",
+  "version": "1.13.0",
   "date": "2026-11-25",
-  "title": "Plynulá postupná úprava ponorů",
+  "title": "Filtr neúplných ponorů",
   "changes": [
-    "Při úpravě existujícího ponoru je k dispozici tlačítko Uložit a další.",
-    "Po jeho použití se automaticky otevře nejbližší uložený ponor s vyšším číslem.",
-    "Při návratu z detailu se seznam vrátí ke konkrétnímu ponoru místo na začátek nebo konec stránky.",
-    "Příslušná skupina roku se při návratu automaticky rozbalí."
+    "Na úvodní obrazovku byl přidán filtr ponorů s chybějící lokalitou, zemí nebo buddym.",
+    "Filtr umí zobrazit záznamy, kde chybí kterýkoliv vybraný údaj, nebo všechny vybrané údaje současně.",
+    "U jednotlivých položek se zobrazuje počet neúplných ponorů a filtr lze kombinovat s vyhledáváním.",
+    "Tlačítko Uložit a další při aktivním filtru pokračuje na nejbližší vyšší ponor, který filtru stále odpovídá."
   ],
   "history": [
+    {
+      "version": "1.13.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Na úvodní obrazovku byl přidán filtr ponorů s chybějící lokalitou, zemí nebo buddym.",
+        "Filtr umí zobrazit záznamy, kde chybí kterýkoliv vybraný údaj, nebo všechny vybrané údaje současně.",
+        "U jednotlivých položek se zobrazuje počet neúplných ponorů a filtr lze kombinovat s vyhledáváním.",
+        "Tlačítko Uložit a další při aktivním filtru pokračuje na nejbližší vyšší ponor, který filtru stále odpovídá."
+      ]
+    },
     {
       "version": "1.12.0",
       "date": "2026-11-25",
