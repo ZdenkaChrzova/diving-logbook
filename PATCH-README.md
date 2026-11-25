@@ -1,18 +1,21 @@
-# Diving LogBook 1.11.0a-dev1
+# Diving LogBook 1.11.0a-dev1a
 
-Kompletní patch nad stabilní verzí 1.10.4c.
+Minimální opravný patch postavený přímo nad stabilní verzí 1.10.4c.
 
 ## Obsah
-- číselník Země
-- číselník Servisní intervaly
+- Země napojené na založení a úpravu lokality přes společný `countryOptions` datalist
+- Servisní intervaly napojené na servisní formulář
 - počty použití
-- filtry Aktivní / Skryté / Vše
 - kontrola duplicit při přidání i přejmenování
 
 ## Záměrně bez
-- slučování a mazání položek číselníků
+- filtrů Aktivní / Skryté / Vše
+- slučování katalogových položek
 - SSI katalogů
 - migrace historických dat
 
-## Instalace
-Nahraď soubory v aplikaci soubory z tohoto balíčku. Před nasazením vytvoř JSON zálohu. Po nasazení zavři všechna okna PWA a spusť aplikaci znovu, aby se aktivoval nový service worker a cache `diving-logbook-v1.11.0a-dev1`.
+## Nasazení
+1. Vytvoř JSON zálohu.
+2. Nahraď soubory obsaženými v ZIPu.
+3. Zavři všechna okna aplikace/PWA.
+4. Znovu aplikaci spusť a ověř verzi 1.11.0a-dev1a.

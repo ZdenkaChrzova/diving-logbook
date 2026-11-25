@@ -1,24 +1,24 @@
 {
-  "version": "1.11.0a-dev1",
+  "version": "1.11.0a-dev1a",
   "date": "2026-11-25",
-  "title": "Země, servisní intervaly a bezpečnější správa číselníků",
+  "title": "Minimální oprava rozšíření číselníků",
   "changes": [
-    "Přidán číselník Země s počtem lokalit pro každou hodnotu.",
-    "Přidán číselník Servisní intervaly s počtem použití v evidenci vybavení.",
-    "Správa číselníků nabízí filtry Aktivní, Skryté a Vše.",
-    "Kontrola duplicit se používá při přidání i přejmenování položky bez ohledu na velikost písmen a okolní mezery.",
-    "V této vývojové verzi se položky nemažou ani neslučují a historická data se nemigrují."
+    "Přidán číselník Země a napojen na datalist používaný při založení i úpravě lokality.",
+    "Přidán číselník Servisní intervaly a napojen na formulář servisovaného vybavení.",
+    "Doplněny počty použití zemí v lokalitách a servisních intervalů u vybavení.",
+    "Kontrola duplicit nyní funguje také při přejmenování položky číselníku.",
+    "Zachována stávající data bez migrace, slučování a změn SSI katalogů."
   ],
   "history": [
     {
-      "version": "1.11.0a-dev1",
+      "version": "1.11.0a-dev1a",
       "date": "2026-11-25",
       "changes": [
-        "Přidán číselník Země s počtem lokalit pro každou hodnotu.",
-        "Přidán číselník Servisní intervaly s počtem použití v evidenci vybavení.",
-        "Správa číselníků nabízí filtry Aktivní, Skryté a Vše.",
-        "Kontrola duplicit se používá při přidání i přejmenování položky bez ohledu na velikost písmen a okolní mezery.",
-        "V této vývojové verzi se položky nemažou ani neslučují a historická data se nemigrují."
+        "Přidán číselník Země a napojen na datalist používaný při založení i úpravě lokality.",
+        "Přidán číselník Servisní intervaly a napojen na formulář servisovaného vybavení.",
+        "Doplněny počty použití zemí v lokalitách a servisních intervalů u vybavení.",
+        "Kontrola duplicit nyní funguje také při přejmenování položky číselníku.",
+        "Zachována stávající data bez migrace, slučování a změn SSI katalogů."
       ]
     },
     {
