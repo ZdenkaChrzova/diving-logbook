@@ -1,14 +1,24 @@
 {
-  "version": "1.11.0",
+  "version": "1.12.0",
   "date": "2026-11-25",
-  "title": "Ruční přepínání vzhledu",
+  "title": "Plynulá postupná úprava ponorů",
   "changes": [
-    "Do Nastavení byl přidán přepínač vzhledu se třemi volbami: Auto, Světlý a Tmavý.",
-    "Zvolený vzhled se použije okamžitě a zůstane uložený i po zavření aplikace.",
-    "Volba Auto se řídí systémovým nastavením zařízení a reaguje na jeho změnu.",
-    "Světlý a tmavý režim lze nově vynutit nezávisle na nastavení zařízení."
+    "Při úpravě existujícího ponoru je k dispozici tlačítko Uložit a další.",
+    "Po jeho použití se automaticky otevře nejbližší uložený ponor s vyšším číslem.",
+    "Při návratu z detailu se seznam vrátí ke konkrétnímu ponoru místo na začátek nebo konec stránky.",
+    "Příslušná skupina roku se při návratu automaticky rozbalí."
   ],
   "history": [
+    {
+      "version": "1.12.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Při úpravě existujícího ponoru je k dispozici tlačítko Uložit a další.",
+        "Po jeho použití se automaticky otevře nejbližší uložený ponor s vyšším číslem.",
+        "Při návratu z detailu se seznam vrátí ke konkrétnímu ponoru místo na začátek nebo konec stránky.",
+        "Příslušná skupina roku se při návratu automaticky rozbalí."
+      ]
+    },
     {
       "version": "1.11.0",
       "date": "2026-11-25",
