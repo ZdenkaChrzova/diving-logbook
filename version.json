@@ -1,14 +1,24 @@
 {
-  "version": "1.14.1",
+  "version": "1.15.0",
   "date": "2026-11-25",
-  "title": "Oprava číselníku zemí na mobilu",
+  "title": "Filtr lokalit bez souřadnic",
   "changes": [
-    "Opraveno tlačítko Přidat ve Správě číselníků; inicializace nyní proběhne až po načtení databáze.",
-    "Nativní nabídka datalist byla nahrazena vlastním rozbalovacím výběrem země, který funguje také v instalované mobilní PWA.",
-    "Stejný výběr země se používá při zakládání a úpravě ponoru i lokality.",
-    "Zachována jsou všechna data, číselník zemí, CSV podpora a funkce verze 1.14.0."
+    "Do Databáze lokalit byl přidán filtr Bez souřadnic včetně aktuálního počtu chybějících lokalit.",
+    "Filtr lze kombinovat s vyhledáváním a zachovává seskupení lokalit podle zemí.",
+    "Mapa a panel Lokality bez souřadnic používají stejnou kontrolu platných souřadnic.",
+    "Po doplnění a uložení souřadnic se počty i filtrované seznamy automaticky obnoví."
   ],
   "history": [
+    {
+      "version": "1.15.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Do Databáze lokalit byl přidán filtr Bez souřadnic včetně aktuálního počtu chybějících lokalit.",
+        "Filtr lze kombinovat s vyhledáváním a zachovává seskupení lokalit podle zemí.",
+        "Mapa a panel Lokality bez souřadnic používají stejnou kontrolu platných souřadnic.",
+        "Po doplnění a uložení souřadnic se počty i filtrované seznamy automaticky obnoví."
+      ]
+    },
     {
       "version": "1.14.1",
       "date": "2026-11-25",

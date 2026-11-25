@@ -64,7 +64,8 @@
   }
   function openSiteFromMap(id){selectedId=String(id);showView("sitesView");renderSitesDb();openSiteForm(id)}
   function renderMissing(){
-    const missing=allSites().filter(s=>!hasCoordinates(s));
+    const q=(el("mapSearch")?.value||"").trim().toLocaleLowerCase("cs");
+      const missing=allSites().filter(s=>!hasCoordinates(s)).filter(s=>!q||`${s.name||""} ${s.country||""} ${s.region||""}`.toLocaleLowerCase("cs").includes(q));
     el("missingSitesList").innerHTML=missing.map(s=>`<button class="db-card" type="button" data-missing-site="${esc(String(s.ssiId??s.id))}"><div><h3>${esc(s.name||"Bez názvu")}</h3><p>${[s.country,s.region].filter(Boolean).map(esc).join(" · ")}</p><small>SSI ID ${esc(String(s.ssiId??s.id))}</small></div><b>›</b></button>`).join("")||'<div class="terms-ok"><span>✓</span><div><strong>Všechny lokality mají souřadnice</strong></div></div>';
     el("missingSitesPanel").classList.remove("hidden");
     document.querySelectorAll("[data-missing-site]").forEach(b=>b.onclick=()=>openSiteFromMap(b.dataset.missingSite));
@@ -74,9 +75,10 @@
   window.siteHasCoordinates=hasCoordinates;
   window.refreshLocalitiesMapSummary=updateSummary;
   window.renderLocalitiesMap=renderMap;
+    window.refreshMissingLocalitiesList=()=>{if(!el("missingSitesPanel")?.classList.contains("hidden"))renderMissing()};
   document.addEventListener("DOMContentLoaded",()=>{
     el("openMap").onclick=()=>{showView("mapView");el("missingSitesPanel").classList.add("hidden");renderMap()};
-    el("mapSearch").oninput=renderMap;
+    el("mapSearch").oninput=()=>{renderMap();window.refreshMissingLocalitiesList?.()};
     el("showMissingSites").onclick=renderMissing;
     el("closeMissingSites").onclick=()=>el("missingSitesPanel").classList.add("hidden");
     updateSummary();
