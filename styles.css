@@ -149,3 +149,13 @@ html[data-theme="dark"]{color-scheme:dark;--bg:#102126;--card:#172c32;--ink:#eaf
 
 /* Missing coordinates filter - v1.15.0 */
 .missing-coordinates-filter{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:44px;margin-top:12px;padding:9px 13px;border:1px solid var(--line);border-radius:13px;background:var(--card);color:var(--ink);font-weight:800}.missing-coordinates-filter strong{display:grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border-radius:999px;background:#fff3cd;color:#7a5200;font-size:.78rem}.missing-coordinates-filter.active{border-color:var(--primary);box-shadow:0 0 0 2px rgba(8,127,140,.18)}.missing-coordinates-filter.active strong{background:var(--primary);color:#fff}html[data-theme="dark"] .missing-coordinates-filter strong{background:#493f1b;color:#ffeaa3}
+
+
+/* Prevent automatic iOS zoom when focusing form fields - v1.15.1 */
+@media (max-width:760px){
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]),
+  select,
+  textarea{
+    font-size:16px;
+  }
+}
