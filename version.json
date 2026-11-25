@@ -1,45 +1,14 @@
 {
-  "version": "1.11.0a-dev1c",
-  "date": "2026-11-25",
-  "title": "Mobilní napojení číselníku Země",
+  "version": "1.10.4c",
+  "date": "2026-11-24",
+  "title": "Seskupení lokalit podle země",
   "changes": [
-    "Opraveno napojení číselníku Země v mobilním Safari a instalované PWA.",
-    "Pole Země v ručním založení ponoru i v editoru databáze lokalit používá nativní výběrový seznam místo HTML datalistu.",
-    "Nabídka zemí se plní výhradně z aktivních položek číselníku Země.",
-    "Zachována oprava tlačítka Přidat ve Správě číselníků."
+    "Databáze lokalit je nově seskupená podle zemí; u každé země je uveden počet lokalit.",
+    "Skupiny zemí lze rozbalovat a sbalovat a aplikace si jejich stav pamatuje i po opětovném otevření.",
+    "Při vyhledávání se odpovídající skupiny automaticky rozbalí; režim Sloučit lokality zůstává plně funkční.",
+    "Lokality bez vyplněné země se zobrazují ve skupině Země neuvedena."
   ],
   "history": [
-    {
-      "version": "1.11.0a-dev1c",
-      "date": "2026-11-25",
-      "changes": [
-        "Opraveno napojení číselníku Země v mobilním Safari a instalované PWA.",
-        "Pole Země v ručním založení ponoru i v editoru databáze lokalit používá nativní výběrový seznam místo HTML datalistu.",
-        "Nabídka zemí se plní výhradně z aktivních položek číselníku Země.",
-        "Zachována oprava tlačítka Přidat ve Správě číselníků."
-      ]
-    },
-    {
-      "version": "1.11.0a-dev1b",
-      "date": "2026-11-25",
-      "changes": [
-        "Opraveno tlačítko Přidat ve Správě číselníků.",
-        "Inicializace správy číselníků nyní funguje i tehdy, když se catalogs.js načte až po události DOMContentLoaded.",
-        "Při každém otevření Správy číselníků aplikace bezpečně ověří inicializaci ovládacích prvků.",
-        "Zachováno napojení číselníku Země na založení a úpravu lokality a napojení servisních intervalů."
-      ]
-    },
-    {
-      "version": "1.11.0a-dev1a",
-      "date": "2026-11-25",
-      "changes": [
-        "Přidán číselník Země a napojen na datalist používaný při založení i úpravě lokality.",
-        "Přidán číselník Servisní intervaly a napojen na formulář servisovaného vybavení.",
-        "Doplněny počty použití zemí v lokalitách a servisních intervalů u vybavení.",
-        "Kontrola duplicit nyní funguje také při přejmenování položky číselníku.",
-        "Zachována stávající data bez migrace, slučování a změn SSI katalogů."
-      ]
-    },
     {
       "version": "1.10.4c",
       "date": "2026-11-24",
