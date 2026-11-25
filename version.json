@@ -1,14 +1,26 @@
 {
-  "version": "1.10.4c",
-  "date": "2026-11-24",
-  "title": "Seskupení lokalit podle země",
+  "version": "1.11.0a-dev1",
+  "date": "2026-11-25",
+  "title": "Země, servisní intervaly a bezpečnější správa číselníků",
   "changes": [
-    "Databáze lokalit je nově seskupená podle zemí; u každé země je uveden počet lokalit.",
-    "Skupiny zemí lze rozbalovat a sbalovat a aplikace si jejich stav pamatuje i po opětovném otevření.",
-    "Při vyhledávání se odpovídající skupiny automaticky rozbalí; režim Sloučit lokality zůstává plně funkční.",
-    "Lokality bez vyplněné země se zobrazují ve skupině Země neuvedena."
+    "Přidán číselník Země s počtem lokalit pro každou hodnotu.",
+    "Přidán číselník Servisní intervaly s počtem použití v evidenci vybavení.",
+    "Správa číselníků nabízí filtry Aktivní, Skryté a Vše.",
+    "Kontrola duplicit se používá při přidání i přejmenování položky bez ohledu na velikost písmen a okolní mezery.",
+    "V této vývojové verzi se položky nemažou ani neslučují a historická data se nemigrují."
   ],
   "history": [
+    {
+      "version": "1.11.0a-dev1",
+      "date": "2026-11-25",
+      "changes": [
+        "Přidán číselník Země s počtem lokalit pro každou hodnotu.",
+        "Přidán číselník Servisní intervaly s počtem použití v evidenci vybavení.",
+        "Správa číselníků nabízí filtry Aktivní, Skryté a Vše.",
+        "Kontrola duplicit se používá při přidání i přejmenování položky bez ohledu na velikost písmen a okolní mezery.",
+        "V této vývojové verzi se položky nemažou ani neslučují a historická data se nemigrují."
+      ]
+    },
     {
       "version": "1.10.4c",
       "date": "2026-11-24",
