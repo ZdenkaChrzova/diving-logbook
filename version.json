@@ -1,14 +1,24 @@
 {
-  "version": "1.14.0",
+  "version": "1.14.1",
   "date": "2026-11-25",
-  "title": "Centrální číselník zemí",
+  "title": "Oprava číselníku zemí na mobilu",
   "changes": [
-    "Do Správy číselníků byl přidán centrální číselník Země.",
-    "Země používané ve stávajících lokalitách se automaticky převezmou jako historické položky bez změny uložených dat.",
-    "Zakládání a úprava ponoru i lokality používají stejný seznam zemí a neznámou hodnotu nelze omylem uložit.",
-    "CSV export obsahuje nový sloupec Země; CSV import podle země přesněji vyhledá existující lokalitu a kontroluje hodnotu proti číselníku."
+    "Opraveno tlačítko Přidat ve Správě číselníků; inicializace nyní proběhne až po načtení databáze.",
+    "Nativní nabídka datalist byla nahrazena vlastním rozbalovacím výběrem země, který funguje také v instalované mobilní PWA.",
+    "Stejný výběr země se používá při zakládání a úpravě ponoru i lokality.",
+    "Zachována jsou všechna data, číselník zemí, CSV podpora a funkce verze 1.14.0."
   ],
   "history": [
+    {
+      "version": "1.14.1",
+      "date": "2026-11-25",
+      "changes": [
+        "Opraveno tlačítko Přidat ve Správě číselníků; inicializace nyní proběhne až po načtení databáze.",
+        "Nativní nabídka datalist byla nahrazena vlastním rozbalovacím výběrem země, který funguje také v instalované mobilní PWA.",
+        "Stejný výběr země se používá při zakládání a úpravě ponoru i lokality.",
+        "Zachována jsou všechna data, číselník zemí, CSV podpora a funkce verze 1.14.0."
+      ]
+    },
     {
       "version": "1.14.0",
       "date": "2026-11-25",
