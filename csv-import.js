@@ -24,6 +24,7 @@
     diveNumber: ["cislo ponoru", "dive number", "dive_number", "dive_no", "dive"],
     date: ["datum", "date"],
     location: ["lokalita", "location", "site", "site name", "site_name"],
+      country: ["zeme", "země", "country", "nation"],
     depth: ["max hloubka (m)", "max hloubka m", "max_depth_m", "max_depth", "depth"],
     duration: ["delka (min)", "delka min", "duration_min", "duration", "duration minutes"],
 
@@ -133,7 +134,8 @@
     return site?.name || dive.siteName || "";
   }
 
-  function choiceLabel(value, map) {
+  function locationCountry(dive) { const site=dive.siteId!=null?siteOf(dive.siteId):null; return site?.country||dive.import?.siteCountry||dive.siteCountry||""; }
+    function choiceLabel(value, map) {
     if (value === null || value === undefined || value === "") return "";
     const key = String(value);
     return map[key] ?? "";
@@ -280,9 +282,12 @@
     return `${match[1].padStart(2, "0")}:${match[2]}`;
   }
 
-  function siteIdForImport(name) {
+  function siteIdForImport(name, country = "") {
     const normalized = normalize(name);
-    const existing = Object.values(db.sites || {}).find(site => normalize(site.name) === normalized);
+    const normalizedCountry = normalize(country);
+    const existing = Object.values(db.sites || {}).find(site =>
+      normalize(site.name) === normalized && (!normalizedCountry || normalize(site.country) === normalizedCountry)
+    );
     return existing ? Number(existing.ssiId ?? existing.id) : null;
   }
 
@@ -353,6 +358,9 @@
         }
 
         const siteName = String(cell(rows[i], "location")).trim();
+        const countryRaw = indexes.country === undefined ? "" : String(cell(rows[i], "country")).trim();
+        const country = countryRaw ? (window.countryCatalogCanonical ? window.countryCatalogCanonical(countryRaw) : countryRaw) : "";
+        if (countryRaw && !country) throw new Error(`Řádek ${rowNumber}: země „${countryRaw}“ není v číselníku.`);
         if (!siteName) {
           throw new Error(`Řádek ${rowNumber}: chybí lokalita.`);
         }
@@ -382,7 +390,7 @@
 
         const startTime = indexes.startTime === undefined ? null : parseTime(cell(rows[i], "startTime"), rowNumber);
 
-        const siteId = siteIdForImport(siteName);
+        const siteId = siteIdForImport(siteName, country);
 
         parsedDives.push({
           id: uid("dive"),
@@ -417,6 +425,7 @@
           import: {
             source: "csv",
             siteNameOcr: siteName,
+            siteCountry: country || null,
             importedAt: new Date().toISOString()
           }
         });

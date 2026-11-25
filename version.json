@@ -1,14 +1,24 @@
 {
-  "version": "1.13.0",
+  "version": "1.14.0",
   "date": "2026-11-25",
-  "title": "Filtr neúplných ponorů",
+  "title": "Centrální číselník zemí",
   "changes": [
-    "Na úvodní obrazovku byl přidán filtr ponorů s chybějící lokalitou, zemí nebo buddym.",
-    "Filtr umí zobrazit záznamy, kde chybí kterýkoliv vybraný údaj, nebo všechny vybrané údaje současně.",
-    "U jednotlivých položek se zobrazuje počet neúplných ponorů a filtr lze kombinovat s vyhledáváním.",
-    "Tlačítko Uložit a další při aktivním filtru pokračuje na nejbližší vyšší ponor, který filtru stále odpovídá."
+    "Do Správy číselníků byl přidán centrální číselník Země.",
+    "Země používané ve stávajících lokalitách se automaticky převezmou jako historické položky bez změny uložených dat.",
+    "Zakládání a úprava ponoru i lokality používají stejný seznam zemí a neznámou hodnotu nelze omylem uložit.",
+    "CSV export obsahuje nový sloupec Země; CSV import podle země přesněji vyhledá existující lokalitu a kontroluje hodnotu proti číselníku."
   ],
   "history": [
+    {
+      "version": "1.14.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Do Správy číselníků byl přidán centrální číselník Země.",
+        "Země používané ve stávajících lokalitách se automaticky převezmou jako historické položky bez změny uložených dat.",
+        "Zakládání a úprava ponoru i lokality používají stejný seznam zemí a neznámou hodnotu nelze omylem uložit.",
+        "CSV export obsahuje nový sloupec Země; CSV import podle země přesněji vyhledá existující lokalitu a kontroluje hodnotu proti číselníku."
+      ]
+    },
     {
       "version": "1.13.0",
       "date": "2026-11-25",
