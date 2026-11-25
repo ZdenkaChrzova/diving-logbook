@@ -1,20 +1,22 @@
 {
-  "version": "1.10.4d",
+  "version": "1.11.0",
   "date": "2026-11-25",
-  "title": "Čitelná navigace ve světlém režimu",
+  "title": "Ruční přepínání vzhledu",
   "changes": [
-    "Opraveno zobrazení horní navigace ve světlém režimu.",
-    "Šipka zpět, název obrazovky a pravé navigační tlačítko mají ve světlém režimu tmavou kontrastní barvu.",
-    "V tmavém režimu zůstává navigace bílá a původní vzhled aplikace se nemění."
+    "Do Nastavení byl přidán přepínač vzhledu se třemi volbami: Auto, Světlý a Tmavý.",
+    "Zvolený vzhled se použije okamžitě a zůstane uložený i po zavření aplikace.",
+    "Volba Auto se řídí systémovým nastavením zařízení a reaguje na jeho změnu.",
+    "Světlý a tmavý režim lze nově vynutit nezávisle na nastavení zařízení."
   ],
   "history": [
     {
-      "version": "1.10.4d",
+      "version": "1.11.0",
       "date": "2026-11-25",
       "changes": [
-        "Opraveno zobrazení horní navigace ve světlém režimu.",
-        "Šipka zpět, název obrazovky a pravé navigační tlačítko mají ve světlém režimu tmavou kontrastní barvu.",
-        "V tmavém režimu zůstává navigace bílá a původní vzhled aplikace se nemění."
+        "Do Nastavení byl přidán přepínač vzhledu se třemi volbami: Auto, Světlý a Tmavý.",
+        "Zvolený vzhled se použije okamžitě a zůstane uložený i po zavření aplikace.",
+        "Volba Auto se řídí systémovým nastavením zařízení a reaguje na jeho změnu.",
+        "Světlý a tmavý režim lze nově vynutit nezávisle na nastavení zařízení."
       ]
     },
     {
