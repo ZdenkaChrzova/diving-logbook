@@ -1,14 +1,22 @@
 {
-  "version": "1.10.4c",
-  "date": "2026-11-24",
-  "title": "Seskupení lokalit podle země",
+  "version": "1.10.4d",
+  "date": "2026-11-25",
+  "title": "Čitelná navigace ve světlém režimu",
   "changes": [
-    "Databáze lokalit je nově seskupená podle zemí; u každé země je uveden počet lokalit.",
-    "Skupiny zemí lze rozbalovat a sbalovat a aplikace si jejich stav pamatuje i po opětovném otevření.",
-    "Při vyhledávání se odpovídající skupiny automaticky rozbalí; režim Sloučit lokality zůstává plně funkční.",
-    "Lokality bez vyplněné země se zobrazují ve skupině Země neuvedena."
+    "Opraveno zobrazení horní navigace ve světlém režimu.",
+    "Šipka zpět, název obrazovky a pravé navigační tlačítko mají ve světlém režimu tmavou kontrastní barvu.",
+    "V tmavém režimu zůstává navigace bílá a původní vzhled aplikace se nemění."
   ],
   "history": [
+    {
+      "version": "1.10.4d",
+      "date": "2026-11-25",
+      "changes": [
+        "Opraveno zobrazení horní navigace ve světlém režimu.",
+        "Šipka zpět, název obrazovky a pravé navigační tlačítko mají ve světlém režimu tmavou kontrastní barvu.",
+        "V tmavém režimu zůstává navigace bílá a původní vzhled aplikace se nemění."
+      ]
+    },
     {
       "version": "1.10.4c",
       "date": "2026-11-24",
