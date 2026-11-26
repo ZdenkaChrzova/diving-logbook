@@ -5,6 +5,7 @@
     "Číslo ponoru",
     "Datum",
     "Čas",
+    "Denní doba",
     "Lokalita",
     "Max hloubka (m)",
     "Délka (min)",
@@ -40,6 +41,7 @@
     visibility: ["viditelnost", "viditelnost (m)", "visibility_m", "visibility"],
     decompression: ["dekompresni ponor", "decompression dive", "decompression", "decompression_dive"],
 
+    timeOfDay: ["denni doba", "denní doba", "time of day", "timeofday"],
     startTime: ["cas", "čas", "cas zacatku", "čas začátku", "start_time", "start time", "time"]
   };
 
@@ -195,6 +197,7 @@
         dive.diveNumber ?? "",
         dive.date ?? "",
         dive.startTime ?? "",
+          catalogChoiceLabel("timeOfDay", conditions.timeOfDay || "day"),
         locationName(dive),
         decimal(dive.maxDepthM),
         dive.durationMinutes ?? "",
@@ -391,6 +394,7 @@
         const decompressionDive = indexes.decompression === undefined ? false : parseBoolean(cell(rows[i], "decompression"), "Dekompresní ponor", rowNumber);
 
         const startTime = indexes.startTime === undefined ? null : parseTime(cell(rows[i], "startTime"), rowNumber);
+        const timeOfDay = indexes.timeOfDay === undefined ? "day" : (parseCatalogChoice(cell(rows[i], "timeOfDay"), "timeOfDay", "Denní doba", rowNumber) || "day");
 
         const siteId = siteIdForImport(siteName, country);
 
@@ -405,6 +409,7 @@
           siteNameOcr: siteName,
           equipment: activeEquipmentPreset(),
           conditions: {
+            timeOfDay,
             weatherId,
             waterBodyId,
             waterTypeId,
