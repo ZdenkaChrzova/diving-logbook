@@ -159,3 +159,6 @@ html[data-theme="dark"]{color-scheme:dark;--bg:#102126;--card:#172c32;--ink:#eaf
     font-size:16px;
   }
 }
+
+/* External QR ID catalog editor - v1.16.0 */
+#catalogExternalIdField small{display:block;margin-top:6px}.catalog-item small{line-height:1.45}

@@ -1,14 +1,26 @@
 {
-  "version": "1.15.1",
-  "date": "2026-11-25",
-  "title": "Oprava automatického přiblížení na iPhonu",
+  "version": "1.16.0",
+  "date": "2026-11-26",
+  "title": "Uživatelský číselník Vodní plocha",
   "changes": [
-    "Opraveno automatické přibližování aplikace na iPhonu při klepnutí do formulářového pole.",
-    "Text v mobilních polích, výběrech a poznámkách má nyní minimálně 16 px, takže iOS při úpravě automaticky nezvětšuje celou aplikaci.",
-    "Ruční přiblížení gestem zůstává zachované kvůli přístupnosti.",
-    "Zachovány jsou všechny funkce verze 1.15.0 včetně filtru lokalit bez souřadnic."
+    "Vodní plocha byla převedena z pevného seznamu ve skriptu do uživatelsky spravovaného číselníku.",
+    "Zachována jsou původní QR ID 13, 15, 16, 17 a 18 i jejich dosavadní názvy.",
+    "Neznámé ID z QR se automaticky zachová jako historická položka a lze mu později doplnit správný název.",
+    "Novou vodní plochu lze založit zadáním stabilního ID z QR a vlastního názvu; název lze měnit bez přepisování ponorů.",
+    "Formulář, detail ponoru a CSV používají společný číselník Vodní plocha."
   ],
   "history": [
+    {
+      "version": "1.16.0",
+      "date": "2026-11-26",
+      "changes": [
+        "Vodní plocha byla převedena z pevného seznamu ve skriptu do uživatelsky spravovaného číselníku.",
+        "Zachována jsou původní QR ID 13, 15, 16, 17 a 18 i jejich dosavadní názvy.",
+        "Neznámé ID z QR se automaticky zachová jako historická položka a lze mu později doplnit správný název.",
+        "Novou vodní plochu lze založit zadáním stabilního ID z QR a vlastního názvu; název lze měnit bez přepisování ponorů.",
+        "Formulář, detail ponoru a CSV používají společný číselník Vodní plocha."
+      ]
+    },
     {
       "version": "1.15.1",
       "date": "2026-11-25",

@@ -140,6 +140,8 @@
     const key = String(value);
     return map[key] ?? "";
   }
+  function catalogChoiceLabel(key,value){if(value===null||value===undefined||value==="")return "";const label=window.catalogLabel?.(key,value);return label&&label!==String(value)?label:`ID ${value}`}
+  function parseCatalogChoice(value,key,field,rowNumber){const text=String(value??"").trim();if(!text)return null;const list=window.catalogItems?.(key)||[];const normalized=normalize(text);const found=list.find(item=>normalize(item.name)===normalized||normalize(String(item.id))===normalized||normalize(`ID ${item.id}`)===normalized);if(!found)throw new Error(`Řádek ${rowNumber}: hodnota „${text}“ pro „${field}“ není v číselníku.`);const number=Number(found.id);return Number.isFinite(number)?number:found.id}
 
   function lookupByText(text, map) {
     const cleaned = String(text ?? "").trim();
@@ -198,7 +200,7 @@
         dive.durationMinutes ?? "",
 
         choiceLabel(conditions.weatherId, LOOKUPS.weather),
-        choiceLabel(conditions.waterBodyId, LOOKUPS.waterBody),
+        catalogChoiceLabel("waterBody",conditions.waterBodyId),
         choiceLabel(conditions.waterTypeId, LOOKUPS.waterType),
         choiceLabel(conditions.entryId, LOOKUPS.entry),
         choiceLabel(conditions.currentId, LOOKUPS.current),
@@ -376,7 +378,7 @@
         }
 
         const weatherId = indexes.weather === undefined ? null : parseChoice(cell(rows[i], "weather"), "Počasí", rowNumber, LOOKUPS.weather);
-        const waterBodyId = indexes.waterBody === undefined ? null : parseChoice(cell(rows[i], "waterBody"), "Vodní plocha", rowNumber, LOOKUPS.waterBody);
+        const waterBodyId = indexes.waterBody === undefined ? null : parseCatalogChoice(cell(rows[i], "waterBody"), "waterBody", "Vodní plocha", rowNumber);
         const waterTypeId = indexes.waterType === undefined ? null : parseChoice(cell(rows[i], "waterType"), "Voda", rowNumber, LOOKUPS.waterType);
         const entryId = indexes.entry === undefined ? null : parseChoice(cell(rows[i], "entry"), "Vstup", rowNumber, LOOKUPS.entry);
         const currentId = indexes.current === undefined ? null : parseChoice(cell(rows[i], "current"), "Proud", rowNumber, LOOKUPS.current);
