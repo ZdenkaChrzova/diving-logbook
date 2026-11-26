@@ -1,15 +1,26 @@
 {
-  "version": "1.18.3",
+  "version": "1.19.0",
   "date": "2026-11-25",
-  "title": "Oprava ukládání při CSV exportu",
+  "title": "Přehled záloh a jednodušší stránka Data",
   "changes": [
-    "Odstraněno opakované ukládání celé databáze při pouhém čtení názvů z číselníků.",
-    "CSV export již při zpracování ponorů nespouští ukládání do IndexedDB.",
-    "Číselníky se uloží pouze při inicializaci a jen tehdy, když byly skutečně doplněny nebo změněny.",
-    "Zachován opravený export CSV přes systémové sdílení na iPhonu a iPadu.",
-    "Zachován bezpečný import buddyů až po potvrzení importu."
+    "Na stránce Data se zobrazuje datum a čas poslední vytvořené JSON zálohy.",
+    "Na stránce Data se zobrazuje datum a čas posledního CSV exportu.",
+    "Aplikace upozorní, pokud JSON záloha ještě nebyla vytvořena nebo je starší než 30 dní.",
+    "Časy exportů se ukládají do nastavení aplikace a JSON záloha obsahuje čas svého vytvoření.",
+    "Ze stránky Data byl odstraněn dlouhý seznam Známé lokality; lokality zůstávají beze změny v databázi, mapě, správě a filtrech."
   ],
   "history": [
+    {
+      "version": "1.19.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Na stránce Data se zobrazuje datum a čas poslední vytvořené JSON zálohy.",
+        "Na stránce Data se zobrazuje datum a čas posledního CSV exportu.",
+        "Aplikace upozorní, pokud JSON záloha ještě nebyla vytvořena nebo je starší než 30 dní.",
+        "Časy exportů se ukládají do nastavení aplikace a JSON záloha obsahuje čas svého vytvoření.",
+        "Ze stránky Data byl odstraněn dlouhý seznam Známé lokality; lokality zůstávají beze změny v databázi, mapě, správě a filtrech."
+      ]
+    },
     {
       "version": "1.18.3",
       "date": "2026-11-25",

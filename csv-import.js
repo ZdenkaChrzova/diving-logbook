@@ -225,7 +225,7 @@
     const file = new File([content], fileName, { type: "text/csv;charset=utf-8" });
     const isAppleMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     if (isAppleMobile && navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-      navigator.share({ title: "Diving LogBook CSV", files: [file] }).catch(error => {
+      navigator.share({ title: "Diving LogBook CSV", files: [file] }).then(()=>window.markBackupExport?.("csv")).catch(error => {
         if (error?.name !== "AbortError") alert("CSV se nepodařilo otevřít pro sdílení: " + error.message);
       });
       return;
@@ -239,6 +239,7 @@
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 30000);
+    window.markBackupExport?.("csv");
   }
   function parseDate(value) {
     const text = String(value ?? "").trim();

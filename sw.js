@@ -1,4 +1,4 @@
-const CACHE = "diving-logbook-v1.18.3";
+const CACHE = "diving-logbook-v1.19.0";
 const SHELL = [
   "./index.html",
   "./styles.css?v=1.16.0",
