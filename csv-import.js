@@ -221,17 +221,25 @@
     }
 
     const content = "\uFEFF" + rows.map(row => row.map(csvCell).join(";")).join("\r\n");
-    const blob = new Blob([content], { type: "text/csv;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
+    const fileName = `diving-logbook-${new Date().toISOString().slice(0, 10)}.csv`;
+    const file = new File([content], fileName, { type: "text/csv;charset=utf-8" });
+    const isAppleMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (isAppleMobile && navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+      navigator.share({ title: "Diving LogBook CSV", files: [file] }).catch(error => {
+        if (error?.name !== "AbortError") alert("CSV se nepodařilo otevřít pro sdílení: " + error.message);
+      });
+      return;
+    }
+    const url = URL.createObjectURL(file);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `diving-logbook-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.download = fileName;
+    link.rel = "noopener";
     document.body.appendChild(link);
     link.click();
     link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
   }
-
   function parseDate(value) {
     const text = String(value ?? "").trim();
     let match = text.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
@@ -315,18 +323,17 @@
     const names=fromIds.length?fromIds:(dive.buddies||[]).filter(Boolean);
     return [...new Set(names.map(x=>String(x).trim()).filter(Boolean))].join(" | ");
   }
-  function buddyIdForName(name) {
-    const clean=String(name||"").trim();if(!clean)return null;
-    const key=normalize(clean),existing=Object.values(db.buddies||{}).find(b=>normalize(b.name)===key);
-    if(existing)return existing.id;
-    const id=uid("buddy");db.buddies[id]={id,name:clean,notes:"Založeno automaticky při CSV importu."};return id;
-  }
-  function parseBuddies(value) {
+  function parseBuddyNames(value) {
     const names=String(value??"").split(/\s*(?:\||\n|,|;)\s*/).map(x=>x.trim()).filter(Boolean);
-    const unique=[...new Map(names.map(name=>[normalize(name),name])).values()];
-    return {buddyIds:unique.map(buddyIdForName).filter(Boolean),buddies:unique};
+    return [...new Map(names.map(name=>[normalize(name),name])).values()];
   }
-
+  function commitBuddyNames(names) {
+    return names.map(name=>{
+      const key=normalize(name),existing=Object.values(db.buddies||{}).find(b=>normalize(b.name)===key);
+      if(existing)return existing.id;
+      const id=uid("buddy");db.buddies[id]={id,name,notes:"Založeno automaticky při CSV importu."};return id;
+    });
+  }
   function activeEquipmentPreset() {
     const defaults = db.settings?.defaults || {};
     const profile = db.profiles?.[db.settings?.activeProfileId]?.equipment || {};
@@ -383,7 +390,7 @@
         }
 
         const siteName = String(cell(rows[i], "location")).trim();
-        const buddyData = indexes.buddy === undefined ? {buddyIds:[],buddies:[]} : parseBuddies(cell(rows[i], "buddy"));
+        const buddyNames = indexes.buddy === undefined ? [] : parseBuddyNames(cell(rows[i], "buddy"));
         const countryRaw = indexes.country === undefined ? "" : String(cell(rows[i], "country")).trim();
         const country = countryRaw ? (window.countryCatalogCanonical ? window.countryCatalogCanonical(countryRaw) : countryRaw) : "";
         if (countryRaw && !country) throw new Error(`Řádek ${rowNumber}: země „${countryRaw}“ není v číselníku.`);
@@ -444,8 +451,8 @@
           safety: {
             decompressionDive
           },
-          buddyIds: buddyData.buddyIds,
-          buddies: buddyData.buddies,
+          buddyIds: [],
+          buddies: buddyNames,
           notes: "",
           marineLife: "",
           rating: null,
@@ -494,6 +501,7 @@
       return;
     }
 
+    unique.forEach(dive=>{dive.buddyIds=commitBuddyNames(dive.buddies||[])});
     db.dives.push(...unique);
     save();
 

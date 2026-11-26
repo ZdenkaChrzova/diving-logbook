@@ -1,46 +1,24 @@
 {
-  "version": "1.18.1",
-  "date": "2026-11-26",
-  "title": "Buddy v CSV importu a exportu",
+  "version": "1.18.2",
+  "date": "2026-11-25",
+  "title": "Oprava CSV exportu na iOS",
   "changes": [
-    "Do CSV exportu byl přidán sloupec Buddy.",
-    "Při exportu se více buddies zapisuje do jednoho pole oddělených znakem |.",
-    "CSV import propojí jméno buddyho s existujícím záznamem bez ohledu na velikost písmen a diakritiku.",
-    "Pokud buddy v databázi ještě neexistuje, import jej automaticky založí a přiřadí k ponoru.",
-    "Import podporuje více buddies oddělených znakem |, čárkou, středníkem nebo novým řádkem."
+    "Opraven CSV export na iPhonu a iPadu: soubor se předává přes systémové sdílení místo problematické navigace na Blob URL.",
+    "Na ostatních zařízeních zůstává přímé stažení CSV; dočasná adresa souboru se uvolní až s bezpečným odstupem.",
+    "Noví buddies z CSV se zakládají až po kontrole souboru a potvrzení importu.",
+    "Zrušený import ani chybné řádky už nemění databázi buddies.",
+    "Ověřena shoda pořadí a počtu 18 sloupců v hlavičce a datových řádcích; Buddy je mezi Lokalitou a Max hloubkou."
   ],
   "history": [
     {
-      "version": "1.18.1",
-      "date": "2026-11-26",
+      "version": "1.18.2",
+      "date": "2026-11-25",
       "changes": [
-        "Do CSV exportu byl přidán sloupec Buddy.",
-        "Při exportu se více buddies zapisuje do jednoho pole oddělených znakem |.",
-        "CSV import propojí jméno buddyho s existujícím záznamem bez ohledu na velikost písmen a diakritiku.",
-        "Pokud buddy v databázi ještě neexistuje, import jej automaticky založí a přiřadí k ponoru.",
-        "Import podporuje více buddies oddělených znakem |, čárkou, středníkem nebo novým řádkem."
-      ]
-    },
-    {
-      "version": "1.18.0",
-      "date": "2026-11-26",
-      "changes": [
-        "Na úvodní obrazovku byl přidán panel Pokročilé filtry ponorů.",
-        "Ponory lze filtrovat podle země, lokality, vodní plochy, denní doby, buddyho, roku a hodnocení.",
-        "Zvolené podmínky se kombinují logikou A ZÁROVEŇ a lze je používat současně s vyhledáváním i filtrem chybějících údajů.",
-        "Tlačítko filtru zobrazuje počet aktivních podmínek a panel stručné shrnutí výběru.",
-        "Funkce Uložit a další pokračuje na nejbližší vyšší ponor, který odpovídá všem aktivním filtrům a vyhledávání."
-      ]
-    },
-    {
-      "version": "1.17.0",
-      "date": "2026-11-26",
-      "changes": [
-        "Přidán uživatelsky upravitelný číselník Denní doba.",
-        "Výchozí možnosti jsou Denní, Východ slunce, Ranní soumrak, Západ slunce, Večerní soumrak a Noční.",
-        "U nových, QR i starších upravovaných ponorů se jako výchozí hodnota používá Denní.",
-        "Denní doba se ukládá do podmínek ponoru a zobrazuje v detailu.",
-        "CSV import a export obsahují nový sloupec Denní doba; při chybějícím sloupci se použije Denní."
+        "Opraven CSV export na iPhonu a iPadu: soubor se předává přes systémové sdílení místo problematické navigace na Blob URL.",
+        "Na ostatních zařízeních zůstává přímé stažení CSV; dočasná adresa souboru se uvolní až s bezpečným odstupem.",
+        "Noví buddies z CSV se zakládají až po kontrole souboru a potvrzení importu.",
+        "Zrušený import ani chybné řádky už nemění databázi buddies.",
+        "Ověřena shoda pořadí a počtu 18 sloupců v hlavičce a datových řádcích; Buddy je mezi Lokalitou a Max hloubkou."
       ]
     },
     {
