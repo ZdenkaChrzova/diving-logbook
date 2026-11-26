@@ -1,15 +1,26 @@
 {
-  "version": "1.18.0",
+  "version": "1.18.1",
   "date": "2026-11-26",
-  "title": "Pokročilé filtry ponorů",
+  "title": "Buddy v CSV importu a exportu",
   "changes": [
-    "Na úvodní obrazovku byl přidán panel Pokročilé filtry ponorů.",
-    "Ponory lze filtrovat podle země, lokality, vodní plochy, denní doby, buddyho, roku a hodnocení.",
-    "Zvolené podmínky se kombinují logikou A ZÁROVEŇ a lze je používat současně s vyhledáváním i filtrem chybějících údajů.",
-    "Tlačítko filtru zobrazuje počet aktivních podmínek a panel stručné shrnutí výběru.",
-    "Funkce Uložit a další pokračuje na nejbližší vyšší ponor, který odpovídá všem aktivním filtrům a vyhledávání."
+    "Do CSV exportu byl přidán sloupec Buddy.",
+    "Při exportu se více buddies zapisuje do jednoho pole oddělených znakem |.",
+    "CSV import propojí jméno buddyho s existujícím záznamem bez ohledu na velikost písmen a diakritiku.",
+    "Pokud buddy v databázi ještě neexistuje, import jej automaticky založí a přiřadí k ponoru.",
+    "Import podporuje více buddies oddělených znakem |, čárkou, středníkem nebo novým řádkem."
   ],
   "history": [
+    {
+      "version": "1.18.1",
+      "date": "2026-11-26",
+      "changes": [
+        "Do CSV exportu byl přidán sloupec Buddy.",
+        "Při exportu se více buddies zapisuje do jednoho pole oddělených znakem |.",
+        "CSV import propojí jméno buddyho s existujícím záznamem bez ohledu na velikost písmen a diakritiku.",
+        "Pokud buddy v databázi ještě neexistuje, import jej automaticky založí a přiřadí k ponoru.",
+        "Import podporuje více buddies oddělených znakem |, čárkou, středníkem nebo novým řádkem."
+      ]
+    },
     {
       "version": "1.18.0",
       "date": "2026-11-26",

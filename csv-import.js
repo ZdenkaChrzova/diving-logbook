@@ -7,6 +7,7 @@
     "Čas",
     "Denní doba",
     "Lokalita",
+    "Buddy",
     "Max hloubka (m)",
     "Délka (min)",
     "Počasí",
@@ -24,6 +25,7 @@
   const FIELD_ALIASES = {
     diveNumber: ["cislo ponoru", "dive number", "dive_number", "dive_no", "dive"],
     date: ["datum", "date"],
+    buddy: ["buddy", "buddies", "potapecsky partner", "potápěčský partner", "partner"],
     location: ["lokalita", "location", "site", "site name", "site_name"],
       country: ["zeme", "země", "country", "nation"],
     depth: ["max hloubka (m)", "max hloubka m", "max_depth_m", "max_depth", "depth"],
@@ -199,6 +201,7 @@
         dive.startTime ?? "",
           catalogChoiceLabel("timeOfDay", conditions.timeOfDay || "day"),
         locationName(dive),
+          buddyNamesForExport(dive),
         decimal(dive.maxDepthM),
         dive.durationMinutes ?? "",
 
@@ -307,6 +310,23 @@
     return indexes;
   }
 
+  function buddyNamesForExport(dive) {
+    const fromIds=(dive.buddyIds||[]).map(id=>db.buddies?.[id]?.name).filter(Boolean);
+    const names=fromIds.length?fromIds:(dive.buddies||[]).filter(Boolean);
+    return [...new Set(names.map(x=>String(x).trim()).filter(Boolean))].join(" | ");
+  }
+  function buddyIdForName(name) {
+    const clean=String(name||"").trim();if(!clean)return null;
+    const key=normalize(clean),existing=Object.values(db.buddies||{}).find(b=>normalize(b.name)===key);
+    if(existing)return existing.id;
+    const id=uid("buddy");db.buddies[id]={id,name:clean,notes:"Založeno automaticky při CSV importu."};return id;
+  }
+  function parseBuddies(value) {
+    const names=String(value??"").split(/\s*(?:\||\n|,|;)\s*/).map(x=>x.trim()).filter(Boolean);
+    const unique=[...new Map(names.map(name=>[normalize(name),name])).values()];
+    return {buddyIds:unique.map(buddyIdForName).filter(Boolean),buddies:unique};
+  }
+
   function activeEquipmentPreset() {
     const defaults = db.settings?.defaults || {};
     const profile = db.profiles?.[db.settings?.activeProfileId]?.equipment || {};
@@ -363,6 +383,7 @@
         }
 
         const siteName = String(cell(rows[i], "location")).trim();
+        const buddyData = indexes.buddy === undefined ? {buddyIds:[],buddies:[]} : parseBuddies(cell(rows[i], "buddy"));
         const countryRaw = indexes.country === undefined ? "" : String(cell(rows[i], "country")).trim();
         const country = countryRaw ? (window.countryCatalogCanonical ? window.countryCatalogCanonical(countryRaw) : countryRaw) : "";
         if (countryRaw && !country) throw new Error(`Řádek ${rowNumber}: země „${countryRaw}“ není v číselníku.`);
@@ -423,8 +444,8 @@
           safety: {
             decompressionDive
           },
-          buddyIds: [],
-          buddies: [],
+          buddyIds: buddyData.buddyIds,
+          buddies: buddyData.buddies,
           notes: "",
           marineLife: "",
           rating: null,
