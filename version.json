@@ -1,15 +1,26 @@
 {
-  "version": "1.18.2",
+  "version": "1.18.3",
   "date": "2026-11-25",
-  "title": "Oprava CSV exportu na iOS",
+  "title": "Oprava ukládání při CSV exportu",
   "changes": [
-    "Opraven CSV export na iPhonu a iPadu: soubor se předává přes systémové sdílení místo problematické navigace na Blob URL.",
-    "Na ostatních zařízeních zůstává přímé stažení CSV; dočasná adresa souboru se uvolní až s bezpečným odstupem.",
-    "Noví buddies z CSV se zakládají až po kontrole souboru a potvrzení importu.",
-    "Zrušený import ani chybné řádky už nemění databázi buddies.",
-    "Ověřena shoda pořadí a počtu 18 sloupců v hlavičce a datových řádcích; Buddy je mezi Lokalitou a Max hloubkou."
+    "Odstraněno opakované ukládání celé databáze při pouhém čtení názvů z číselníků.",
+    "CSV export již při zpracování ponorů nespouští ukládání do IndexedDB.",
+    "Číselníky se uloží pouze při inicializaci a jen tehdy, když byly skutečně doplněny nebo změněny.",
+    "Zachován opravený export CSV přes systémové sdílení na iPhonu a iPadu.",
+    "Zachován bezpečný import buddyů až po potvrzení importu."
   ],
   "history": [
+    {
+      "version": "1.18.3",
+      "date": "2026-11-25",
+      "changes": [
+        "Odstraněno opakované ukládání celé databáze při pouhém čtení názvů z číselníků.",
+        "CSV export již při zpracování ponorů nespouští ukládání do IndexedDB.",
+        "Číselníky se uloží pouze při inicializaci a jen tehdy, když byly skutečně doplněny nebo změněny.",
+        "Zachován opravený export CSV přes systémové sdílení na iPhonu a iPadu.",
+        "Zachován bezpečný import buddyů až po potvrzení importu."
+      ]
+    },
     {
       "version": "1.18.2",
       "date": "2026-11-25",
