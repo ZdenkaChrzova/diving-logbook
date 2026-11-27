@@ -1,22 +1,22 @@
 {
-  "version": "1.22.2",
+  "version": "1.22.3",
   "date": "2026-11-25",
-  "title": "Oprava navigace přes profilovou fotografii",
+  "title": "Spolehlivá navigace přes profilovou fotografii",
   "changes": [
-    "Opraveno otevření navigace Můj profil klepnutím na profilovou fotografii na úvodní obrazovce.",
-    "Profilová fotografie i ozubené kolečko nyní tvoří jednu spolehlivou dotykovou plochu.",
-    "Dotykové události v mobilním Safari a instalované PWA už nejsou zachyceny vnitřními prvky fotografie.",
-    "Opravy spuštění a nová struktura profilu a nastavení zůstávají zachované."
+    "Opraveno otevření Mého profilu klepnutím na fotografii na úvodní obrazovce.",
+    "Navigace má nyní přímou záložní obsluhu přímo v tlačítku a není závislá pouze na pozdější inicializaci aplikace.",
+    "Zvětšena dotyková plocha profilové fotografie a vnitřní obrázek ani ozubené kolečko už nemohou zachytit klepnutí.",
+    "Verze a offline cache byly zvýšeny, aby se na iPhonu nenačetla starší nefunkční obsluha."
   ],
   "history": [
     {
-      "version": "1.22.2",
+      "version": "1.22.3",
       "date": "2026-11-25",
       "changes": [
-        "Opraveno otevření navigace Můj profil klepnutím na profilovou fotografii na úvodní obrazovce.",
-        "Profilová fotografie i ozubené kolečko nyní tvoří jednu spolehlivou dotykovou plochu.",
-        "Dotykové události v mobilním Safari a instalované PWA už nejsou zachyceny vnitřními prvky fotografie.",
-        "Opravy spuštění a nová struktura profilu a nastavení zůstávají zachované."
+        "Opraveno otevření Mého profilu klepnutím na fotografii na úvodní obrazovce.",
+        "Navigace má nyní přímou záložní obsluhu přímo v tlačítku a není závislá pouze na pozdější inicializaci aplikace.",
+        "Zvětšena dotyková plocha profilové fotografie a vnitřní obrázek ani ozubené kolečko už nemohou zachytit klepnutí.",
+        "Verze a offline cache byly zvýšeny, aby se na iPhonu nenačetla starší nefunkční obsluha."
       ]
     },
     {
