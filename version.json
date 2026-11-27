@@ -1,15 +1,30 @@
 {
-  "version": "1.19.0",
+  "version": "1.20.0",
   "date": "2026-11-25",
-  "title": "Přehled záloh a jednodušší stránka Data",
+  "title": "Mobilní použitelnost a přehlednější správa",
   "changes": [
-    "Na stránce Data se zobrazuje datum a čas poslední vytvořené JSON zálohy.",
-    "Na stránce Data se zobrazuje datum a čas posledního CSV exportu.",
-    "Aplikace upozorní, pokud JSON záloha ještě nebyla vytvořena nebo je starší než 30 dní.",
-    "Časy exportů se ukládají do nastavení aplikace a JSON záloha obsahuje čas svého vytvoření.",
-    "Ze stránky Data byl odstraněn dlouhý seznam Známé lokality; lokality zůstávají beze změny v databázi, mapě, správě a filtrech."
+    "Odstraněno plovoucí tlačítko návratu nahoru, které na iPhonu překrývalo formuláře, karty a akční tlačítka.",
+    "Formulář ponoru má bezpečný spodní prostor pro pevnou lištu Uložit a Uložit a další.",
+    "Přidání a úprava buddyho se otevírá v překryvném formuláři bez přesunu na konec seznamu.",
+    "Seznam buddies je kompaktnější; interní ID zůstává zachované v datech, ale není zobrazované v běžném přehledu.",
+    "Správa číselníků se při prvním otevření zobrazí na číselníku Země a pamatuje si naposledy otevřený číselník.",
+    "Na iPhonu se číselník vybírá z přehledného rozbalovacího seznamu a aktivní volba vždy odpovídá zobrazenému obsahu.",
+    "QR import, SSI Site ID, vazby lokalit, CSV, JSON a interní hodnoty číselníků zůstávají beze změny."
   ],
   "history": [
+    {
+      "version": "1.20.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Odstraněno plovoucí tlačítko návratu nahoru, které na iPhonu překrývalo formuláře, karty a akční tlačítka.",
+        "Formulář ponoru má bezpečný spodní prostor pro pevnou lištu Uložit a Uložit a další.",
+        "Přidání a úprava buddyho se otevírá v překryvném formuláři bez přesunu na konec seznamu.",
+        "Seznam buddies je kompaktnější; interní ID zůstává zachované v datech, ale není zobrazované v běžném přehledu.",
+        "Správa číselníků se při prvním otevření zobrazí na číselníku Země a pamatuje si naposledy otevřený číselník.",
+        "Na iPhonu se číselník vybírá z přehledného rozbalovacího seznamu a aktivní volba vždy odpovídá zobrazenému obsahu.",
+        "QR import, SSI Site ID, vazby lokalit, CSV, JSON a interní hodnoty číselníků zůstávají beze změny."
+      ]
+    },
     {
       "version": "1.19.0",
       "date": "2026-11-25",

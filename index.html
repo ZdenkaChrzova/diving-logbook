@@ -13,7 +13,7 @@
   <script>
   (function(){try{var choice=localStorage.getItem("divingLogBook.theme")||"auto";if(choice!=="light"&&choice!=="dark")choice="auto";document.documentElement.dataset.themeChoice=choice;if(choice==="light"||choice==="dark")document.documentElement.dataset.theme=choice}catch(e){}})();
   </script>
-  <link rel="stylesheet" href="styles.css?v=1.19.0">
+  <link rel="stylesheet" href="styles.css?v=1.20.0">
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -80,7 +80,7 @@
 <body>
   <header class="topbar">
     <div>
-      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.19.0</span></div>
+      <div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.20.0</span></div>
       <h1>Moje ponory</h1>
     </div>
     <button id="btnProfile" class="profile-orb" type="button" aria-label="Otevřít můj profil"><span id="headerAvatar" class="profile-orb-avatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -325,8 +325,8 @@
     </section>
     <section id="sitesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Databáze lokalit</h2></div><div class="card"><div class="toolbar"><input id="siteDbSearch" type="search" placeholder="Název, země nebo SSI ID"><button id="addSite" class="primary" type="button">＋ Přidat</button></div><button id="filterMissingCoordinates" class="missing-coordinates-filter" type="button" aria-pressed="false"><span>⚠ Bez souřadnic</span><strong id="missingCoordinatesCount">0</strong></button><div id="sitesDbStats" class="mini-stats"></div><div class="merge-toolbar"><button id="startSiteMerge" class="primary wide" type="button" aria-pressed="false">Sloučit lokality</button><div id="siteMergeActions" class="merge-actions hidden"><span id="siteMergeCount">Vybráno: 0</span><button id="cancelSiteMerge" class="secondary" type="button">Zrušit</button><button id="continueSiteMerge" class="primary" type="button" disabled aria-disabled="true">Pokračovat</button></div></div></div><div id="sitesDbList" class="list"></div><form id="siteDbForm" class="card form-section hidden"><h3 id="siteDbFormTitle">Přidat lokalitu</h3><input id="siteDbOldId" type="hidden"><div class="form-grid"><label>SSI Site ID<input id="siteDbId" type="number" inputmode="numeric"></label><label>Název *<input id="siteDbName" required></label><label>Země *<input id="siteDbCountry" list="countryOptions" required></label><label>Oblast<input id="siteDbRegion"></label></div><label>Souřadnice ze SSI<input id="siteDbCoordinates" type="text" inputmode="text" placeholder="50,00080° S, 14,76000° V" autocomplete="off"></label><p class="hint">Vlož celý zápis z mapy SSI. Přijímáme také N/E/J/Z a desetinnou tečku.</p><div id="siteDbCoordinatesError" class="message error hidden" role="alert"></div><label>Poznámka<textarea id="siteDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelSiteDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit lokalitu</button></div></form></section>
     <section id="mapView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Mapa lokalit</h2></div><div class="map-summary-grid"><div><strong id="mapMappedCount">0</strong><span>na mapě</span></div><div><strong id="mapMissingCount">0</strong><span>bez souřadnic</span></div><div><strong id="mapTotalCount">0</strong><span>celkem</span></div></div><div class="card map-controls"><input id="mapSearch" type="search" placeholder="Hledat lokalitu, zemi nebo oblast"><button id="showMissingSites" class="secondary wide" type="button">Doplnit souřadnice</button></div><div id="localitiesMap" class="localities-map" aria-label="Mapa potápěčských lokalit"></div><div id="missingSitesPanel" class="card hidden"><div class="section-head compact"><h3>Lokality bez souřadnic</h3><button id="closeMissingSites" class="text-btn teal" type="button">Zavřít</button></div><div id="missingSitesList" class="list"></div></div></section>
-    <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><form id="buddyDbForm" class="card form-section hidden"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></section>
-    <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
+    <section id="buddiesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Buddies</h2></div><div class="card"><div class="toolbar"><input id="buddyDbSearch" type="search" placeholder="Hledat buddyho"><button id="addBuddy" class="primary" type="button">＋ Přidat</button></div></div><div id="buddiesDbList" class="list"></div><div id="buddyDbModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="buddyDbFormTitle"><form id="buddyDbForm" class="modal-card form-section"><h3 id="buddyDbFormTitle">Přidat buddyho</h3><input id="buddyDbId" type="hidden"><label>Jméno *<input id="buddyDbName" required></label><label>Poznámka<textarea id="buddyDbNotes" rows="2"></textarea></label><div class="button-row"><button id="cancelBuddyDb" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit buddyho</button></div></form></div></section>      
+      <section id="buddyPickerView" class="view"><div class="view-title"><button id="buddyPickerBack" class="back" type="button">‹</button><h2>Vybrat buddies</h2></div><div class="card"><div id="buddyPickerList" class="check-list"></div><button id="newBuddyFromPicker" class="secondary wide" type="button">＋ Založit nového buddy</button><button id="confirmBuddies" class="primary wide" type="button">Potvrdit výběr</button></div></section>
     <section id="defaultsView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Výchozí hodnoty</h2></div><form id="defaultsForm" class="card form-section"><p class="hint">Tyto hodnoty se předvyplní pouze u nového ponoru. QR údaje nepřepisují.</p><div class="form-grid"><label>Oblek<select id="defaultSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="defaultTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="defaultTankVolume" type="number" min="0" step="0.1"></label><label>Plyn<select id="defaultGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="defaultWeight" type="number" min="0" step="0.5"></label><label>Počáteční tlak (bar)<input id="defaultStartPressure" type="number" min="0"></label><label>Koncový tlak (bar)<input id="defaultEndPressure" type="number" min="0"></label></div><button class="primary wide" type="submit">Uložit výchozí hodnoty</button></form></section>
     <section id="profilesView" class="view"><div class="view-title"><button class="back" data-settings-back type="button">‹</button><h2>Profily výstroje</h2></div><button id="addProfile" class="primary wide" type="button">＋ Přidat profil</button><div id="profilesList" class="list"></div><form id="profileForm" class="card form-section hidden"><h3 id="profileFormTitle">Přidat profil</h3><input id="profileId" type="hidden"><label>Název profilu *<input id="gearProfileName" required placeholder="např. Moře"></label><div class="form-grid"><label>Oblek<select id="profileSuit"><option value="">Nevyplněno</option><option value="dry suit">Dry suit</option><option value="neoprén short">Neoprén short</option><option value="neoprén 3 mm">Neoprén 3 mm</option><option value="neoprén 5 mm">Neoprén 5 mm</option><option value="neoprén 7 mm">Neoprén 7 mm</option></select></label><label>Materiál lahve<select id="profileTankMaterial"><option value="">Nevyplněno</option><option>Ocel</option><option>Hliník</option></select></label><label>Objem lahve (l)<input id="profileTankVolume" type="number" step="0.1"></label><label>Plyn<select id="profileGas"><option value="">Nevyplněno</option><option value="vzduch">Vzduch</option><option value="nitrox">Nitrox</option></select></label><label>Závaží (kg)<input id="profileWeight" type="number" step="0.5"></label><label>Počáteční tlak (bar)<input id="profileStartPressure" type="number"></label><label>Koncový tlak (bar)<input id="profileEndPressure" type="number"></label></div><div class="button-row"><button id="cancelProfile" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit profil</button></div></form></section>
 
@@ -336,6 +336,7 @@
       <div id="catalogItemModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="catalogItemModalTitle"><form id="catalogItemForm" class="modal-card"><h2 id="catalogItemModalTitle">Položka číselníku</h2><input id="catalogItemId" type="hidden"><label id="catalogExternalIdField" class="hidden">ID z QR kódu *<input id="catalogExternalId" type="number" min="1" step="1" inputmode="numeric"><small id="catalogExternalIdHint" class="hint">Po uložení zůstává ID pevné; měnit lze jen název.</small></label><label>Název<input id="catalogItemName" required maxlength="80"></label><div class="button-row"><button id="cancelCatalogItem" class="secondary" type="button">Zrušit</button><button class="primary" type="submit">Uložit</button></div></form></div>
       <div class="card catalog-help"><p>Hodnoty se po uložení okamžitě objeví ve formulářích. Používané položky lze skrýt; odstranit lze pouze nepoužívanou vlastní položku.</p></div>
       <div class="catalog-layout">
+        <label class="catalog-mobile-picker">Číselník<select id="catalogSelect" aria-label="Vybrat číselník"></select></label>
         <nav id="catalogTabs" class="catalog-tabs" aria-label="Číselníky"></nav>
         <div class="card">
           <div class="catalog-heading"><div><h3 id="catalogTitle">Číselník</h3><p id="catalogDescription" class="hint"></p></div><button id="addCatalogItem" class="primary" type="button">＋ Přidat</button></div>
@@ -356,7 +357,7 @@
           <button id="openBuddies" class="settings-card" type="button"><span class="settings-icon">👥</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button>
         <button id="openDefaults" class="settings-card" type="button"><span class="settings-icon">⚙️</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button>
         <button id="openProfiles" class="settings-card" type="button"><span class="settings-icon">🎒</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button><button id="openCatalogs" class="settings-card" type="button"><span class="settings-icon">☷</span><span><strong>Správa číselníků</strong><small>Vybavení, výstroj a servisní hodnoty</small></span><b>›</b></button>
-        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.19.0</small></span><b>›</b></button>
+        <button id="openReleaseNotes" class="settings-card" type="button"><span class="settings-icon">✨</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.20.0</small></span><b>›</b></button>
       </div>
         <div class="card form-section appearance-settings">
           <h3>Vzhled aplikace</h3>
@@ -388,7 +389,7 @@
           </div>
         </div>
       </div>
-      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.19.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
+      <div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.20.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div>
     </section>
   </main>
 
@@ -407,17 +408,16 @@
   </div>
 
   <div id="siteMergeModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="siteMergeTitle"><div class="modal-card site-merge-modal-card"><h2 id="siteMergeTitle">Sloučit lokality</h2><p>Vyber hlavní lokalitu, která zůstane zachována. Ponory z ostatních vybraných lokalit se na ni přepojí.</p><div id="siteMergeSummary" class="merge-summary"></div><label>Hlavní lokalita<select id="siteMergeTarget"></select></label><div class="button-row"><button id="closeSiteMerge" class="secondary" type="button">Zpět</button><button id="confirmSiteMerge" class="danger" type="button">Sloučit lokality</button></div></div></div>
-  <button id="scrollTopBtn" class="scroll-top-btn" type="button" aria-label="Přejít nahoru">↑</button>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="storage.js?v=1.19.0"></script>
-  <script src="app.js?v=1.19.0"></script>
-  <script src="csv-import.js?v=1.19.0"></script>
-  <script src="settings-data-layout.js?v=1.19.0"></script>
-  <script src="service.js?v=1.19.0"></script>
-  <script src="catalogs.js?v=1.19.0"></script>
-  <script src="map-localities.js?v=1.19.0"></script>
-  <script src="search-clear.js?v=1.19.0"></script>
+  <script src="storage.js?v=1.20.0"></script>
+  <script src="app.js?v=1.20.0"></script>
+  <script src="csv-import.js?v=1.20.0"></script>
+  <script src="settings-data-layout.js?v=1.20.0"></script>
+  <script src="service.js?v=1.20.0"></script>
+  <script src="catalogs.js?v=1.20.0"></script>
+  <script src="map-localities.js?v=1.20.0"></script>
+  <script src="search-clear.js?v=1.20.0"></script>
 </body>
 </html>
