@@ -1,14 +1,24 @@
 {
-  "version": "1.22.3",
+  "version": "1.22.4",
   "date": "2026-11-25",
-  "title": "Spolehlivá navigace přes profilovou fotografii",
+  "title": "Oprava otevření Mého profilu",
   "changes": [
-    "Opraveno otevření Mého profilu klepnutím na fotografii na úvodní obrazovce.",
-    "Navigace má nyní přímou záložní obsluhu přímo v tlačítku a není závislá pouze na pozdější inicializaci aplikace.",
-    "Zvětšena dotyková plocha profilové fotografie a vnitřní obrázek ani ozubené kolečko už nemohou zachytit klepnutí.",
-    "Verze a offline cache byly zvýšeny, aby se na iPhonu nenačetla starší nefunkční obsluha."
+    "Opravena skutečná příčina nefunkční profilové fotografie: vykreslení profilu se zastavovalo na odstraněných statistických prvcích.",
+    "Funkce Můj profil nyní bezpečně aktualizuje pouze prvky, které na nové obrazovce skutečně existují.",
+    "Kliknutí na fotografii otevře Můj profil a zachovává přístup k dokumentům i Nastavení.",
+    "Dotyková plocha a přímá navigační obsluha z předchozí opravy zůstávají zachované."
   ],
   "history": [
+    {
+      "version": "1.22.4",
+      "date": "2026-11-25",
+      "changes": [
+        "Opravena skutečná příčina nefunkční profilové fotografie: vykreslení profilu se zastavovalo na odstraněných statistických prvcích.",
+        "Funkce Můj profil nyní bezpečně aktualizuje pouze prvky, které na nové obrazovce skutečně existují.",
+        "Kliknutí na fotografii otevře Můj profil a zachovává přístup k dokumentům i Nastavení.",
+        "Dotyková plocha a přímá navigační obsluha z předchozí opravy zůstávají zachované."
+      ]
+    },
     {
       "version": "1.22.3",
       "date": "2026-11-25",

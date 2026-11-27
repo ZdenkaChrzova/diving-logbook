@@ -191,7 +191,7 @@ body:has(#editView.active) .scroll-top-btn{bottom:calc(104px + env(safe-area-ins
 /* Profile and settings information architecture - v1.22.0 */
 .legacy-profile-tabs{display:none}.profile-section-label,.settings-group>h3{margin:18px 5px 8px;color:var(--primary);font-size:.92rem;font-weight:850}.profile-action-card{padding:4px 16px}.profile-edit-button{margin-top:8px}.settings-group{margin-bottom:20px}.settings-menu.grouped{gap:0;border-radius:18px;overflow:hidden;background:var(--card);box-shadow:var(--shadow)}.settings-menu.grouped .settings-card{border-radius:0;box-shadow:none;border-bottom:1px solid var(--line)}.settings-menu.grouped .settings-card:last-child{border-bottom:0}.settings-group .settings-menu{margin-bottom:0}#appearanceView .appearance-settings,#numberingView .form-section,#dataView .form-section{margin-top:0}.profile-panel:not(.active){display:none}#profileView:has(#profileLicenses.active) .profile-hero,#profileView:has(#profileInsurance.active) .profile-hero,#profileView:has(#profileService.active) .profile-hero{display:none}@media(max-width:520px){.profile-hero{align-items:flex-start}.profile-photo-wrap{width:76px;height:76px;flex-basis:76px}.settings-card{padding:13px 12px}}
 
-/* Definitive dashboard profile navigation fix - v1.22.3 */
+/* Definitive dashboard profile navigation fix - v1.22.4 */
 .topbar{position:relative;z-index:20}
 #btnProfile{position:relative;z-index:30;display:block;flex:0 0 64px;width:64px;height:64px;min-width:64px;min-height:64px;cursor:pointer;pointer-events:auto!important;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 #btnProfile::before{content:"";position:absolute;inset:-10px;border-radius:50%;pointer-events:auto}
