@@ -1,17 +1,24 @@
 {
-  "version": "1.20.0",
+  "version": "1.20.1",
   "date": "2026-11-25",
-  "title": "Mobilní použitelnost a přehlednější správa",
+  "title": "Návrat šipky pro rychlý posun nahoru",
   "changes": [
-    "Odstraněno plovoucí tlačítko návratu nahoru, které na iPhonu překrývalo formuláře, karty a akční tlačítka.",
-    "Formulář ponoru má bezpečný spodní prostor pro pevnou lištu Uložit a Uložit a další.",
-    "Přidání a úprava buddyho se otevírá v překryvném formuláři bez přesunu na konec seznamu.",
-    "Seznam buddies je kompaktnější; interní ID zůstává zachované v datech, ale není zobrazované v běžném přehledu.",
-    "Správa číselníků se při prvním otevření zobrazí na číselníku Země a pamatuje si naposledy otevřený číselník.",
-    "Na iPhonu se číselník vybírá z přehledného rozbalovacího seznamu a aktivní volba vždy odpovídá zobrazenému obsahu.",
-    "QR import, SSI Site ID, vazby lokalit, CSV, JSON a interní hodnoty číselníků zůstávají beze změny."
+    "Vráceno plovoucí tlačítko se šipkou pro rychlý návrat na začátek všech dlouhých obrazovek.",
+    "V editaci ponoru se šipka automaticky posouvá nad pevnou lištu Uložit a Uložit a další, aby nepřekrývala ovládání.",
+    "Na velmi úzkých displejích se šipka posouvá výše nad dvouřádkovou ukládací lištu.",
+    "Funkce přidané ve verzi 1.20.0 zůstávají zachované; datový model, QR, SSI ID, CSV a JSON se nemění."
   ],
   "history": [
+    {
+      "version": "1.20.1",
+      "date": "2026-11-25",
+      "changes": [
+        "Vráceno plovoucí tlačítko se šipkou pro rychlý návrat na začátek všech dlouhých obrazovek.",
+        "V editaci ponoru se šipka automaticky posouvá nad pevnou lištu Uložit a Uložit a další, aby nepřekrývala ovládání.",
+        "Na velmi úzkých displejích se šipka posouvá výše nad dvouřádkovou ukládací lištu.",
+        "Funkce přidané ve verzi 1.20.0 zůstávají zachované; datový model, QR, SSI ID, CSV a JSON se nemění."
+      ]
+    },
     {
       "version": "1.20.0",
       "date": "2026-11-25",
