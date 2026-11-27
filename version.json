@@ -1,14 +1,26 @@
 {
-  "version": "1.22.4",
+  "version": "1.22.5",
   "date": "2026-11-25",
-  "title": "Oprava otevření Mého profilu",
+  "title": "Finální vizuální doladění profilu a nastavení",
   "changes": [
-    "Opravena skutečná příčina nefunkční profilové fotografie: vykreslení profilu se zastavovalo na odstraněných statistických prvcích.",
-    "Funkce Můj profil nyní bezpečně aktualizuje pouze prvky, které na nové obrazovce skutečně existují.",
-    "Kliknutí na fotografii otevře Můj profil a zachovává přístup k dokumentům i Nastavení.",
-    "Dotyková plocha a přímá navigační obsluha z předchozí opravy zůstávají zachované."
+    "Sjednoceny ikony v Nastavení a Mém profilu do jednoduchého jednobarevného stylu.",
+    "Zpřehledněny skupiny Deník, Výstroj a Aplikace pomocí jemných oddělovačů a vyváženého odsazení.",
+    "Můj profil má kompaktnější hlavičku a u licencí a pojištění zobrazuje stručný stav uložených záznamů.",
+    "Zálohy nyní v přehledu zobrazují datum posledního JSON exportu.",
+    "Sjednoceno rozložení samostatných obrazovek Vzhled, Číslování, Zálohy a O aplikaci bez změny datového modelu."
   ],
   "history": [
+    {
+      "version": "1.22.5",
+      "date": "2026-11-25",
+      "changes": [
+        "Sjednoceny ikony v Nastavení a Mém profilu do jednoduchého jednobarevného stylu.",
+        "Zpřehledněny skupiny Deník, Výstroj a Aplikace pomocí jemných oddělovačů a vyváženého odsazení.",
+        "Můj profil má kompaktnější hlavičku a u licencí a pojištění zobrazuje stručný stav uložených záznamů.",
+        "Zálohy nyní v přehledu zobrazují datum posledního JSON exportu.",
+        "Sjednoceno rozložení samostatných obrazovek Vzhled, Číslování, Zálohy a O aplikaci bez změny datového modelu."
+      ]
+    },
     {
       "version": "1.22.4",
       "date": "2026-11-25",
