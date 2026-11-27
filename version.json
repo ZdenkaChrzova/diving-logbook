@@ -1,14 +1,26 @@
 {
-  "version": "1.21.1",
+  "version": "1.22.0",
   "date": "2026-11-25",
-  "title": "Srovnání polí teplot",
+  "title": "Přehlednější profil a nastavení",
   "changes": [
-    "Srovnána pole Max. teplota vody a Teplota vzduchu v rozbalovací části Další podmínky.",
-    "Delší dvouřádkový popisek už neposouvá vstupní pole níže než sousední pole.",
-    "Veškerá funkcionalita formuláře a datový model zůstávají beze změny.",
-    "Opravena poloha rozbalovací šipky u Údajů lokality; šipka zůstává uvnitř rámečku a je svisle vystředěná."
+    "Přepracován Můj profil do přehledných skupin Osobní profil a Dokumenty bez duplicitních statistik a záložek.",
+    "Nastavení je nově rozdělené do skupin Deník, Výstroj a Aplikace.",
+    "Zálohy a přenos dat, Vzhled aplikace a Číslování ponorů mají samostatné obrazovky.",
+    "Servis vybavení je dostupný ze skupiny Výstroj.",
+    "Licence, pojištění, servis, QR import, SSI Site ID, CSV, JSON, IndexedDB a datový model zůstávají zachované."
   ],
   "history": [
+    {
+      "version": "1.22.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Přepracován Můj profil do přehledných skupin Osobní profil a Dokumenty bez duplicitních statistik a záložek.",
+        "Nastavení je nově rozdělené do skupin Deník, Výstroj a Aplikace.",
+        "Zálohy a přenos dat, Vzhled aplikace a Číslování ponorů mají samostatné obrazovky.",
+        "Servis vybavení je dostupný ze skupiny Výstroj.",
+        "Licence, pojištění, servis, QR import, SSI Site ID, CSV, JSON, IndexedDB a datový model zůstávají zachované."
+      ]
+    },
     {
       "version": "1.21.1",
       "date": "2026-11-25",
