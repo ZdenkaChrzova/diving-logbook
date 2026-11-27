@@ -1,16 +1,24 @@
 {
-  "version": "1.21.0",
+  "version": "1.21.1",
   "date": "2026-11-25",
-  "title": "Přehlednější editace ponoru",
+  "title": "Srovnání polí teplot",
   "changes": [
-    "Formulář ponoru je na iPhonu kratší a související údaje jsou uspořádané do dvojic.",
-    "Vybraná lokalita se zobrazuje v kompaktní kartě; SSI Site ID a současná logika lokalit zůstávají zachované.",
-    "Méně používané podmínky jsou v rozbalovací části Další podmínky, která se automaticky otevře, pokud obsahuje uložené hodnoty.",
-    "Buddy je oddělený do samostatné sekce Lidé a výstroj má vlastní přehlednou sekci.",
-    "Prázdná pole Poznámka a Živočichové zabírají méně místa.",
-    "Šipka nahoru, Uložit, Uložit a další, QR import, CSV, JSON a datový model zůstávají funkčně beze změny."
+    "Srovnána pole Max. teplota vody a Teplota vzduchu v rozbalovací části Další podmínky.",
+    "Delší dvouřádkový popisek už neposouvá vstupní pole níže než sousední pole.",
+    "Veškerá funkcionalita formuláře a datový model zůstávají beze změny.",
+    "Opravena poloha rozbalovací šipky u Údajů lokality; šipka zůstává uvnitř rámečku a je svisle vystředěná."
   ],
   "history": [
+    {
+      "version": "1.21.1",
+      "date": "2026-11-25",
+      "changes": [
+        "Srovnána pole Max. teplota vody a Teplota vzduchu v rozbalovací části Další podmínky.",
+        "Delší dvouřádkový popisek už neposouvá vstupní pole níže než sousední pole.",
+        "Veškerá funkcionalita formuláře a datový model zůstávají beze změny.",
+        "Opravena poloha rozbalovací šipky u Údajů lokality; šipka zůstává uvnitř rámečku a je svisle vystředěná."
+      ]
+    },
     {
       "version": "1.21.0",
       "date": "2026-11-25",
