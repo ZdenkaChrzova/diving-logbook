@@ -204,3 +204,36 @@ body:has(#editView.active) .scroll-top-btn{bottom:calc(104px + env(safe-area-ins
 .profile-hero{gap:16px;padding:18px}.profile-hero>div:last-child{min-width:0;flex:1}.profile-edit-button{margin-top:10px;min-height:36px;padding:7px 13px}.profile-section-label{display:flex;align-items:center;gap:10px;margin:18px 6px 9px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}.profile-section-label::after{content:"";height:1px;flex:1;background:var(--line)}.profile-action-card{overflow:hidden;padding:0 15px}.profile-action{min-height:67px}.profile-action>span:first-child{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:color-mix(in srgb,var(--primary) 12%,transparent);color:var(--primary);font-size:1rem;font-weight:800}.profile-action small{margin-top:3px}
 #appearanceView>.appearance-settings,#numberingView>.form-section,#dataView>.form-section,#aboutView>.app-about{border-radius:18px;padding:18px;margin-top:4px}#appearanceView .view-title,#numberingView .view-title,#dataView .view-title,#aboutView .view-title{margin-bottom:14px}
 @media(max-width:520px){.profile-hero{padding:16px;gap:13px}.profile-edit-button{width:auto}.settings-group{margin-bottom:22px}.settings-card{min-height:66px}.settings-icon{width:32px;height:32px}.profile-action>span:first-child{width:32px;height:32px}}
+
+/* More prominent navigation icons - v1.22.6 */
+.settings-icon{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--primary) 22%,var(--card));
+  color:var(--primary);
+  border:1px solid color-mix(in srgb,var(--primary) 34%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 18%,transparent),0 3px 10px color-mix(in srgb,var(--primary) 12%,transparent);
+  font-size:1.28rem;
+  font-weight:900;
+}
+.profile-action>span:first-child{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--primary) 22%,var(--card));
+  color:var(--primary);
+  border:1px solid color-mix(in srgb,var(--primary) 34%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 18%,transparent),0 3px 10px color-mix(in srgb,var(--primary) 12%,transparent);
+  font-size:1.2rem;
+  font-weight:900;
+}
+.settings-card{column-gap:13px}
+.profile-action{column-gap:13px}
+@media(max-width:520px){
+  .settings-icon,.profile-action>span:first-child{width:38px;height:38px;flex-basis:38px}
+  .settings-icon{font-size:1.2rem}
+  .profile-action>span:first-child{font-size:1.13rem}
+}

@@ -1,15 +1,22 @@
 {
-  "version": "1.22.5",
+  "version": "1.22.6",
   "date": "2026-11-25",
-  "title": "Finální vizuální doladění profilu a nastavení",
+  "title": "Výraznější ikony",
   "changes": [
-    "Sjednoceny ikony v Nastavení a Mém profilu do jednoduchého jednobarevného stylu.",
-    "Zpřehledněny skupiny Deník, Výstroj a Aplikace pomocí jemných oddělovačů a vyváženého odsazení.",
-    "Můj profil má kompaktnější hlavičku a u licencí a pojištění zobrazuje stručný stav uložených záznamů.",
-    "Zálohy nyní v přehledu zobrazují datum posledního JSON exportu.",
-    "Sjednoceno rozložení samostatných obrazovek Vzhled, Číslování, Zálohy a O aplikaci bez změny datového modelu."
+    "Ikony v Nastavení a Mém profilu jsou větší, výraznější a lépe čitelné na mobilním displeji.",
+    "Ikony mají kontrastnější podklad, jemné orámování a lehké prostorové zvýraznění.",
+    "Rozložení, navigace, funkce a datový model zůstávají beze změny."
   ],
   "history": [
+    {
+      "version": "1.22.6",
+      "date": "2026-11-25",
+      "changes": [
+        "Ikony v Nastavení a Mém profilu jsou větší, výraznější a lépe čitelné na mobilním displeji.",
+        "Ikony mají kontrastnější podklad, jemné orámování a lehké prostorové zvýraznění.",
+        "Rozložení, navigace, funkce a datový model zůstávají beze změny."
+      ]
+    },
     {
       "version": "1.22.5",
       "date": "2026-11-25",
