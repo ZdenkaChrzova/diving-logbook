@@ -1,15 +1,24 @@
 {
-  "version": "1.22.0",
+  "version": "1.22.1",
   "date": "2026-11-25",
-  "title": "Přehlednější profil a nastavení",
+  "title": "Oprava spuštění profilu a nastavení",
   "changes": [
-    "Přepracován Můj profil do přehledných skupin Osobní profil a Dokumenty bez duplicitních statistik a záložek.",
-    "Nastavení je nově rozdělené do skupin Deník, Výstroj a Aplikace.",
-    "Zálohy a přenos dat, Vzhled aplikace a Číslování ponorů mají samostatné obrazovky.",
-    "Servis vybavení je dostupný ze skupiny Výstroj.",
-    "Licence, pojištění, servis, QR import, SSI Site ID, CSV, JSON, IndexedDB a datový model zůstávají zachované."
+    "Opravena chyba při spuštění způsobená odkazem na odstraněné tlačítko Servis ve starém profilu.",
+    "Aplikace se znovu správně načte a zobrazí uložené ponory.",
+    "Doplněno fungování tlačítka Zpět na samostatných obrazovkách Vzhled, Číslování, Zálohy a O aplikaci.",
+    "Nová struktura profilu a nastavení z verze 1.22.0 zůstává zachovaná."
   ],
   "history": [
+    {
+      "version": "1.22.1",
+      "date": "2026-11-25",
+      "changes": [
+        "Opravena chyba při spuštění způsobená odkazem na odstraněné tlačítko Servis ve starém profilu.",
+        "Aplikace se znovu správně načte a zobrazí uložené ponory.",
+        "Doplněno fungování tlačítka Zpět na samostatných obrazovkách Vzhled, Číslování, Zálohy a O aplikaci.",
+        "Nová struktura profilu a nastavení z verze 1.22.0 zůstává zachovaná."
+      ]
+    },
     {
       "version": "1.22.0",
       "date": "2026-11-25",
