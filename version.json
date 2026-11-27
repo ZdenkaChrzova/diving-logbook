@@ -1,14 +1,28 @@
 {
-  "version": "1.20.1",
+  "version": "1.21.0",
   "date": "2026-11-25",
-  "title": "Návrat šipky pro rychlý posun nahoru",
+  "title": "Přehlednější editace ponoru",
   "changes": [
-    "Vráceno plovoucí tlačítko se šipkou pro rychlý návrat na začátek všech dlouhých obrazovek.",
-    "V editaci ponoru se šipka automaticky posouvá nad pevnou lištu Uložit a Uložit a další, aby nepřekrývala ovládání.",
-    "Na velmi úzkých displejích se šipka posouvá výše nad dvouřádkovou ukládací lištu.",
-    "Funkce přidané ve verzi 1.20.0 zůstávají zachované; datový model, QR, SSI ID, CSV a JSON se nemění."
+    "Formulář ponoru je na iPhonu kratší a související údaje jsou uspořádané do dvojic.",
+    "Vybraná lokalita se zobrazuje v kompaktní kartě; SSI Site ID a současná logika lokalit zůstávají zachované.",
+    "Méně používané podmínky jsou v rozbalovací části Další podmínky, která se automaticky otevře, pokud obsahuje uložené hodnoty.",
+    "Buddy je oddělený do samostatné sekce Lidé a výstroj má vlastní přehlednou sekci.",
+    "Prázdná pole Poznámka a Živočichové zabírají méně místa.",
+    "Šipka nahoru, Uložit, Uložit a další, QR import, CSV, JSON a datový model zůstávají funkčně beze změny."
   ],
   "history": [
+    {
+      "version": "1.21.0",
+      "date": "2026-11-25",
+      "changes": [
+        "Formulář ponoru je na iPhonu kratší a související údaje jsou uspořádané do dvojic.",
+        "Vybraná lokalita se zobrazuje v kompaktní kartě; SSI Site ID a současná logika lokalit zůstávají zachované.",
+        "Méně používané podmínky jsou v rozbalovací části Další podmínky, která se automaticky otevře, pokud obsahuje uložené hodnoty.",
+        "Buddy je oddělený do samostatné sekce Lidé a výstroj má vlastní přehlednou sekci.",
+        "Prázdná pole Poznámka a Živočichové zabírají méně místa.",
+        "Šipka nahoru, Uložit, Uložit a další, QR import, CSV, JSON a datový model zůstávají funkčně beze změny."
+      ]
+    },
     {
       "version": "1.20.1",
       "date": "2026-11-25",
