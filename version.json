@@ -1,13 +1,26 @@
 {
-  "version": "1.23.1",
+  "version": "1.24.0",
   "date": "2026-11-28",
-  "title": "Čitelnost chybějících čísel v tmavém režimu",
+  "title": "Kontrola kvality deníku",
   "changes": [
-    "Opravena čitelnost chybějících čísel v tmavém režimu.",
-    "Rozsahy chybějících čísel mají v tmavém vzhledu kontrastní tmavé pozadí, světlejší text a jemné orámování.",
-    "Světlý režim a logika kontroly návaznosti zůstávají beze změny."
+    "Přidána souhrnná Kontrola kvality deníku pro neúplné ponory, podezřelé hodnoty, neplatné vazby, lokality a zálohy.",
+    "Z výsledků lze otevřít konkrétní ponor, lokalitu nebo stránku záloh.",
+    "Neúplné ponory lze postupně opravovat pomocí zachovaného filtru a režimu Uložit a další.",
+    "Samostatný filtr Chybějící údaje byl z úvodní obrazovky skryt; jeho pracovní logika zůstává zachována v nové kontrole.",
+    "Kontrola žádná uložená data automaticky nemění."
   ],
   "history": [
+    {
+      "version": "1.24.0",
+      "date": "2026-11-28",
+      "changes": [
+        "Přidána souhrnná Kontrola kvality deníku pro neúplné ponory, podezřelé hodnoty, neplatné vazby, lokality a zálohy.",
+        "Z výsledků lze otevřít konkrétní ponor, lokalitu nebo stránku záloh.",
+        "Neúplné ponory lze postupně opravovat pomocí zachovaného filtru a režimu Uložit a další.",
+        "Samostatný filtr Chybějící údaje byl z úvodní obrazovky skryt; jeho pracovní logika zůstává zachována v nové kontrole.",
+        "Kontrola žádná uložená data automaticky nemění."
+      ]
+    },
     {
       "version": "1.23.1",
       "date": "2026-11-28",

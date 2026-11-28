@@ -14,7 +14,7 @@
 <script>
   (function(){try{var choice=localStorage.getItem("divingLogBook.theme")||"auto";if(choice!=="light"&&choice!=="dark")choice="auto";document.documentElement.dataset.themeChoice=choice;if(choice==="light"||choice==="dark")document.documentElement.dataset.theme=choice}catch(e){}})();
   </script>
-<link href="styles.css?v=1.23.1" rel="stylesheet"/>
+<link href="styles.css?v=1.24.0" rel="stylesheet"/>
 <style>
 .version-badge{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,.15);color:#d9f5f6;font-size:.68rem;letter-spacing:.04em;vertical-align:1px}
 .dive-number-field{max-width:220px;margin-bottom:13px}.compact-pairs{display:grid;gap:12px}.compact-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -76,7 +76,7 @@
 <body>
 <header class="topbar">
 <div>
-<div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.23.1</span></div>
+<div class="eyebrow">DIVING LOGBOOK <span class="version-badge">v1.24.0</span></div>
 <h1>Moje ponory</h1>
 </div>
 <button aria-label="Otevřít můj profil" class="profile-orb" id="btnProfile" onclick="window.openProfileNavigation &amp;&amp; window.openProfileNavigation()" type="button"><span class="profile-orb-avatar" id="headerAvatar">ZC</span><span class="profile-orb-gear">⚙</span></button>
@@ -124,7 +124,7 @@
 <p class="hint" id="advancedFilterStatus">Filtr není aktivní.</p>
 </div>
 </div>
-<div class="missing-filter-wrap">
+<div class="missing-filter-wrap hidden" aria-hidden="true">
 <button aria-controls="missingFilterPanel" aria-expanded="false" class="missing-filter-toggle" id="toggleMissingFilter" type="button"><span>⚠ Chybějící údaje</span><strong id="missingFilterTotal">0</strong></button>
 <div class="card missing-filter-panel hidden" id="missingFilterPanel">
 <div class="missing-filter-head"><h3>Zobrazit ponory, kde chybí</h3><button class="text-btn teal" id="closeMissingFilter" type="button">Zavřít</button></div>
@@ -318,7 +318,10 @@
 </div></section><section class="view" id="sequenceCheckView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>Kontrola návaznosti ponorů</h2></div>
 <div class="card sequence-intro"><p>Kontrola porovná čísla uložených ponorů a upozorní na chybějící nebo opakovaná čísla. Žádné záznamy automaticky nemění.</p><button class="primary wide" id="runSequenceCheck" type="button">Zkontrolovat návaznost</button></div>
 <div id="sequenceCheckResults"></div>
-</section><section class="view" id="dataView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>Zálohy a přenos dat</h2></div><div class="card form-section">
+</section><section class="view" id="qualityCheckView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>Kontrola kvality deníku</h2></div>
+<div class="card quality-intro"><p>Kontrola vyhledá neúplné nebo nekonzistentní údaje v ponorech, lokalitách a zálohách. Žádné uložené údaje automaticky nemění.</p><button class="primary wide" id="runQualityCheck" type="button">Zkontrolovat deník</button></div>
+<div class="quality-severity" id="qualitySeverityFilters" role="group" aria-label="Filtrovat výsledky"><button class="active" data-quality-severity="all" type="button">Vše <b id="qualityAllCount">0</b></button><button data-quality-severity="error" type="button">Chyby <b id="qualityErrorCount">0</b></button><button data-quality-severity="warning" type="button">Upozornění <b id="qualityWarningCount">0</b></button><button data-quality-severity="info" type="button">Informace <b id="qualityInfoCount">0</b></button></div>
+<div id="qualityCheckResults"></div></section><section class="view" id="dataView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>Zálohy a přenos dat</h2></div><div class="card form-section">
 <div class="data-actions" id="dataActions">
 <div class="data-action-group"><h4>JSON záloha</h4>
 <button class="secondary wide" id="exportData" type="button">Exportovat JSON</button>
@@ -333,9 +336,9 @@
 <p class="hint">CSV obsahuje údaje o ponorech pro Excel a další tabulkové aplikace.</p>
 </div>
 </div>
-</div></section><section class="view" id="aboutView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>O aplikaci</h2></div><div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.23.1</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div></section><section class="view" id="settingsView">
+</div></section><section class="view" id="aboutView"><div class="view-title"><button class="back" data-settings-back="" type="button">‹</button><h2>O aplikaci</h2></div><div class="card form-section app-about"><h3>O aplikaci</h3><p><strong>Diving LogBook 1.24.0</strong></p><p class="hint">Lokální PWA pro import SSI QR, ruční doplnění a správu ponorů.</p><p class="app-copyright">© 2026 Zdeňka Chrzová</p></div></section><section class="view" id="settingsView">
 <div class="view-title"><button class="back" data-back="" type="button">‹</button><h2>Nastavení</h2></div>
-<div class="settings-menu"><div class="settings-group"><h3>Deník</h3><div class="settings-menu grouped"><button class="settings-card" id="openSites" type="button"><span class="settings-icon">⌖</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a SSI ID</small></span><b>›</b></button><button class="settings-card" id="openMap" type="button"><span class="settings-icon">◇</span><span><strong>Mapa lokalit</strong><small id="mapSummary">Lokality se souřadnicemi</small></span><b>›</b></button><button class="settings-card" id="openBuddies" type="button"><span class="settings-icon">◎</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button><button class="settings-card" id="openCatalogs" type="button"><span class="settings-icon">≡</span><span><strong>Správa číselníků</strong><small>Vlastní názvy a hodnoty</small></span><b>›</b></button></div></div><div class="settings-group"><h3>Výstroj</h3><div class="settings-menu grouped"><button class="settings-card" id="openDefaults" type="button"><span class="settings-icon">⚙</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button><button class="settings-card" id="openProfiles" type="button"><span class="settings-icon">▣</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button><button class="settings-card" id="openServiceSettings" type="button"><span class="settings-icon">⌁</span><span><strong>Servis vybavení</strong><small id="serviceSummary">Revize lahví, stage a automatik</small></span><b>›</b></button></div></div><div class="settings-group"><h3>Aplikace</h3><div class="settings-menu grouped"><button class="settings-card" id="openAppearance" type="button"><span class="settings-icon">◐</span><span><strong>Vzhled</strong><small id="appearanceSummary">Automaticky podle zařízení</small></span><b>›</b></button><button class="settings-card" id="openNumbering" type="button"><span class="settings-icon">#</span><span><strong>Číslování ponorů</strong><small id="numberingSummary">Výchozí číslo není nastaveno</small></span><b>›</b></button><button class="settings-card" id="openSequenceCheck" type="button"><span class="settings-icon">✓</span><span><strong>Kontrola návaznosti</strong><small id="sequenceCheckSummary">Mezery a duplicity v číslech ponorů</small></span><b>›</b></button><button class="settings-card" id="openData" type="button"><span class="settings-icon">⇄</span><span><strong>Zálohy a přenos dat</strong><small id="dataSummary">JSON a CSV</small></span><b>›</b></button><button class="settings-card" id="openReleaseNotes" type="button"><span class="settings-icon">✦</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.23.1</small></span><b>›</b></button><button class="settings-card" id="openAbout" type="button"><span class="settings-icon">i</span><span><strong>O aplikaci</strong><small>Diving LogBook 1.23.1</small></span><b>›</b></button></div></div></div>
+<div class="settings-menu"><div class="settings-group"><h3>Deník</h3><div class="settings-menu grouped"><button class="settings-card" id="openSites" type="button"><span class="settings-icon">⌖</span><span><strong>Databáze lokalit</strong><small id="sitesSummary">Správa názvů, zemí a SSI ID</small></span><b>›</b></button><button class="settings-card" id="openMap" type="button"><span class="settings-icon">◇</span><span><strong>Mapa lokalit</strong><small id="mapSummary">Lokality se souřadnicemi</small></span><b>›</b></button><button class="settings-card" id="openBuddies" type="button"><span class="settings-icon">◎</span><span><strong>Buddies</strong><small id="buddiesSummary">Seznam potápěčských partnerů</small></span><b>›</b></button><button class="settings-card" id="openCatalogs" type="button"><span class="settings-icon">≡</span><span><strong>Správa číselníků</strong><small>Vlastní názvy a hodnoty</small></span><b>›</b></button></div></div><div class="settings-group"><h3>Výstroj</h3><div class="settings-menu grouped"><button class="settings-card" id="openDefaults" type="button"><span class="settings-icon">⚙</span><span><strong>Výchozí hodnoty</strong><small id="defaultsSummary">Výstroj předvyplněná u nového ponoru</small></span><b>›</b></button><button class="settings-card" id="openProfiles" type="button"><span class="settings-icon">▣</span><span><strong>Profily výstroje</strong><small id="profilesSummary">Aktivní profil: žádný</small></span><b>›</b></button><button class="settings-card" id="openServiceSettings" type="button"><span class="settings-icon">⌁</span><span><strong>Servis vybavení</strong><small id="serviceSummary">Revize lahví, stage a automatik</small></span><b>›</b></button></div></div><div class="settings-group"><h3>Aplikace</h3><div class="settings-menu grouped"><button class="settings-card" id="openAppearance" type="button"><span class="settings-icon">◐</span><span><strong>Vzhled</strong><small id="appearanceSummary">Automaticky podle zařízení</small></span><b>›</b></button><button class="settings-card" id="openNumbering" type="button"><span class="settings-icon">#</span><span><strong>Číslování ponorů</strong><small id="numberingSummary">Výchozí číslo není nastaveno</small></span><b>›</b></button><button class="settings-card" id="openSequenceCheck" type="button"><span class="settings-icon">✓</span><span><strong>Kontrola návaznosti</strong><small id="sequenceCheckSummary">Mezery a duplicity v číslech ponorů</small></span><b>›</b></button><button class="settings-card" id="openQualityCheck" type="button"><span class="settings-icon">◎</span><span><strong>Kontrola kvality deníku</strong><small id="qualityCheckSummary">Neúplné a nekonzistentní záznamy</small></span><b>›</b></button><button class="settings-card" id="openData" type="button"><span class="settings-icon">⇄</span><span><strong>Zálohy a přenos dat</strong><small id="dataSummary">JSON a CSV</small></span><b>›</b></button><button class="settings-card" id="openReleaseNotes" type="button"><span class="settings-icon">✦</span><span><strong>Co je nového</strong><small id="versionSummary">Verze 1.24.0</small></span><b>›</b></button><button class="settings-card" id="openAbout" type="button"><span class="settings-icon">i</span><span><strong>O aplikaci</strong><small>Diving LogBook 1.24.0</small></span><b>›</b></button></div></div></div>
 </section>
 </main>
 <div aria-labelledby="updateTitle" aria-modal="true" class="update-modal hidden" id="updateModal" role="dialog">
@@ -355,13 +358,13 @@
 <script crossorigin="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <button aria-label="Přejít nahoru" class="scroll-top-btn" id="scrollTopBtn" type="button">↑</button>
-<script src="storage.js?v=1.23.1"></script>
-<script src="app.js?v=1.23.1"></script>
-<script src="csv-import.js?v=1.23.1"></script>
-<script src="settings-data-layout.js?v=1.23.1"></script>
-<script src="service.js?v=1.23.1"></script>
-<script src="catalogs.js?v=1.23.1"></script>
-<script src="map-localities.js?v=1.23.1"></script>
-<script src="search-clear.js?v=1.23.1"></script>
+<script src="storage.js?v=1.24.0"></script>
+<script src="app.js?v=1.24.0"></script>
+<script src="csv-import.js?v=1.24.0"></script>
+<script src="settings-data-layout.js?v=1.24.0"></script>
+<script src="service.js?v=1.24.0"></script>
+<script src="catalogs.js?v=1.24.0"></script>
+<script src="map-localities.js?v=1.24.0"></script>
+<script src="search-clear.js?v=1.24.0"></script>
 </body>
 </html>
