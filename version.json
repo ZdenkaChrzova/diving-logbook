@@ -1,14 +1,22 @@
 {
-  "version": "1.23.0",
+  "version": "1.23.1",
   "date": "2026-11-28",
-  "title": "Kontrola návaznosti ponorů",
+  "title": "Čitelnost chybějících čísel v tmavém režimu",
   "changes": [
-    "Do Nastavení v sekci Aplikace byla pod Číslování ponorů přidána Kontrola návaznosti.",
-    "Kontrola odhalí mezery, duplicitní čísla a ponory bez platného kladného celého čísla.",
-    "U duplicitních a neplatně očíslovaných záznamů lze otevřít přímo detail konkrétního ponoru.",
-    "Kontrola je pouze informativní a žádná uložená data automaticky nemění."
+    "Opravena čitelnost chybějících čísel v tmavém režimu.",
+    "Rozsahy chybějících čísel mají v tmavém vzhledu kontrastní tmavé pozadí, světlejší text a jemné orámování.",
+    "Světlý režim a logika kontroly návaznosti zůstávají beze změny."
   ],
   "history": [
+    {
+      "version": "1.23.1",
+      "date": "2026-11-28",
+      "changes": [
+        "Opravena čitelnost chybějících čísel v tmavém režimu.",
+        "Rozsahy chybějících čísel mají v tmavém vzhledu kontrastní tmavé pozadí, světlejší text a jemné orámování.",
+        "Světlý režim a logika kontroly návaznosti zůstávají beze změny."
+      ]
+    },
     {
       "version": "1.23.0",
       "date": "2026-11-28",
