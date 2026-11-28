@@ -1,13 +1,24 @@
 {
-  "version": "1.22.7",
-  "date": "2026-11-25",
-  "title": "Oprava země v CSV exportu",
+  "version": "1.23.0",
+  "date": "2026-11-28",
+  "title": "Kontrola návaznosti ponorů",
   "changes": [
-    "CSV export znovu obsahuje sloupec Země umístěný za sloupcem Lokalita.",
-    "Země se exportuje z databáze lokality; u historických záznamů lze použít také zemi uloženou u importu ponoru.",
-    "CSV import zůstává zpětně kompatibilní se soubory se sloupcem Země i bez něj."
+    "Do Nastavení v sekci Aplikace byla pod Číslování ponorů přidána Kontrola návaznosti.",
+    "Kontrola odhalí mezery, duplicitní čísla a ponory bez platného kladného celého čísla.",
+    "U duplicitních a neplatně očíslovaných záznamů lze otevřít přímo detail konkrétního ponoru.",
+    "Kontrola je pouze informativní a žádná uložená data automaticky nemění."
   ],
   "history": [
+    {
+      "version": "1.23.0",
+      "date": "2026-11-28",
+      "changes": [
+        "Do Nastavení v sekci Aplikace byla pod Číslování ponorů přidána Kontrola návaznosti.",
+        "Kontrola odhalí mezery, duplicitní čísla a ponory bez platného kladného celého čísla.",
+        "U duplicitních a neplatně očíslovaných záznamů lze otevřít přímo detail konkrétního ponoru.",
+        "Kontrola je pouze informativní a žádná uložená data automaticky nemění."
+      ]
+    },
     {
       "version": "1.22.7",
       "date": "2026-11-25",
