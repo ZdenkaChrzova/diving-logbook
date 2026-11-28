@@ -1,13 +1,22 @@
 {
-  "version": "1.22.6",
+  "version": "1.22.7",
   "date": "2026-11-25",
-  "title": "Výraznější ikony",
+  "title": "Oprava země v CSV exportu",
   "changes": [
-    "Ikony v Nastavení a Mém profilu jsou větší, výraznější a lépe čitelné na mobilním displeji.",
-    "Ikony mají kontrastnější podklad, jemné orámování a lehké prostorové zvýraznění.",
-    "Rozložení, navigace, funkce a datový model zůstávají beze změny."
+    "CSV export znovu obsahuje sloupec Země umístěný za sloupcem Lokalita.",
+    "Země se exportuje z databáze lokality; u historických záznamů lze použít také zemi uloženou u importu ponoru.",
+    "CSV import zůstává zpětně kompatibilní se soubory se sloupcem Země i bez něj."
   ],
   "history": [
+    {
+      "version": "1.22.7",
+      "date": "2026-11-25",
+      "changes": [
+        "CSV export znovu obsahuje sloupec Země umístěný za sloupcem Lokalita.",
+        "Země se exportuje z databáze lokality; u historických záznamů lze použít také zemi uloženou u importu ponoru.",
+        "CSV import zůstává zpětně kompatibilní se soubory se sloupcem Země i bez něj."
+      ]
+    },
     {
       "version": "1.22.6",
       "date": "2026-11-25",

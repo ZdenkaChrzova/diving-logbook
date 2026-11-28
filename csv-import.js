@@ -7,6 +7,7 @@
     "Čas",
     "Denní doba",
     "Lokalita",
+    "Země",
     "Buddy",
     "Max hloubka (m)",
     "Délka (min)",
@@ -201,7 +202,8 @@
         dive.startTime ?? "",
           catalogChoiceLabel("timeOfDay", conditions.timeOfDay || "day"),
         locationName(dive),
-          buddyNamesForExport(dive),
+        locationCountry(dive),
+        buddyNamesForExport(dive),
         decimal(dive.maxDepthM),
         dive.durationMinutes ?? "",
 
